@@ -1,11 +1,172 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import {ChevronRight, ChevronUp, ExternalLink} from 'react-feather';
+import HeroSubtitles from '../components/HeroSubtitles'
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Mahibul Haque">
+    <Fragment slot="head">
+        <meta name="og:type" content="profile" />
+        <meta name="profile:first_name" content="Mahibul" />
+        <meta name="profile:last_name" content="Haque" />
+        <meta name="profile:username" content="mahibulhaque" />
+        <meta name="profile:gender" content="male" />
+    </Fragment>
+
+    <section class="flex flex-col items-center mt-10">
+        <div class="flex flex-col">
+            <div
+                class="text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6.5rem] xl:text-[8rem] font-black leading-[0.85em]"
+            >
+                Hello, I'm
+            </div>
+            <div
+                class="uppercase text-[5rem] sm:text-[8rem] md:text-[10rem] lg:text-[14rem] xl:text-[16rem] leading-[0.85em]"
+            >
+                <div class="font-black -ml-8 sm:-ml-16 md:-ml-24 lg:-ml-32 xl:-ml-40">
+                    Mahib<span class="relative"
+                        ><div
+                            aria-hidden="true"
+                            class="absolute top-0 left-0 hidden w-0 h-0 md:block"
+                        >
+                            <div
+                                class="absolute flex flex-row items-center w-72 -left-0 lg:-left-10 -bottom-12"
+                            >
+                                <img src="/images/pin.svg" class="w-24 h-24" />
+                                <div class="text-sm normal-case">
+                                    <div class="font-light leading-[0.5em]">
+                                        Currently Based In
+                                    </div>
+                                    <div class="text-lg font-semibold">
+                                        Dhaka, Bangladesh
+                                    </div>
+                                </div>
+                            </div>
+                        </div>ul</span
+                    >
+                </div>
+                <div class="font-black">
+                    Ha<span
+                        class:list={[
+                            'relative before:bg-cover before:block before:absolute before:rounded-full before:w-[40%] before:h-[35%] before:left-0 before:bottom-0 before:right-0 before:m-auto before:top-0 before:-z-10',
+                            `before:bg-[url(/images/me.jpeg)]`,
+                        ]}
+                        ><div
+                            aria-hidden="true"
+                            class="absolute top-0 bottom-0 left-0 hidden w-0 h-0 m-auto text-3xl font-normal leading-5 normal-case md:block"
+                        >
+                            <div
+                                class="absolute w-0 h-[2.5em] -bottom-36 left-6 right-0 mx-auto"
+                            >
+                                <div
+                                    class="absolute bottom-0 left-0 right-0 mx-auto w-32 font-just-me text-center"
+                                >
+                                    That's My Gravatar
+                                    <div
+                                        class="absolute flex flex-col items-center justify-end w-6 h-16 mx-auto -top-16 left-0 right-0 after:block after:w-[2.5px] after:h-full after:bg-[#FF5FF9] after:mx-auto"
+                                    >
+                                        <ChevronUp
+                                            color="#FF5FF9"
+                                            size={48}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>q</span
+                    >ue<span class="relative"
+                        ><div
+                            class="absolute top-0 bottom-0 hidden h-32 my-auto text-sm font-light md:block -right-32"
+                        >
+                            <a
+                                target="_blank"
+                                href="https://github.com/mahibulhaque"
+                                class="flex mx-2 space-x-2 transition-colors hover:text-pink-500"
+                            >
+                                <span>Github</span>
+                                <ExternalLink className="w-4" />
+                            </a>
+                            <a
+                                target="_blank"
+                                href="https://twitter.com/MahibulHaque"
+                                class="flex mx-2 space-x-2 transition-colors hover:text-pink-500"
+                            >
+                                <span>Twitter</span>
+                                <ExternalLink className="w-4" />
+                            </a>
+                            <a
+                                target="_blank"
+                                href="https://bd.linkedin.com/in/mahibulhaque"
+                                class="flex mx-2 space-x-2 transition-colors hover:text-pink-500"
+                            >
+                                <span>LinkedIn</span>
+                                <ExternalLink className="w-4" />
+                            </a>
+                            <a
+                                target="_blank"
+                                href="https://facebook.com/mahib.haque"
+                                class="flex mx-2 space-x-2 transition-colors hover:text-pink-500"
+                            >
+                                <span>Facebook</span>
+                                <ExternalLink className="w-4" />
+                            </a>
+                        </div></span
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-row items-center my-6 md:hidden">
+            <img src="/images/pin.svg" class="w-12 h-12" />
+            <div class="text-sm normal-case">
+                <div class="font-light leading-[0.5em]">Currently Based In</div>
+                <div class="text-lg font-semibold">Dhaka, Bangladesh</div>
+            </div>
+        </div>
+        <section class="w-3/4 mt-4 md:mt-10 lg:mt-16">
+            <p
+                class="text-base sm:text-xl lg:text-3xl lg:leading-snug font-jetbrains-mono h-24"
+            >
+                <strong>Engineer</strong>
+                who loves <span class="bg-yellow-100"
+                    ><HeroSubtitles client:idle /></span
+                >
+            </p>
+            <p class="mt-8 text-center md:hidden">
+                <a
+                    target="_blank"
+                    href="https://github.com/mahibulhaque"
+                    class="inline-flex mx-2 space-x-2 transition-colors hover:text-pink-500"
+                >
+                    <span>Github</span>
+                    <ExternalLink className="w-4" />
+                </a>
+                <a
+                    target="_blank"
+                    href="https://twitter.com/MahibulHaque"
+                    class="inline-flex mx-2 space-x-2 transition-colors hover:text-pink-500"
+                >
+                    <span>Twitter</span>
+                    <ExternalLink className="w-4" />
+                </a>
+                <a
+                    target="_blank"
+                    href="https://bd.linkedin.com/in/mahibulhaque"
+                    class="inline-flex mx-2 space-x-2 transition-colors hover:text-pink-500"
+                >
+                    <span>LinkedIn</span>
+                    <ExternalLink className="w-4" />
+                </a>
+                <a
+                    target="_blank"
+                    href="https://facebook.com/mahib.haque"
+                    class="inline-flex mx-2 space-x-2 transition-colors hover:text-pink-500"
+                >
+                    <span>Facebook</span>
+                    <ExternalLink className="w-4" />
+                </a>
+            </p>
+        </section>
+    </section>
+    <section>
+        <br />
+    </section>
 </Layout>
