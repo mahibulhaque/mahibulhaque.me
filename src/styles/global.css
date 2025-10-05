@@ -1,1 +1,20 @@
 @import "tailwindcss";
+@plugin 'tailwind-scrollbar';
+
+:root {
+	--font-roboto: "Roboto", "sans-serif";
+	--font-jetbrains-mono: "JetBrains Mono", "monospace";
+	--font-just-me: "Just Me Again Down Here", "cursive";
+}
+
+@theme inline {
+	--font-sans: var(--font-roboto);
+	--font-roboto: var(--font-roboto);
+	--font-jetbrains-mono: var(--font-jetbrains-mono);
+	--font-just-me: var(--font-just-me);
+}
+
+::selection {
+	color: black;
+	@apply bg-pink-600;
+}
