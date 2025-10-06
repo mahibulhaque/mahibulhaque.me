@@ -1,0 +1,173 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { getEntry, render } from "astro:content";
+import { HumanTime } from "../../../components/HumanTime";
+import { H2Tag, H3Tag, H4Tag, H5Tag, H6Tag } from "../../../components/Headings";
+
+const { slug } = Astro.params;
+
+if (!slug) {
+	return new Response(
+		JSON.stringify({
+			code: "invalid slug",
+			message: "must provide a slug",
+		}),
+		{
+			status: 400,
+		},
+	);
+}
+
+const post = await getEntry("posts", slug);
+
+if (!post) {
+	return new Response(undefined, {
+		status: 404,
+	});
+}
+
+const { Content, headings } = await render(post);
+
+const contentsEnabled =
+	post.data.contents === undefined ||
+	post.data.contents === true ||
+	(post.data.contents !== false &&
+		(post.data.contents.enabled === undefined || post.data.contents.enabled === true));
+
+const contentsOpenByDefault =
+	post.data.contents === undefined ||
+	post.data.contents === true ||
+	(post.data.contents !== false &&
+		(post.data.contents.open === undefined || post.data.contents.open === true));
+---
+
+<Layout
+	title={`${post.data.pageTitle ?? post.data.title} — Mahibul Haque`}
+	description={post.data.shortDescription ?? post.data.title}
+>
+	<Fragment slot="head">
+		<meta name="og:type" content="article" />
+		<meta name="article:author" content="https://mahibulhaque.me" />
+		<meta name="article:published_time" content={post.data.published?.toISOString()} />
+		<meta name="article:modified_time" content={post.data.edited?.toISOString()} />
+		{post.data.tags?.map((tag) => <meta name="article:tag" content={tag} />)}
+	</Fragment>
+
+	<Fragment slot="og-image">
+		<!-- <meta name="og:image" content={imageURL} /> -->
+	</Fragment>
+
+	<article itemscope itemtype="http://schema.org/Article">
+		<div class="mt-24 flex flex-row">
+			<time
+				itemprop="datePublished"
+				datetime={post.data.published?.toISOString()}
+				class="font-jetbrains-mono mb-2 hidden pl-6 text-lg text-gray-500 uppercase md:block"
+			>
+				<HumanTime time={post.data.published} client:idle /> —
+			</time>
+
+			<time
+				itemprop="dateModified"
+				datetime={post.data.edited?.toISOString()}
+				class="font-jetbrains-mono mb-2 block pl-3 text-lg text-gray-600 uppercase"
+				transition:name={`article-time_${post.id}`}
+			>
+				Edited <HumanTime time={post.data.edited} client:idle />
+			</time>
+		</div>
+
+		<div
+			class="mb-6 max-w-[85%] px-4 text-5xl font-black lg:text-6xl"
+			itemprop="headline"
+			transition:name={`article-title_${post.id}`}
+		>
+			{post.data.onPageTitlePrefix ? post.data.onPageTitlePrefix + " " : ""}<h1
+				class="inline break-words hyphens-auto"
+			>
+				<Fragment set:html={post.data.title} />
+			</h1>
+		</div>
+
+		<main class="mx-4 flex flex-col">
+			<aside class="mb-6 flex w-full flex-row">
+				<div itemprop="author publisher" itemscope itemtype="http://schema.org/Person">
+					<div class="flex flex-1 flex-row items-center">
+						<img
+							class="h-12 w-12 rounded-full border-4 border-blue-100"
+							src="/images/me.jpeg"
+							alt="Mahibul Haque"
+							itemprop="image"
+						/>
+						<div class="mx-2 font-semibold" itemprop="name">
+							<span itemprop="givenName">Omran</span>
+							<span itemprop="familyName">Jamal</span>
+						</div>
+					</div>
+				</div>
+			</aside>
+
+			<section class="font-inter w-full text-lg lg:w-3/4">
+				{
+					contentsEnabled ? (
+						<details open={contentsOpenByDefault}>
+							<summary class="font-jetbrains-mono cursor-pointer text-3xl font-black">
+								<h2 class="inline">Contents</h2>
+							</summary>
+
+							<div class="my-10">
+								{headings.map((heading) => (
+									<div
+										style={{
+											paddingLeft: `${2 * (heading.depth - 2)}rem`,
+										}}
+										class="py-1"
+									>
+										<a
+											href={`#${heading.slug}`}
+											class="font-semibold transition-all hover:text-pink-600"
+										>
+											・ {heading.text}
+										</a>
+									</div>
+								))}
+							</div>
+						</details>
+					) : null
+				}
+
+				<div class="post" itemprop="articleBody">
+					<Content
+						components={{
+							h2: H2Tag,
+							h3: H3Tag,
+							h4: H4Tag,
+							h5: H5Tag,
+							h6: H6Tag,
+						}}
+					/>
+				</div>
+			</section>
+		</main>
+
+		<div class="mt-12 mb-6 space-x-4 pl-6 text-lg text-gray-400">
+			{
+				post.data.tags?.map((tag) => (
+					<a href={`/tag/${tag}`} class="text-gray-600">
+						#{tag}
+					</a>
+				))
+			}
+		</div>
+
+		<script>
+			document.querySelectorAll(".post > h2,h3,h4,h5,h6").forEach((heading) => {
+				heading.querySelectorAll("a.copy-hash-link-button").forEach((button: HTMLAnchorElement) => {
+					button.addEventListener("click", () => {
+						navigator.clipboard.writeText(button.href);
+					});
+				});
+			});
+		</script>
+	</article>
+</Layout>

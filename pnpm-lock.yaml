@@ -47,6 +47,9 @@ importers:
       tailwindcss:
         specifier: ^4.1.14
         version: 4.1.14
+      timeago.js:
+        specifier: ^4.0.2
+        version: 4.0.2
     devDependencies:
       '@commitlint/cli':
         specifier: ^20.1.0
@@ -3220,6 +3223,9 @@ packages:
 
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
+
+  timeago.js@4.0.2:
+    resolution: {integrity: sha512-a7wPxPdVlQL7lqvitHGGRsofhdwtkoSXPGATFuSOA2i1ZNQEPLrGnj68vOp2sOJTCFAQVXPeNMX/GctBaO9L2w==}
 
   tiny-inflate@1.0.3:
     resolution: {integrity: sha512-pkY1fj1cKHb2seWDy0B16HeWyczlJA9/WW3u3c4z/NiWDsO3DOU5D7nhTLE9CF0yXv/QZFY7sEJmj24dK+Rrqw==}
@@ -7459,6 +7465,8 @@ snapshots:
   text-extensions@2.4.0: {}
 
   through@2.3.8: {}
+
+  timeago.js@4.0.2: {}
 
   tiny-inflate@1.0.3: {}
 

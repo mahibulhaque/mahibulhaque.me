@@ -1,0 +1,47 @@
+---
+import type { InferEntrySchema, RenderedContent } from "astro:content";
+import { HumanTime } from "../components/HumanTime";
+
+interface Props {
+	posts: {
+		id: string;
+		body: string;
+		collection: "posts";
+		data: InferEntrySchema<"posts">;
+		rendered?: RenderedContent;
+		filePath?: string;
+	}[];
+}
+
+const { posts } = Astro.props;
+---
+
+<section class="mb-32 space-y-8">
+	{
+		posts.map((post) => (
+			<div>
+				<div class="flex flex-row items-center space-x-4">
+					<div
+						class="font-jetbrains-mono text-sm text-gray-500 uppercase"
+						transition:name={`article-time_${post.id}`}
+					>
+						<HumanTime time={post.data.edited} client:visible />{" "}
+					</div>
+					{post.data.tags.slice(0, 1).map((tag) => (
+						<a href={`/tag/${tag}`} class="text-sm text-pink-500">
+							#{tag}
+						</a>
+					))}
+				</div>
+				<a
+					href={`/blog/${post.id.replace(/\.mdx?$/, "")}`}
+					class="text-2xl font-bold"
+					transition:name={`article-title_${post.id}`}
+				>
+					{post.data?.onPageTitlePrefix ? post.data.onPageTitlePrefix + " " : ""}{" "}
+					<Fragment set:html={post.data.title} />
+				</a>
+			</div>
+		))
+	}
+</section>

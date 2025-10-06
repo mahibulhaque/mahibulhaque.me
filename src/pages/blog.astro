@@ -1,0 +1,32 @@
+---
+import ArticleList from "../components/ArticleList.astro";
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("posts"))
+	.filter((post) => !post.data.unlisted)
+	.sort((a, b) => {
+		if ((a.data.edited || a.data.published) > (b.data.edited || b.data.published)) {
+			return -1;
+		} else {
+			return 1;
+		}
+	});
+---
+
+<Layout
+	title="Blog — Mahibul Haque"
+	description={"a blog by Mahibul Haque about the things in (software) engineering that are a bit less spoken of."}
+>
+	<Fragment slot="head">
+		<meta name="og:type" content="website" />
+	</Fragment>
+
+	<div class="px-4">
+		<h1 class="font-jetbrains-mono my-16 text-6xl font-black">Blog</h1>
+
+		<div class="lg:w-3/4">
+			<ArticleList posts={posts} />
+		</div>
+	</div>
+</Layout>
