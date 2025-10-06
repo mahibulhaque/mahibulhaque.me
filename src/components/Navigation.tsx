@@ -39,14 +39,14 @@ export default function Navigation({ path }: { path: string }) {
 						<br />
 						Haque
 					</a>
-					<button onClick={toggle} className="p-3 md:hidden">
+					<button onClick={toggle} className="cursor-pointer p-3 md:hidden">
 						<Menu className="w-6" />
 					</button>
 				</div>
 				<div
 					className={cn(
 						open ? "flex" : "hidden",
-						"font-jetbrains-mono ml-4 flex flex-col space-y-2 pt-4 font-semibold md:ml-6 md:flex md:flex-row md:items-center md:space-y-0 md:space-x-4 md:pt-0",
+						"font-jetbrains-mono ml-4 flex-col space-y-2 pt-4 font-semibold md:ml-6 md:flex md:flex-row md:items-center md:space-y-0 md:space-x-4 md:pt-0",
 					)}
 				>
 					<NavigationLink href="/" title="About Me" initiallyActive={path === "/"} />
@@ -58,9 +58,9 @@ export default function Navigation({ path }: { path: string }) {
 					<a
 						target={"_blank"}
 						href="mailto:mahib@mahibulhaque.me"
-						className="space-x-2 pl-5 transition-colors hover:text-pink-600"
+						className="space-x-2 transition-colors hover:text-pink-600 md:pl-5"
 					>
-						<strong className="font-semibold">mahib</strong>@mahibulhaque.me
+						<strong className="font-semibold">mahib@mahibulhaque.me</strong>
 						<ArrowRight className="inline w-4" />
 						<Mail className="inline w-4" />
 					</a>

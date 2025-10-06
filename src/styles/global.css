@@ -1,6 +1,18 @@
 @import "tailwindcss";
 @plugin 'tailwind-scrollbar';
 
+html {
+	scrollbar-width: thin;
+	scrollbar-color: rgb(100 116 139) white;
+
+	scroll-behavior: smooth;
+}
+
+@-moz-document url-prefix() {
+	html {
+		scrollbar-width: unset;
+	}
+}
 :root {
 	--font-roboto: "Roboto", "sans-serif";
 	--font-jetbrains-mono: "JetBrains Mono", "monospace";
@@ -17,4 +29,82 @@
 ::selection {
 	color: black;
 	@apply bg-pink-600;
+}
+
+.post h2,
+.post h3,
+.post h4,
+.post h5,
+.post h6 {
+	@apply tracking-tight;
+}
+
+.post h2 {
+	@apply font-jetbrains-mono mt-12 mb-8 text-4xl font-black;
+}
+
+.post h3 {
+	@apply font-jetbrains-mono mt-12 mb-4 text-3xl font-black;
+}
+
+.post h4 {
+	@apply font-jetbrains-mono mt-12 mb-4 text-xl font-bold;
+}
+
+.post h5 {
+	@apply font-jetbrains-mono mt-12 mb-4 text-lg font-semibold;
+}
+
+.post h6 {
+	@apply font-jetbrains-mono mt-12 mb-2 font-semibold;
+}
+
+.post p {
+	@apply my-3 px-0;
+}
+
+.post a:not(h2 > a, h3 > a, h4 > a, h5 > a, h6 > a) {
+	@apply text-pink-500 underline underline-offset-2 transition-all hover:underline-offset-4;
+}
+
+.post ol {
+	@apply list-decimal pl-6;
+}
+
+.post ul {
+	@apply list-disc pl-6;
+}
+
+.post blockquote {
+	@apply my-4 rounded-md border-l-4 bg-slate-100 px-4 py-4;
+}
+
+.post pre {
+	margin-bottom: 1rem !important;
+}
+
+.post p code,
+.post li code {
+	@apply rounded-md border-2 border-yellow-200 bg-yellow-50 px-1 py-0;
+}
+
+.post h1 code,
+.post h2 code,
+.post h3 code,
+.post h4 code,
+.post h5 code,
+.post h6 code {
+	@apply rounded-md border-2 border-yellow-200 bg-yellow-50;
+}
+
+.post li {
+	@apply mb-4;
+}
+
+.post em {
+	@apply text-slate-700;
+}
+
+.post details summary {
+	@apply cursor-pointer font-bold;
 }
