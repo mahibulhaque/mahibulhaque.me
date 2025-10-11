@@ -53,7 +53,13 @@ export default function Navigation({ path }: { path: string }) {
 
 					<NavigationLink href="/blog" title="Blog" initiallyActive={path.indexOf("/blog") >= 0} />
 
-					<NavigationLink href="#" title="Résumé" />
+					<a
+						target={"_blank"}
+						href="/files/Md_Mahibul_Haque.pdf"
+						className={cn("transition-colors hover:text-pink-600")}
+					>
+						Résumé
+					</a>
 
 					<a
 						target={"_blank"}
