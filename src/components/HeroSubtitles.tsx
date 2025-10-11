@@ -6,11 +6,11 @@ export default function Loves() {
 			sequence={[
 				"building software that supercharges human capabilities.",
 				2000,
-				"building teams that continously ship the impossible.",
+				"to work with teams that continously ship the impossible.",
 				2000,
 				"building software that provides value since v0.1.0-alpha.",
 				2000,
-				"building teams that are unfazed by the unknown.",
+				"to work with teams that are unfazed by the unknown.",
 				2000,
 			]}
 			speed={90}
