@@ -11,12 +11,43 @@ import path from "path";
 
 import { fileURLToPath } from "url";
 
+import expressiveCode from "astro-expressive-code";
+
+import behead from "remark-behead";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
 	site: "https://mahibulhaque.me",
-	integrations: [react(), mdx()],
+	integrations: [
+		expressiveCode({
+			themes: ["rose-pine-moon"],
+			styleOverrides: {
+				codeFontSize: "1.05rem",
+				borderRadius: "0.6rem",
+				frames: {
+					shadowColor: "transparent",
+				},
+			},
+		}),
+		react(),
+		mdx(),
+	],
+	markdown: {
+		remarkPlugins: [
+			[
+				behead,
+				{
+					minDepth: 2,
+				},
+			],
+		],
+		gfm: true,
+		shikiConfig: {
+			theme: "rose-pine-moon",
+		},
+	},
 
 	vite: {
 		resolve: {

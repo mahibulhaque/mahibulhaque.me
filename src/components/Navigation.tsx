@@ -51,7 +51,7 @@ export default function Navigation({ path }: { path: string }) {
 				>
 					<NavigationLink href="/" title="About Me" initiallyActive={path === "/"} />
 
-					<NavigationLink href="#" title="Blog" initiallyActive={path.indexOf("/blog") >= 0} />
+					<NavigationLink href="/blog" title="Blog" initiallyActive={path.indexOf("/blog") >= 0} />
 
 					<NavigationLink href="#" title="Résumé" />
 

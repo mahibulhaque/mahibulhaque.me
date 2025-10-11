@@ -1,9 +1,24 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import { getEntry, render } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import { HumanTime } from "../../../components/HumanTime";
 import { H2Tag, H3Tag, H4Tag, H5Tag, H6Tag } from "../../../components/Headings";
 
+export async function getStaticPaths() {
+	const posts = (await getCollection("posts"))
+		.filter((post) => !post.data.unlisted)
+		.sort((a, b) => {
+			if ((a.data.edited || a.data.published) > (b.data.edited || b.data.published)) {
+				return -1;
+			} else {
+				return 1;
+			}
+		});
+
+	return posts.map((post) => ({
+		params: { slug: post.id.replace(/\.mdx?$/, "") },
+	}));
+}
 const { slug } = Astro.params;
 
 if (!slug) {
@@ -100,8 +115,8 @@ const contentsOpenByDefault =
 							itemprop="image"
 						/>
 						<div class="mx-2 font-semibold" itemprop="name">
-							<span itemprop="givenName">Omran</span>
-							<span itemprop="familyName">Jamal</span>
+							<span itemprop="givenName">Mahibul</span>
+							<span itemprop="familyName">Haque</span>
 						</div>
 					</div>
 				</div>

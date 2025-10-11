@@ -5,7 +5,7 @@ import { HumanTime } from "../components/HumanTime";
 interface Props {
 	posts: {
 		id: string;
-		body: string;
+		body?: string;
 		collection: "posts";
 		data: InferEntrySchema<"posts">;
 		rendered?: RenderedContent;
