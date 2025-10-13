@@ -1,0 +1,103 @@
+---
+title: Prepared Statements in SQL
+onPageTitlePrefix: 🔎
+published: 2024-06-24
+edited: 2024-06-24
+highlight: true
+tags:
+  - sql
+  - database
+---
+
+The following explains what are prepared statements, why they are useful when working with SQL database queries at scale and times you need to disable them.
+
+# Overview
+
+A prepared statement is a feature used to execute the same (or similar) SQL statements repeatedly with parameterized data bindings with high efficiency. This process improves the security of applications by making SQL queries resistant to SQL injection attacks.
+
+When a SQL statement is written, the dynamic parts of the statement (the input data that may differ upon each execution of the query) are abstracted into parameters. When you execute your query, the data you provide is substituted into the pre-compiled statement along with any necessary quotation marks.
+
+In the example below, the first statement represents something that you may write in your query: it selects the `id` column from a certain table by using a `WHERE` clause to filter based on some criteria, which in this case is user input from the search box of a table widget `Table1`.
+
+```sql
+-- regular SQL query
+SELECT * FROM users WHERE id = {{ Table1.searchUserId }};
+```
+
+When prepared statements are turned on, your SQL statement is pre-compiled on the database server into something like the following snippet, where the dynamic data is replaced by a placeholder:
+
+```sql
+SELECT * FROM users WHERE id = ?
+```
+
+When your query is eventually executed, the dynamic data (in this case, the table's search bar text) is sent to the database server and substituted into the statement in place of the ?.
+
+# Security
+
+By separating the SQL commands and the parameter data, the database server can perform its operations exactly as intended without the risk of malicious users adding their own SQL code into the query (a common attack known as [SQL injection](https://en.wikipedia.org/wiki/SQL_injection)). When the statement is executed, the user's input is evaluated as a piece of data rather than an extension of your SQL code.
+
+As a simple example, imagine a user that sends the input `1; DROP TABLE users`; to a query that's expecting a user's id:
+
+```sql
+-- without prepared statements
+SELECT * from users WHERE id = 1; DROP TABLE users;
+```
+
+The above statement returns any record where the `id is 1`, but then drops the users table.
+
+```sql
+SELECT * FROM users WHERE id = "1; DROP TABLE users;";
+```
+
+With the parameterized input, the query would return nothing after it's unable to find a user with an `id` equal to the literal `1; DROP TABLE users;`.
+
+# Limitations
+
+Depending on the requirements behind your SQL query, it is not always possible to use prepared statements as mentioned in earlier sections. The following sections touches upon on some cases when it is not possible.
+
+## Dynamic Queries
+
+In some cases, the structure of the query's SQL statement may be determined based on some conditional code from the application.
+
+As an example, imagine an app with an Input widget UserQueryInput where the user is supposed to write their own SQL. The query body would look like:
+
+As an example, imagine an app with an Input widget UserQueryInput where the user is supposed to write their own SQL. The query body would look like:
+
+```sql
+{{ UserQueryInput.text }}
+```
+
+## Dynamic Clauses
+
+The DBMS also can't pre-compile queries with clauses that are included based on conditional code. Since the underlying structure of the query is not known in advance, it won't be acceptable as a Prepared Statement. For example, the following would require that prepared statements are turned off:
+
+```sql
+SELECT * FROM users WHERE name = {{ NameInput.text }}
+{{
+    IncludeAddressCheckbox.isChecked?
+        "INNER JOIN group ON users.groupID = group.groupID" :
+        ""
+}};
+```
+
+## Dynamic WHERE Clauses
+
+There may be situations in which the structure of a query's `WHERE` clause isn't known till the query is run.
+
+```sql
+SELECT * FROM users WHERE {{ NameInput.text ? "name = " + NameInput.text : "1=1" }}
+```
+
+Since the structure of the `WHERE` clause is not determined up-front, it can't be pre-compiled. Just like the table name, the DBMS needs to know which column is being used in the `WHERE` clause so that it can pre-compile the statement. Since the above statement doesn't provide this static information, prepared statements must be turned off.
+
+The limitation also applies if the column name for the `WHERE` clause is also interpreted at runtime.
+
+```sql
+SELECT * FROM users WHERE {{ ColumnInput.text }} = '{{ ValueInput.text }}';
+```
+
+# Summary
+
+Prepared statements are super handy for increasing the security of queries by isolating the `COMMAND` part of the query that is executable in database.
+
+However, when the structure of your query isn't static and provided up-front, you may need to turn this setting off. When your SQL statement is built according to conditional logic or doesn't specify which table and column it's querying, the database server can't pre-compile your statement, and the query won't work.
