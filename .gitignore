@@ -1,7 +1,7 @@
 # build output
 dist/
 
-# generated types
+# generated types / Astro
 .astro/
 
 # dependencies
@@ -15,10 +15,41 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.production
+.env.*
+!.env.example
 
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# JetBrains
 .idea/
+
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# Cloudflare / Wrangler
+.wrangler/
+
+# Test coverage
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+
+# ESLint cache
+.eslintcache
+
+# Prettier cache
+.prettier-cache
+
+# npm
+.npm/
+
+# temporary files
+*.tmp
+*.temp
+
+# local development
+*.local

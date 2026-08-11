@@ -1,0 +1,14 @@
+node_modules
+dist
+.astro
+.cache
+coverage
+
+# Generated files
+public/generated
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
