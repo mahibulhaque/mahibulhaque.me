@@ -1,26 +1,101 @@
+---
+import { NavbarIsland } from "@/components/navbar-island";
+import "../styles/global.css";
+import { siteConfig } from "@/config/site";
+import SiteHeader from "@/components/header";
+import SiteFooter from "@/components/footer";
+import { LightRays } from "@/components/ui/light-rays";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const { title, description, image, canonicalURL } = Astro.props;
+const pageTitle = title
+  ? siteConfig.seo.titleTemplate
+      .replace("%s", title)
+      .replace("%n", siteConfig.siteTitle)
+  : siteConfig.siteTitle;
+
+const ogImage = image
+  ? image.startsWith("http")
+    ? image
+    : `${siteConfig.siteUrl}${image}`
+  : `${siteConfig.siteUrl}${siteConfig.ogImagePath}`;
+---
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+
+    <!-- FOUC prevention: apply stored theme before first paint -->
+    <script is:inline>
+      (function () {
+        const theme = localStorage.getItem("theme");
+        if (
+          theme === "dark" ||
+          (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      })();
+    </script>
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <title>Mahib's Margins</title>
+    <!-- Primary meta -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Robots -->
+    <meta name="robots" content={siteConfig.seo.robots} />
+    <meta
+      name="googlebot"
+      content="index, follow, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+    />
+
+    <!-- OpenGraph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteConfig.siteTitle} />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content={siteConfig.seo.twitterCard} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
-  <body>
-    <slot />
+  <body class="bg-background relative min-h-screen font-sans antialiased">
+    <LightRays client:load />
+
+    <!-- Main content wrapper - matches template's z-10 container exactly -->
+    <div
+      class="relative z-10 mx-auto max-w-5xl px-4 py-6 pb-24 sm:py-12 sm:pb-20"
+    >
+      <SiteHeader client:load />
+      <main
+        class="border-border relative mt-8 border before:absolute before:top-[-6px] before:left-[-6px] before:h-[13px] before:w-[13px] before:bg-[linear-gradient(#888,#888),linear-gradient(#888,#888)] before:bg-size-[1px_13px,13px_1px] before:bg-position-[6px_100%,0_6px] before:bg-no-repeat before:content-[''] after:absolute after:right-[-6px] after:bottom-[-6px] after:h-[13px] after:w-[13px] after:bg-[linear-gradient(#888,#888),linear-gradient(#888,#888)] after:bg-size-[1px_13px,13px_1px] after:bg-position-[6px_100%,0_6px] after:bg-no-repeat after:content-['']"
+      >
+        <slot />
+      </main>
+      <SiteFooter />
+      <!-- Navbar: ThemeProvider + TooltipProvider + Navbar all in one React island -->
+      <NavbarIsland client:load />
+    </div>
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

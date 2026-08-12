@@ -1,0 +1,37 @@
+---
+export const prerender = true;
+import Layout from "@/layouts/Layout.astro";
+import { Home } from "lucide-react";
+---
+
+<Layout title="404 - Page Not Found">
+  <div class="flex min-h-[calc(100vh-12rem)] flex-col">
+    <div class="flex flex-1 items-center justify-center p-8">
+      <div class="relative flex max-w-md flex-col items-center text-center">
+        <h1
+          class="from-primary/30 to-secondary/10 absolute -top-40 left-1/2 -translate-x-1/2 bg-linear-to-b mask-[linear-gradient(to_bottom,black,black_20%,transparent_80%)] bg-clip-text font-mono text-[200px] font-semibold tracking-tighter text-transparent uppercase [-webkit-text-stroke:3px_hsl(var(--primary)/0.6)]"
+        >
+          404
+        </h1>
+        <h2 class="text-foreground mb-2 text-4xl font-semibold tracking-tight">
+          Page Not Found
+        </h2>
+        <p
+          class="text-muted-foreground mb-8 font-medium tracking-tight text-balance"
+        >
+          The page you're looking for doesn't exist or may have been moved.
+        </p>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <a href="/">
+            <span
+              class="border-input bg-background hover:bg-accent hover:text-accent-foreground inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-md border px-4 py-2 text-sm font-medium whitespace-nowrap shadow-sm transition-colors"
+            >
+              <Home className="h-4 w-4" />
+              Go to Home
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
