@@ -4,7 +4,7 @@ import "../styles/global.css";
 import { siteConfig } from "@/config/site";
 import SiteHeader from "@/components/header";
 import SiteFooter from "@/components/footer";
-import { LightRays } from "@/components/ui/light-rays";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
 
 interface Props {
   title?: string;
@@ -81,7 +81,19 @@ const ogImage = image
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body class="bg-background relative min-h-screen font-sans antialiased">
-    <LightRays client:load />
+    <!-- FlickeringGrid header background - matches template exactly -->
+    <div class="absolute inset-0 top-0 right-0 left-0 z-0 h-25 overflow-hidden">
+      <FlickeringGrid
+        client:load
+        className="h-full w-full"
+        squareSize={2}
+        gridGap={2}
+        style={{
+          maskImage: "linear-gradient(to bottom, black, transparent)",
+          WebkitMaskImage: "linear-gradient(to bottom, black, transparent)",
+        }}
+      />
+    </div>
 
     <!-- Main content wrapper - matches template's z-10 container exactly -->
     <div

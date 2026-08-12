@@ -105,6 +105,7 @@ export default function Navbar() {
               }
             >
               <AnimatedThemeToggler
+                className="cursor-pointer"
                 theme={resolvedTheme === "dark" ? "dark" : "light"}
                 onThemeChange={setTheme}
               />
