@@ -9,7 +9,7 @@ tags:
   - Go
   - "Design Patterns"
 aliases:
-  - /go/circuit_breaker/
+  - /go/circuit-breaker/
 discussions:
   - label: "Reddit"
     url: "https://www.reddit.com/r/golang/comments/1i5n5sc/"

@@ -3,6 +3,8 @@ import type { GetStaticPathsOptions } from "astro";
 import Layout from "@/layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { renderInlineLinks } from "@/utils/links";
+import { siteConfig } from "@/config/site";
+
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allBlogs = await getCollection("blogs");
   const categoryPages = await getCollection("categoryPages");
@@ -12,9 +14,11 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   );
 
   return categories.flatMap((category) => {
-    const categoryBlogs = allBlogs.filter((entry) => {
-      return entry.id?.startsWith(`${category}/`);
-    });
+    const categoryBlogs = allBlogs
+      .filter((entry) => {
+        return entry.id?.startsWith(`${category}/`);
+      })
+      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
     const categoryPage = categoryPages.find(
       (entry) => entry.id === `${category}/_index`,
@@ -27,7 +31,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
       props: {
         categoryData: categoryPage?.data,
       },
-      pageSize: 15,
+      pageSize: siteConfig.posts.postsPerPage,
     });
   });
 }
@@ -40,7 +44,7 @@ const { page, categoryData } = Astro.props;
   title={categoryData?.title ?? category}
   description={categoryData?.description ?? ""}
 >
-  <div class="px-6 py-10 sm:px-10 sm:py-14">
+  <div class="my-8 mr-auto ml-auto max-w-3xl px-6">
     <div class="mb-12">
       <h1
         class="text-foreground mb-3 text-4xl font-bold tracking-tight sm:text-4xl"
@@ -59,7 +63,7 @@ const { page, categoryData } = Astro.props;
         page.data.map((post) => (
           <li class="py-7 first:pt-0 last:pb-0">
             <a href={`/${post.id}`} class="group block">
-              <div class="text-muted-foreground/60 mb-2 flex items-center gap-2 text-xs font-medium tracking-wide uppercase">
+              <div class="text-muted-foreground/60 mb-2 flex items-center gap-2 text-xs font-semibold uppercase">
                 <time datetime={post.data.date.toISOString()}>
                   {post.data.date.toLocaleDateString("en-US", {
                     year: "numeric",
@@ -97,13 +101,13 @@ const { page, categoryData } = Astro.props;
     {
       page.total > 1 && (
         <nav
-          class="mt-10 flex items-center justify-between"
+          class="mt-10 flex items-center justify-start gap-2"
           aria-label="Pagination"
         >
           {page.url.prev ? (
             <a
               href={page.url.prev}
-              class="border-border/60 text-muted-foreground hover:text-foreground hover:border-foreground/40 rounded-full border px-4 py-1.5 text-sm transition-colors"
+              class="border-border text-foreground hover:border-foreground rounded-full border px-4 py-1.5 text-sm transition-colors"
             >
               ← Prev
             </a>
@@ -114,7 +118,7 @@ const { page, categoryData } = Astro.props;
           {page.url.next ? (
             <a
               href={page.url.next}
-              class="border-border/60 text-muted-foreground hover:text-foreground hover:border-foreground/40 ml-auto rounded-full border px-4 py-1.5 text-sm transition-colors"
+              class="border-border text-foreground hover:border-foreground rounded-full border px-4 py-1.5 text-sm transition-colors"
             >
               Next →
             </a>

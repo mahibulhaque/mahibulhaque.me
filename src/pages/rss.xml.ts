@@ -11,7 +11,7 @@ const escapeXml = (value: string) =>
     .replace(/'/g, "&apos;");
 
 export async function GET() {
-  const posts = visibleBlog(await getCollection("posts")).slice(0, 20);
+  const posts = visibleBlog(await getCollection("blogs")).slice(0, 20);
   const items = posts
     .map((post) => {
       const url = new URL(blogHref(post), siteConfig.siteUrl).toString();

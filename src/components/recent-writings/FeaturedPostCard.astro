@@ -1,0 +1,47 @@
+---
+import { formatPostDate, getCategory, getPostHref } from "@/utils/post";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blogs">;
+  index?: number;
+}
+
+const { post, index = 1 } = Astro.props;
+const category = getCategory(post);
+const href = getPostHref(post);
+const dateLabel = formatPostDate(post.data.date);
+const indexLabel = String(index).padStart(2, "0");
+---
+
+<a
+  href={href}
+  class="bg-foreground text-background group relative block overflow-hidden rounded-lg p-8 transition-opacity hover:opacity-90 sm:p-10"
+>
+  <span
+    aria-hidden="true"
+    class="text-background/5 pointer-events-none absolute -right-2 -bottom-6 text-[10rem] leading-none font-bold select-none sm:text-[12rem]"
+  >
+    {indexLabel}
+  </span>
+
+  <div class="relative flex flex-col gap-4">
+    <p
+      class="text-background/60 flex gap-2 text-xs font-medium tracking-widest uppercase"
+    >
+      <span>{dateLabel}</span>
+      <span aria-hidden="true">·</span>
+      <span>{category}</span>
+    </p>
+
+    <h3 class="text-2xl font-semibold sm:text-3xl">{post.data.title}</h3>
+
+    {
+      post.data.description && (
+        <p class="text-background/70 max-w-2xl text-sm sm:text-base">
+          {post.data.description}
+        </p>
+      )
+    }
+  </div>
+</a>

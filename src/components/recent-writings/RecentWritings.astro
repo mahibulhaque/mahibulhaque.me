@@ -1,0 +1,39 @@
+---
+import { siteConfig } from "@/config/site";
+import RecentWritingsHeader from "./RecentWritingsHeader.astro";
+import FeaturedPostCard from "./FeaturedPostCard.astro";
+import { getPublishedPosts, pickFeaturedPost } from "@/utils/post";
+import PostListItem from "./PostListItem.astro";
+
+const allPosts = await getPublishedPosts();
+const { postsPerPage } = siteConfig.posts;
+
+const { featured, rest } = pickFeaturedPost(allPosts);
+const listPosts = rest.slice(0, Math.max(postsPerPage - 1, 0));
+const hasMorePosts = allPosts.length > postsPerPage;
+---
+
+<section id="recent-writings">
+  <RecentWritingsHeader />
+
+  <div class="mt-8">
+    <FeaturedPostCard post={featured} index={1} />
+
+    <ul class="border-border divide-border divide-y border-t">
+      {listPosts.map((post) => <PostListItem post={post} />)}
+    </ul>
+  </div>
+
+  {
+    hasMorePosts && (
+      <div class="mt-10">
+        <a
+          href="/page/2"
+          class="border-border text-foreground hover:bg-foreground hover:text-background inline-flex items-center gap-2 rounded-full border px-5 py-2 text-sm transition-colors"
+        >
+          Next <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    )
+  }
+</section>

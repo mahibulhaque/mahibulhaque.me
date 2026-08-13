@@ -52,8 +52,8 @@ const HERO_SECTION_DEFAULTS = {
   greeting: "Hi, I'm Mahib.",
   tagline: "I work with computers.",
   subtext: "…and sometimes I write about them too.",
-  postCount: 237,
-  sinceYear: 2020,
+  postCount: 47,
+  sinceYear: 2025,
   heroImageSrc:
     "https://images.unsplash.com/photo-1569412148958-600837f89a65?fm=jpg&q=80&w=1200&auto=format&fit=crop",
   heroImageAlt: "A weathered, wind-carved tree trunk in black and white",
@@ -147,12 +147,12 @@ const HERO_SECTION_DEFAULTS = {
 
   <!-- Stats / social row -->
   <div
-    class="border-border mt-10 flex flex-wrap items-center justify-between gap-4 border-t pt-6"
+    class="border-border mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-b py-6"
   >
     <p
       class="text-muted-foreground font-mono text-[11px] tracking-widest uppercase"
     >
-      {HERO_SECTION_DEFAULTS.postCount} posts since
+      {HERO_SECTION_DEFAULTS.postCount} posts since {" "}
       {HERO_SECTION_DEFAULTS.sinceYear}.
     </p>
 

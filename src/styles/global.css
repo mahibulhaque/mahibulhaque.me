@@ -281,6 +281,10 @@
     @apply bg-muted text-left font-medium;
   }
 
+  .prose code{
+      @apply bg-muted px-1 py-0.5 rounded-xs text-sm
+  }
+
   .prose li > p {
     @apply my-0;
   }
