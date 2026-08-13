@@ -1,0 +1,23 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getEntry, render } from "astro:content";
+import { siteConfig } from "@/config/site";
+
+const entry = await getEntry("about", "about");
+if (!entry) throw new Error("about.md entry not found in content/about");
+
+const { Content } = await render(entry);
+---
+
+<Layout
+  title="About"
+  description={entry.data.description}
+  canonicalURL={`${siteConfig.siteUrl}/about`}
+>
+  <div class="mt-8 mr-auto mb-0 ml-auto max-w-3xl space-y-8 px-6 pb-8 sm:px-10">
+    <h1 class="text-foreground text-3xl font-normal sm:text-5xl">About</h1>
+    <div class="prose">
+      <Content />
+    </div>
+  </div>
+</Layout>

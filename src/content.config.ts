@@ -53,7 +53,21 @@ const categoryPages = defineCollection({
     }),
 });
 
+export const about = defineCollection({
+  loader: glob({
+    pattern: "about.md",
+    base: "./src/content/about",
+  }),
+
+  schema: () =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+    }),
+});
+
 export const collections = {
   blogs: blogs,
   categoryPages: categoryPages,
+  about: about,
 };
