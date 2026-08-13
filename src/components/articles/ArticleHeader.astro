@@ -1,0 +1,61 @@
+---
+import ArticleBreadcrumb from "@/components/articles/ArticleBreadcrumb";
+import { siteConfig } from "@/config/site";
+
+interface Props {
+  category: string;
+  categoryLabel: string;
+  title: string;
+  date: Date;
+  updatedDate?: Date;
+  readingTime?: string;
+}
+
+const { category, categoryLabel, title, date, updatedDate, readingTime } =
+  Astro.props;
+
+const formattedDate = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+}).format(date);
+---
+
+<header class="mb-8">
+  <div class="mb-4">
+    <ArticleBreadcrumb category={category} categoryLabel={categoryLabel} />
+  </div>
+
+  <h1 class="text-foreground text-3xl font-bold tracking-tight sm:text-4xl">
+    {title}
+  </h1>
+
+  <div
+    class="text-muted-foreground mt-4 flex flex-wrap items-center gap-x-1.5 text-sm"
+  >
+    <span>{siteConfig.author.name ?? siteConfig.siteTitle}</span>
+    <span aria-hidden="true">&middot;</span>
+    <time datetime={date.toISOString()}>{formattedDate}</time>
+    {
+      readingTime && (
+        <>
+          <span aria-hidden="true">&middot;</span>
+          <span>{readingTime}</span>
+        </>
+      )
+    }
+  </div>
+
+  {
+    updatedDate && (
+      <p class="text-muted-foreground/70 mt-1 text-xs">
+        Updated{" "}
+        {new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }).format(updatedDate)}
+      </p>
+    )
+  }
+</header>

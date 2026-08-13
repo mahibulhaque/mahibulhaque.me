@@ -1,0 +1,67 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import { siteConfig } from "@/config/site";
+import ArticleHeader from "@/components/articles/ArticleHeader.astro";
+
+import TableOfContents from "@/components/articles/TableOfContents";
+import ArticleProse from "@/components/articles/ArticleProse.astro";
+
+import { readingMinutes } from "@/utils/post";
+export async function getStaticPaths() {
+  const [posts, categoryPages] = await Promise.all([
+    getCollection("blogs", ({ data }) =>
+      import.meta.env.PROD ? !data.draft : true,
+    ),
+    getCollection("categoryPages"),
+  ]);
+
+  const categoryTitles = new Map(
+    categoryPages.map((page) => [page.id.split("/")[0], page.data.title]),
+  );
+
+  return posts.map((entry) => {
+    const [category, ...rest] = entry.id.split("/");
+    const slug = rest.join("/");
+
+    return {
+      params: { category, slug },
+      props: {
+        entry,
+        categoryLabel: categoryTitles.get(category) ?? category,
+      },
+    };
+  });
+}
+
+const { entry, categoryLabel } = Astro.props;
+const { Content, headings } = await render(entry);
+const { title, description, date, updatedDate, cover } = entry.data;
+const category = Astro.params.category;
+
+const canonicalURL = new URL(Astro.url.pathname, siteConfig.siteUrl).toString();
+---
+
+<Layout
+  title={title}
+  description={description}
+  image={cover?.src.src}
+  canonicalURL={canonicalURL}
+>
+  <article class="px-4 py-8 sm:px-8 sm:py-10">
+    <ArticleHeader
+      category={category}
+      categoryLabel={categoryLabel}
+      title={title}
+      date={date}
+      updatedDate={updatedDate}
+      readingTime={`${readingMinutes(entry)} min read`}
+    />
+
+    {headings.length > 0 && <TableOfContents client:load headings={headings} />}
+
+    <ArticleProse>
+      <Content />
+    </ArticleProse>
+  </article>
+</Layout>

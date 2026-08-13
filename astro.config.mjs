@@ -13,7 +13,8 @@ import { siteConfig } from "./src/config/site.ts";
 import sitemap from "@astrojs/sitemap";
 import { unified } from "@astrojs/markdown-remark";
 import rehypeSlug from "rehype-slug";
-import { blogTheme } from "@/lib/shiki-theme.ts";
+
+import expressiveCode from "astro-expressive-code";
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,6 +25,7 @@ export default defineConfig({
 
   integrations: [
     react(),
+    expressiveCode({}),
     mdx(),
     sitemap({
       filter: (page) =>
@@ -36,12 +38,6 @@ export default defineConfig({
     processor: unified({
       rehypePlugins: [rehypeSlug],
     }),
-    shikiConfig: {
-      themes: {
-        light: blogTheme,
-        dark: blogTheme,
-      },
-    },
   },
   adapter: cloudflare(),
 });

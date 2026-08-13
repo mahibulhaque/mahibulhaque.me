@@ -1,6 +1,5 @@
 ---
 title: "Writing a circuit breaker in Go"
-slug: circuit-breaker
 date: 2024-10-06
 description: >-
   Build a production-ready circuit breaker in Go from scratch with closed, open, and
