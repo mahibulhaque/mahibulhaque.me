@@ -58,7 +58,7 @@ const { page, categoryData } = Astro.props;
       {
         page.data.map((post) => (
           <li class="py-7 first:pt-0 last:pb-0">
-            <a href={`/${post.id}`} class="group block">
+            <a href={`/${category}/${post.id}`} class="group block">
               <div class="text-muted-foreground/60 mb-2 flex items-center gap-2 text-xs font-medium tracking-wide uppercase">
                 <time datetime={post.data.date.toISOString()}>
                   {post.data.date.toLocaleDateString("en-US", {
