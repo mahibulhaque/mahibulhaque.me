@@ -1,0 +1,128 @@
+---
+import type { GetStaticPathsOptions } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { renderInlineLinks } from "@/utils/links";
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allBlogs = await getCollection("blogs");
+  const categoryPages = await getCollection("categoryPages");
+
+  const categories = categoryPages.map((entry) =>
+    entry.id.replace(/\/_index$/, ""),
+  );
+
+  return categories.flatMap((category) => {
+    const categoryBlogs = allBlogs.filter((entry) => {
+      return entry.filePath?.includes(`${category}/`);
+    });
+
+    const categoryPage = categoryPages.find(
+      (entry) => entry.id === `${category}/_index`,
+    );
+
+    return paginate(categoryBlogs, {
+      params: {
+        category,
+      },
+      props: {
+        categoryData: categoryPage?.data,
+      },
+      pageSize: 15,
+    });
+  });
+}
+
+const { category } = Astro.params;
+const { page, categoryData } = Astro.props;
+---
+
+<Layout
+  title={categoryData?.title ?? category}
+  description={categoryData?.description ?? ""}
+>
+  <div class="px-6 py-10 sm:px-10 sm:py-14">
+    <div class="mb-12">
+      <h1
+        class="text-foreground mb-3 text-4xl font-bold tracking-tight sm:text-4xl"
+      >
+        {categoryData?.title ?? category}
+      </h1>
+
+      <p
+        class="text-muted-foreground text-base leading-relaxed italic"
+        set:html={renderInlineLinks(categoryData?.description ?? "")}
+      />
+    </div>
+
+    <ul class="divide-border/60 w-full divide-y">
+      {
+        page.data.map((post) => (
+          <li class="py-7 first:pt-0 last:pb-0">
+            <a href={`/${post.id}`} class="group block">
+              <div class="text-muted-foreground/60 mb-2 flex items-center gap-2 text-xs font-medium tracking-wide uppercase">
+                <time datetime={post.data.date.toISOString()}>
+                  {post.data.date.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+                <span aria-hidden="true">|</span>
+                <span>{category}</span>
+              </div>
+
+              <h2 class="text-foreground/95 group-hover:text-foreground mb-2 text-2xl font-semibold tracking-tight transition-colors sm:text-[1.65rem]">
+                {post.data.title}
+              </h2>
+
+              {post.data.description && (
+                <p class="text-muted-foreground max-w-full text-[15px] leading-relaxed">
+                  {post.data.description}
+                </p>
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      page.data.length === 0 && (
+        <p class="text-muted-foreground/50 py-16 text-center text-sm">
+          No posts in this category yet.
+        </p>
+      )
+    }
+
+    {
+      page.total > 1 && (
+        <nav
+          class="mt-10 flex items-center justify-between"
+          aria-label="Pagination"
+        >
+          {page.url.prev ? (
+            <a
+              href={page.url.prev}
+              class="border-border/60 text-muted-foreground hover:text-foreground hover:border-foreground/40 rounded-full border px-4 py-1.5 text-sm transition-colors"
+            >
+              ← Prev
+            </a>
+          ) : (
+            <span />
+          )}
+
+          {page.url.next ? (
+            <a
+              href={page.url.next}
+              class="border-border/60 text-muted-foreground hover:text-foreground hover:border-foreground/40 ml-auto rounded-full border px-4 py-1.5 text-sm transition-colors"
+            >
+              Next →
+            </a>
+          ) : (
+            <span />
+          )}
+        </nav>
+      )
+    }
+  </div>
+</Layout>

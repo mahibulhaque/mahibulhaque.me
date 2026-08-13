@@ -2,19 +2,21 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
-const posts = defineCollection({
+const blogs = defineCollection({
   loader: glob({
-    pattern: "**/*.{md,mdx}",
-    base: "./src/content/posts",
+    pattern: "**/[^_]*.{md,mdx}",
+    base: "./src/content/blogs",
   }),
+
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      slug: z.string(),
+      description: z.string().optional(),
       date: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       tags: z.array(z.string()).min(1),
       aliases: z.array(z.string()).optional(),
+
       discussions: z
         .array(
           z.object({
@@ -32,9 +34,26 @@ const posts = defineCollection({
           creditUrl: z.url().optional(),
         })
         .optional(),
+
       featured: z.boolean().default(false),
       draft: z.boolean().default(false),
     }),
 });
 
-export const collections = { posts };
+const categoryPages = defineCollection({
+  loader: glob({
+    pattern: "**/[_]*.{md,mdx}",
+    base: "./src/content/blogs",
+  }),
+
+  schema: () =>
+    z.object({
+      title: z.string(),
+      description: z.string(),
+    }),
+});
+
+export const collections = {
+  blogs: blogs,
+  categoryPages: categoryPages,
+};
