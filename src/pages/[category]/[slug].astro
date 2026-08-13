@@ -3,9 +3,7 @@ import { getCollection, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import { siteConfig } from "@/config/site";
 import ArticleHeader from "@/components/articles/ArticleHeader.astro";
-
 import TableOfContents from "@/components/articles/TableOfContents";
-import ArticleProse from "@/components/articles/ArticleProse.astro";
 
 import { readingMinutes } from "@/utils/post";
 export async function getStaticPaths() {
@@ -60,8 +58,8 @@ const canonicalURL = new URL(Astro.url.pathname, siteConfig.siteUrl).toString();
 
     {headings.length > 0 && <TableOfContents client:load headings={headings} />}
 
-    <ArticleProse>
+    <div class="prose">
       <Content />
-    </ArticleProse>
+    </div>
   </article>
 </Layout>

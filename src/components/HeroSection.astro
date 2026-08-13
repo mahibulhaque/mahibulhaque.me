@@ -1,14 +1,15 @@
 ---
 import { Image } from "astro:assets";
-
-type SocialIconKey = "mail" | "bluesky" | "rss";
+import { IconArrowDown } from "./icons/arrow-down";
+import { IconArrowUpRight, IconBluesky, IconRSS } from "./icons";
+import { IconMail } from "./icons";
+import type { IconType } from "./icons";
 
 interface SocialLink {
   label: string;
   href: string;
-  icon: SocialIconKey;
+  icon: IconType;
 }
-
 interface CTA {
   label: string;
   href: string;
@@ -18,17 +19,17 @@ const DEFAULT_SOCIAL_LINKS: SocialLink[] = [
   {
     label: "Email",
     href: "mailto:hello@example.com",
-    icon: "mail",
+    icon: IconMail,
   },
   {
     label: "Bluesky",
     href: "https://bsky.app",
-    icon: "bluesky",
+    icon: IconBluesky,
   },
   {
     label: "RSS feed",
     href: "/rss.xml",
-    icon: "rss",
+    icon: IconRSS,
   },
 ];
 
@@ -114,19 +115,7 @@ const HERO_SECTION_DEFAULTS = {
           {DEFAULT_PRIMARY_CTA.label}
 
           <!-- Arrow down -->
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-3.5 w-3.5"
-            aria-hidden="true"
-          >
-            <path d="M12 5v14"></path>
-            <path d="m19 12-7 7-7-7"></path>
-          </svg>
+          <IconArrowDown />
         </a>
 
         <a
@@ -136,19 +125,7 @@ const HERO_SECTION_DEFAULTS = {
           {DEFAULT_SECONDARY_CTA.label}
 
           <!-- Arrow up right -->
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="h-3.5 w-3.5"
-            aria-hidden="true"
-          >
-            <path d="M7 17 17 7"></path>
-            <path d="M7 7h10v10"></path>
-          </svg>
+          <IconArrowUpRight />
         </a>
       </div>
     </div>
@@ -181,64 +158,26 @@ const HERO_SECTION_DEFAULTS = {
 
     <ul class="flex items-center gap-4">
       {
-        DEFAULT_SOCIAL_LINKS.map((link) => (
-          <li>
-            <a
-              href={link.href}
-              aria-label={link.label}
-              class="text-muted-foreground hover:text-foreground focus-visible:outline-ring transition-colors focus-visible:outline focus-visible:outline-offset-2"
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={
-                link.href.startsWith("http") ? "noopener noreferrer" : undefined
-              }
-            >
-              {link.icon === "mail" && (
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="h-4 w-4"
-                  aria-hidden="true"
-                >
-                  <rect width="20" height="16" x="2" y="4" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-              )}
-
-              {link.icon === "bluesky" && (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  class="h-4 w-4"
-                  aria-hidden="true"
-                >
-                  <path d="M12 10.8C10.6 8.2 7 5.6 4.6 5c-.6-.1-1.1.4-1.1 1v9.5c0 .5.4.9.8 1 3.2.7 6 2.7 7.7 5 1.7-2.3 4.5-4.3 7.7-5 .4-.1.8-.5.8-1V6c0-.6-.5-1.1-1.1-1-2.4.6-6 3.2-7.4 5.8Z" />
-                </svg>
-              )}
-
-              {link.icon === "rss" && (
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="h-4 w-4"
-                  aria-hidden="true"
-                >
-                  <path d="M4 11a9 9 0 0 1 9 9" />
-                  <path d="M4 4a16 16 0 0 1 16 16" />
-                  <circle cx="5" cy="19" r="1" />
-                </svg>
-              )}
-            </a>
-          </li>
-        ))
+        DEFAULT_SOCIAL_LINKS.map((link) => {
+          const { icon: Icon } = link;
+          return (
+            <li>
+              <a
+                href={link.href}
+                aria-label={link.label}
+                class="text-muted-foreground hover:text-foreground focus-visible:outline-ring transition-colors focus-visible:outline focus-visible:outline-offset-2"
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={
+                  link.href.startsWith("http")
+                    ? "noopener noreferrer"
+                    : undefined
+                }
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            </li>
+          );
+        })
       }
     </ul>
   </div>
