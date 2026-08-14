@@ -64,3 +64,33 @@ export function pickFeaturedPost(posts: Blog[]): {
     rest: posts.filter((_, i) => i !== index),
   };
 }
+// ...existing imports and exports above stay the same
+
+export interface YearGroup {
+  year: number;
+  posts: Blog[];
+}
+
+/** Groups posts by calendar year, years sorted descending. Assumes input is already sorted (newest first). */
+export function groupPostsByYear(posts: Blog[]): YearGroup[] {
+  const groups = new Map<number, Blog[]>();
+
+  for (const post of posts) {
+    const year = post.data.date.getFullYear();
+    const existing = groups.get(year);
+    if (existing) {
+      existing.push(post);
+    } else {
+      groups.set(year, [post]);
+    }
+  }
+
+  return Array.from(groups.entries())
+    .map(([year, yearPosts]) => ({ year, posts: yearPosts }))
+    .sort((a, b) => b.year - a.year);
+}
+
+/** "Jul 30" style date, used in the archive list where the year is already shown as a group heading. */
+export function formatArchiveDate(date: Date): string {
+  return date.toLocaleDateString("en-US", { month: "short", day: "2-digit" });
+}

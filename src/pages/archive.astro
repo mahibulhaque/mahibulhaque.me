@@ -1,0 +1,23 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ArchiveYearGroup from "@/components/archive/ArchiveYearGroup.astro";
+import { getPublishedPosts, groupPostsByYear } from "@/utils/post";
+
+const posts = await getPublishedPosts();
+const yearGroups = groupPostsByYear(posts);
+---
+
+<Layout>
+  <div class="mx-auto my-8 max-w-3xl space-y-6 px-6">
+    <h1
+      class="text-foreground text-4xl font-semibold tracking-tight sm:text-5xl"
+    >
+      Archive
+    </h1>
+    {
+      yearGroups.map(({ year, posts: yearPosts }) => (
+        <ArchiveYearGroup year={year} posts={yearPosts} />
+      ))
+    }
+  </div>
+</Layout>

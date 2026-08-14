@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ArchiveRow from "./ArchiveRow.astro";
+
+interface Props {
+  year: number;
+  posts: CollectionEntry<"blogs">[];
+}
+
+const { year, posts } = Astro.props;
+---
+
+<section aria-labelledby={`year-${year}`}>
+  <h2
+    id={`${year}`}
+    class="text-foreground border-border flex gap-1 border-b pb-2 text-2xl font-medium sm:text-3xl"
+  >
+    <a href={`#${year}`}>{year}</a>
+    <sup class="text-muted-foreground text-sm font-normal sm:text-base"
+      >{posts.length}</sup
+    >
+  </h2>
+
+  <ul>
+    {posts.map((post) => <ArchiveRow post={post} />)}
+  </ul>
+</section>

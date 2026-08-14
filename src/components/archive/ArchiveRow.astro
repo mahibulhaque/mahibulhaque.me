@@ -1,0 +1,28 @@
+---
+import { getCategory, getPostHref, formatArchiveDate } from "@/utils/post";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blogs">;
+}
+
+const { post } = Astro.props;
+const category = getCategory(post);
+const href = getPostHref(post);
+const dateLabel = formatArchiveDate(post.data.date);
+---
+
+<li class="border-border border-b">
+  <a
+    href={href}
+    class="hover:bg-muted grid grid-cols-[3.5rem_1fr_auto] items-baseline gap-4 rounded-xs px-2 py-3 sm:grid-cols-[4rem_1fr_auto]"
+  >
+    <span class="text-muted-foreground font-mono text-sm">{dateLabel}</span>
+    <span class="text-foreground truncate text-base sm:text-lg">
+      {post.data.title}
+    </span>
+    <span class="text-muted-foreground text-xs tracking-wide uppercase">
+      {category}
+    </span>
+  </a>
+</li>
