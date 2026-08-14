@@ -1,6 +1,6 @@
 import { navigate } from "astro:transitions/client";
 import { SearchIcon } from "lucide-react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   useHotkey,
   useHotkeySequences,
@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandDialog,
-  CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
@@ -19,6 +18,8 @@ import {
   CommandShortcut,
 } from "@/components/ui/command";
 import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import { useDocumentSearch } from "@/hooks/useDocumentSearch";
+import { SearchResultItem } from "./search-item";
 
 type ActionItem = {
   id: string;
@@ -34,6 +35,9 @@ function goTo(path: string) {
 
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState<string>("");
+
+  const { results, loading } = useDocumentSearch({ query:query , enabled:open});
 
   const runAction = useCallback((fn: () => void) => {
     fn();
@@ -118,6 +122,11 @@ export function CommandPalette() {
     })),
   );
 
+
+  useEffect(() => {
+    setQuery("")
+  }, [open])
+
   return (
     <div className="flex flex-col gap-4">
       <Button
@@ -131,13 +140,33 @@ export function CommandPalette() {
           /
         </Kbd>
       </Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog className="min-w-[90vw] sm:min-w-xl " open={open} onOpenChange={setOpen}>
         <Command>
-          <CommandInput placeholder="Search everything..." />
-          <CommandSeparator className="my-2" />
+          <CommandInput placeholder="Search everything..."
+            value={query}
+            onValueChange={setQuery}
+          />
+          <CommandSeparator alwaysRender className="my-2" />
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Navigation">
+            {query.length > 0 && (
+              <>
+                <CommandGroup heading="SEARCH RESULTS">
+                  {loading && <CommandItem disabled>Loading...</CommandItem>}
+
+                  {!loading &&
+                    results.map((post) => (
+                      <SearchResultItem
+                        key={post.id}
+                        post={post}
+                        onSelect={() => runAction(() => goTo(post.url))}
+                      />
+                    ))}
+                </CommandGroup>
+
+                <CommandSeparator  alwaysRender className="my-2"/>
+              </>
+            )}
+            <CommandGroup heading="NAVIGATION">
               {navItems.map((item) => (
                 <CommandItem
                   key={item.id}
@@ -162,7 +191,7 @@ export function CommandPalette() {
               ))}
             </CommandGroup>
             <CommandSeparator />
-            <CommandGroup heading="Actions">
+            <CommandGroup heading="ACTIONS">
               {actionItems.map((item) => (
                 <CommandItem
                   key={item.id}
