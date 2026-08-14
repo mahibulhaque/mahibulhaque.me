@@ -14,13 +14,13 @@ export async function GET() {
   const posts = visibleBlog(await getCollection("blogs")).slice(0, 20);
   const items = posts
     .map((post) => {
-      const url = new URL(blogHref(post), siteConfig.siteUrl).toString();
+      const url = new URL(blogHref(post), siteConfig.url).toString();
       return `<item>
   <title>${escapeXml(post.data.title)}</title>
   <link>${url}</link>
   <guid>${url}</guid>
   <pubDate>${post.data.date.toUTCString()}</pubDate>
-  <description>${escapeXml(post.data.excerpt)}</description>
+  <description>${escapeXml(post.data.description ?? '')}</description>
 </item>`;
     })
     .join("\n");
@@ -28,8 +28,8 @@ export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-  <title>${escapeXml(siteConfig.name)}</title>
-  <link>${siteConfig.siteUrl}</link>
+  <title>${escapeXml(siteConfig.title)}</title>
+  <link>${siteConfig.url}</link>
   <description>${escapeXml(siteConfig.description)}</description>
   <language>${escapeXml(siteConfig.language)}</language>
 ${items}

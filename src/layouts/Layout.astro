@@ -17,14 +17,14 @@ const { title, description, image, canonicalURL } = Astro.props;
 const pageTitle = title
   ? siteConfig.seo.titleTemplate
       .replace("%s", title)
-      .replace("%n", siteConfig.siteTitle)
-  : siteConfig.siteTitle;
+      .replace("%n", siteConfig.title)
+  : siteConfig.title;
 
 const ogImage = image
   ? image.startsWith("http")
     ? image
-    : `${siteConfig.siteUrl}${image}`
-  : `${siteConfig.siteUrl}${siteConfig.ogImagePath}`;
+    : `${siteConfig.url}${image}`
+  : `${siteConfig.url}${siteConfig.ogImagePath}`;
 ---
 
 <!doctype html>
@@ -70,7 +70,7 @@ const ogImage = image
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content={siteConfig.siteTitle} />
+    <meta property="og:site_name" content={siteConfig.title} />
     <meta property="og:locale" content={siteConfig.locale} />
     <meta property="og:image" content={ogImage} />
 

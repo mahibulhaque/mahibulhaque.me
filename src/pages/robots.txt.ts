@@ -5,7 +5,7 @@ export function GET() {
     `User-agent: *
 Allow: /
 
-Sitemap: ${siteConfig.siteUrl}/sitemap.xml
+Sitemap: ${siteConfig.url}/sitemap.xml
 `,
     {
       headers: {

@@ -1,6 +1,6 @@
 import { siteConfig } from "@/config/site";
 
-const sitemapUrl = new URL("/sitemap-0.xml", siteConfig.siteUrl).toString();
+const sitemapUrl = new URL("/sitemap-0.xml", siteConfig.url).toString();
 
 export function GET() {
   return new Response(

@@ -1,7 +1,9 @@
 export const siteConfig = {
-  siteTitle: "Mahib's Margins",
-  siteUrl: "https://mahibulhaque.me",
+  title: "Mahib's Margins",
+  url: "https://mahibulhaque.me",
+  description:"Recent content on Mahib's Margins",
   locale: "en_US",
+  language:"en",
   author: {
     name: "Mahibul Haque",
   },

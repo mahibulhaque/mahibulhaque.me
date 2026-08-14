@@ -8,7 +8,7 @@ export default function SiteHeader() {
         href="/"
         className="box-border block h-[32px] min-w-0 shrink overflow-hidden font-mono font-semibold tracking-normal text-ellipsis whitespace-nowrap uppercase"
       >
-        {siteConfig.siteTitle}
+        {siteConfig.title}
       </a>
       <CommandPalette />
     </header>

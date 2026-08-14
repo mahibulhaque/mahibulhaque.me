@@ -33,7 +33,7 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
   <div
     class="text-muted-foreground mt-4 flex flex-wrap items-center gap-x-1.5 text-sm"
   >
-    <span>{siteConfig.author.name ?? siteConfig.siteTitle}</span>
+    <span>{siteConfig.author.name ?? siteConfig.title}</span>
     <span aria-hidden="true">&middot;</span>
     <time datetime={date.toISOString()}>{formattedDate}</time>
     {

@@ -37,7 +37,7 @@ const { Content, headings } = await render(entry);
 const { title, description, date, updatedDate, cover } = entry.data;
 const category = Astro.params.category;
 
-const canonicalURL = new URL(Astro.url.pathname, siteConfig.siteUrl).toString();
+const canonicalURL = new URL(Astro.url.pathname, siteConfig.url).toString();
 ---
 
 <Layout

@@ -18,7 +18,7 @@ import expressiveCode from "astro-expressive-code";
 
 // https://astro.build/config
 export default defineConfig({
-  site: siteConfig.siteUrl,
+  site: siteConfig.url,
   vite: {
     plugins: [tailwindcss()],
   },
@@ -30,7 +30,7 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         // eslint-disable-next-line no-undef
-        page !== new URL("/search/", siteConfig.siteUrl).toString(),
+        page !== new URL("/search/", siteConfig.url).toString(),
     }),
   ],
 
