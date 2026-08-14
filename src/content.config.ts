@@ -53,10 +53,10 @@ const categoryPages = defineCollection({
     }),
 });
 
-export const about = defineCollection({
+export const pages = defineCollection({
   loader: glob({
-    pattern: "about.md",
-    base: "./src/content/about",
+    pattern: "*.md",
+    base: "./src/content/pages",
   }),
 
   schema: () =>
@@ -69,5 +69,5 @@ export const about = defineCollection({
 export const collections = {
   blogs: blogs,
   categoryPages: categoryPages,
-  about: about,
+  pages: pages,
 };
