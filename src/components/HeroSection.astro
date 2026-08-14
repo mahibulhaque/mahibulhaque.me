@@ -4,6 +4,7 @@ import { IconArrowDown } from "./icons/arrow-down";
 import { IconArrowUpRight, IconBluesky, IconRSS } from "./icons";
 import { IconMail } from "./icons";
 import type { IconType } from "./icons";
+import { getCollection } from "astro:content";
 
 interface SocialLink {
   label: string;
@@ -14,7 +15,9 @@ interface CTA {
   label: string;
   href: string;
 }
+const publishedBlogs = await getCollection("blogs", ({ data }) => !data.draft);
 
+const totalPublished = publishedBlogs.length;
 const DEFAULT_SOCIAL_LINKS: SocialLink[] = [
   {
     label: "Email",
@@ -52,8 +55,8 @@ const HERO_SECTION_DEFAULTS = {
   greeting: "Hi, I'm Mahib.",
   tagline: "I work with computers.",
   subtext: "…and sometimes I write about them too.",
-  postCount: 47,
-  sinceYear: 2025,
+  postCount: totalPublished,
+  sinceYear: 2024,
   heroImageSrc:
     "https://images.unsplash.com/photo-1569412148958-600837f89a65?fm=jpg&q=80&w=1200&auto=format&fit=crop",
   heroImageAlt: "A weathered, wind-carved tree trunk in black and white",

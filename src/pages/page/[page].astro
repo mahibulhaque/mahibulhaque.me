@@ -1,0 +1,71 @@
+---
+// src/pages/page/[page].astro
+import type { GetStaticPaths } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import { siteConfig } from "@/config/site";
+import { getPublishedPosts, pickFeaturedPost } from "@/utils/post";
+import PostListItem from "@/components/recent-writings/PostListItem.astro";
+import { buildPaginationChunks } from "@/utils/pagination";
+import RecentWritingsHeader from "@/components/recent-writings/RecentWritingsHeader.astro";
+
+export const getStaticPaths = (async () => {
+  const allPosts = await getPublishedPosts();
+  const { postsPerPage } = siteConfig.posts;
+
+  // Mirror exactly what the homepage already consumed (featured + list),
+  // so nothing is duplicated or skipped between "/" and "/page/2".
+  const { rest } = pickFeaturedPost(allPosts);
+  const remainingPosts = rest.slice(Math.max(postsPerPage - 1, 0));
+
+  const chunks = buildPaginationChunks(remainingPosts, postsPerPage);
+  const totalPages = chunks.length + 1; // +1 for the homepage itself
+
+  return chunks.map(({ pageNumber, posts }) => ({
+    params: { page: String(pageNumber) },
+    props: { posts, currentPage: pageNumber, totalPages },
+  }));
+}) satisfies GetStaticPaths;
+
+const { posts, currentPage, totalPages } = Astro.props;
+
+const prevUrl = currentPage === 2 ? "/" : `/page/${currentPage - 1}`;
+const nextUrl = currentPage < totalPages ? `/page/${currentPage + 1}` : null;
+---
+
+<Layout
+  title={`Page ${currentPage}`}
+  description={`More writing from ${siteConfig.title}, page ${currentPage}.`}
+>
+  <section
+    id={`recent-writings-page-${currentPage}`}
+    class="mx-auto my-8 max-w-3xl space-y-10 px-6"
+  >
+    <RecentWritingsHeader />
+    <ul class="border-border divide-border divide-y border-t">
+      {posts.map((post) => <PostListItem post={post} />)}
+    </ul>
+
+    <nav
+      class="mt-10 flex items-center justify-between"
+      aria-label="Pagination"
+    >
+      <a
+        href={prevUrl}
+        class="border-border text-foreground hover:bg-foreground hover:text-background inline-flex items-center gap-2 rounded-full border px-5 py-2 text-sm transition-colors"
+      >
+        <span aria-hidden="true">←</span> Prev
+      </a>
+
+      {
+        nextUrl && (
+          <a
+            href={nextUrl}
+            class="border-border text-foreground hover:bg-foreground hover:text-background inline-flex items-center gap-2 rounded-full border px-5 py-2 text-sm transition-colors"
+          >
+            Next <span aria-hidden="true">→</span>
+          </a>
+        )
+      }
+    </nav>
+  </section>
+</Layout>

@@ -1,8 +1,42 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
-@import "@fontsource-variable/geist-mono";
+
+/* Geist Variable (Normal) */
+@font-face {
+  font-family: 'Geist';
+  src: url('../assets/fonts/geist-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Variable (Italic) */
+@font-face {
+  font-family: 'Geist';
+  src: url('../assets/fonts/geist-latin-italic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Geist Mono Variable (Normal) */
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('../assets/fonts/geist-mono-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Geist Mono Variable (Italic) */
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('../assets/fonts/geist-mono-latin-italic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
 
 
 html{
@@ -13,8 +47,8 @@ html{
 
 @theme inline {
   --font-heading: var(--font-sans);
-  --font-sans: Geist, DM Sans, ui-sans-serif, sans-serif, system-ui;
-  --font-mono: Geist Mono, ui-monospace, monospace;
+  --font-sans: "Geist", DM Sans, ui-sans-serif, sans-serif, system-ui;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --color-*: initial;
   --color-sidebar-border: var(--sidebar-border);
@@ -120,9 +154,9 @@ html{
 
   --flickering-grid-color: 0 0 0;
 
-  --font-sans: Geist, DM Sans, ui-sans-serif, sans-serif, system-ui;
+  --font-sans: "Geist", DM Sans, ui-sans-serif, sans-serif, system-ui;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: Geist Mono, ui-monospace, monospace;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
   --shadow-color: oklch(0 0 0);
   --shadow-opacity: 0.1;
   --shadow-blur: 3px;
@@ -186,9 +220,9 @@ html{
   --flickering-grid-color: 255 255 255;
 
   --radius: 1rem;
-  --font-sans: Geist, DM Sans, ui-sans-serif, sans-serif, system-ui;
+  --font-sans: "Geist", DM Sans, ui-sans-serif, sans-serif, system-ui;
   --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: Geist Mono, ui-monospace, monospace;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
   --shadow-color: oklch(0 0 0);
   --shadow-opacity: 0.1;
   --shadow-blur: 3px;

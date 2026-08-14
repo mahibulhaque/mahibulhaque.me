@@ -13,21 +13,24 @@ const dateLabel = formatPostDate(post.data.date);
 ---
 
 <li>
-  <a
-    href={href}
-    class="group grid grid-cols-1 gap-2 py-6 sm:grid-cols-[10rem_1fr] sm:gap-8"
-  >
-    <div class="text-muted-foreground text-xs tracking-wide uppercase">
+  <div class="flex w-full flex-col gap-2 py-6">
+    <div
+      class="text-muted-foreground flex items-center gap-2 text-xs tracking-wide uppercase"
+    >
       <p>{dateLabel}</p>
-      <p>{category}</p>
+      <a
+        href={`${href}`}
+        class="border-border hover:text-foreground border-l pl-2">{category}</a
+      >
     </div>
 
     <div class="flex flex-col gap-2">
-      <h3
-        class="text-foreground text-xl font-semibold group-hover:underline sm:text-2xl"
+      <a
+        href={href}
+        class="text-foreground max-w-fit text-xl font-semibold hover:underline sm:text-2xl"
       >
         {post.data.title}
-      </h3>
+      </a>
       {
         post.data.description && (
           <p class="text-muted-foreground text-sm sm:text-base">
@@ -36,5 +39,5 @@ const dateLabel = formatPostDate(post.data.date);
         )
       }
     </div>
-  </a>
+  </div>
 </li>
