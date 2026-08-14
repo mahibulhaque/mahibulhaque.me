@@ -6,11 +6,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
-import { useTheme } from "next-themes";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
+import { useTheme } from "../providers/theme-provider";
 
 export default function Navbar() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-4 z-30">
@@ -106,7 +106,7 @@ export default function Navbar() {
             >
               <AnimatedThemeToggler
                 className="cursor-pointer"
-                theme={resolvedTheme === "dark" ? "dark" : "light"}
+                theme={theme}
                 onThemeChange={setTheme}
               />
             </TooltipTrigger>

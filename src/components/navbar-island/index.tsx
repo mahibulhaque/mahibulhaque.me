@@ -1,10 +1,10 @@
-import { ThemeProvider } from "@/components/providers/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "./navbar";
+import { ThemeProvider } from "../providers/theme-provider";
 
 export function NavbarIsland() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+    <ThemeProvider>
       <TooltipProvider delay={0}>
         <Navbar />
       </TooltipProvider>
