@@ -9,7 +9,7 @@ import {
 export const NAVBAR_DATA = {
   navbar: [
     { href: "/", icon: IconHouse, label: "Home" },
-    { href: "/blog", icon: IconLibrary, label: "Blog" },
+    { href: "/archive", icon: IconLibrary, label: "Archive" },
   ],
   contact: {
     social: {
