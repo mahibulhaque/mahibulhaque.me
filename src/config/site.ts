@@ -1,7 +1,7 @@
 export const siteConfig = {
   title: "Mahib's Margins",
   url: "https://mahibulhaque.me",
-  description:"Recent content on Mahib's Margins",
+  description:"Recent content on Mahib's Margins. This includes published blog articles, paper notes and technical insights.",
   locale: "en_US",
   language:"en",
   author: {
@@ -31,6 +31,6 @@ export const HERO_SECTION_INFO = {
   subtext: "…and sometimes I write about them too.",
   sinceYear: 2024,
   heroImageSrc:
-    "https://images.unsplash.com/photo-1569412148958-600837f89a65?fm=jpg&q=80&w=1200&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1569412148958-600837f89a65?fm=jpg&q=80&w=574&h=861&auto=format&fit=crop",
   heroImageAlt: "A weathered, wind-carved tree trunk in black and white",
 } as const;
