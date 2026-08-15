@@ -1,0 +1,42 @@
+---
+// src/pages/tags.astro
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const blogs = await getCollection("blogs", ({ data }) => !data.draft);
+
+// Tally occurrences of each tag across all published posts
+const tagCounts = new Map<string, number>();
+for (const blog of blogs) {
+  for (const tag of blog.data.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  }
+}
+
+// Sort by count desc, then alphabetically for ties
+const tags = [...tagCounts.entries()]
+  .map(([tag, count]) => ({ tag, count }))
+  .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+
+const slugify = (tag: string) => tag.toLowerCase().trim().replace(/\s+/g, "-");
+---
+
+<Layout title="Tags" description="Browse all posts by tag.">
+  <div class="mx-auto my-8 max-w-3xl space-y-6 px-6">
+    <h1 class="text-5xl font-bold tracking-tight sm:text-6xl">Tags</h1>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      {
+        tags.map(({ tag, count }) => (
+          <a
+            href={`/tags/${slugify(tag)}/`}
+            class="border-border text-muted-foreground hover:border-foreground hover:text-foreground inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium tracking-wide uppercase transition-colors"
+          >
+            <span>{tag}</span>
+            <span class="text-muted-foreground/70">· {count}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

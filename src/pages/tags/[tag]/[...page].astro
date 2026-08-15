@@ -1,0 +1,88 @@
+---
+import type { GetStaticPathsOptions } from "astro";
+import Layout from "@/layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import PostListItem from "@/components/recent-writings/PostListItem.astro";
+import { slugify } from "@/utils/post";
+import { siteConfig } from "@/config/site";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allBlogs = await getCollection("blogs", ({ data }) => !data.draft);
+
+  // slug -> canonical (originally-cased) label, e.g. "go" -> "Go"
+  const tagLabels = new Map<string, string>();
+  for (const blog of allBlogs) {
+    for (const tag of blog.data.tags) {
+      const slug = slugify(tag);
+      if (!tagLabels.has(slug)) tagLabels.set(slug, tag);
+    }
+  }
+
+  return [...tagLabels].flatMap(([tag, label]) => {
+    const tagBlogs = allBlogs
+      .filter((entry) => entry.data.tags.some((t) => slugify(t) === tag))
+      .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+    return paginate(tagBlogs, {
+      params: { tag },
+      props: { label },
+      pageSize: siteConfig.posts.postsPerPage,
+    });
+  });
+}
+
+const { page, label } = Astro.props;
+---
+
+<Layout title={label} description={`Posts tagged “${label}”.`}>
+  <div class="mx-auto my-8 max-w-3xl space-y-6 px-6">
+    <h1
+      class="text-foreground mb-3 text-4xl font-medium tracking-tight sm:text-5xl"
+    >
+      {label}
+    </h1>
+
+    <ul class="divide-border/60 w-full divide-y">
+      {page.data.map((post) => <PostListItem post={post} />)}
+    </ul>
+
+    {
+      page.data.length === 0 && (
+        <p class="text-muted-foreground/50 py-16 text-center text-sm">
+          No posts with this tag yet.
+        </p>
+      )
+    }
+
+    {
+      page.total > 1 && (
+        <nav
+          class="mt-10 flex items-center justify-start gap-2"
+          aria-label="Pagination"
+        >
+          {page.url.prev ? (
+            <a
+              href={page.url.prev}
+              class="border-border text-foreground hover:border-foreground rounded-full border px-4 py-1.5 text-sm transition-colors"
+            >
+              ← Prev
+            </a>
+          ) : (
+            <span />
+          )}
+
+          {page.url.next ? (
+            <a
+              href={page.url.next}
+              class="border-border text-foreground hover:border-foreground rounded-full border px-4 py-1.5 text-sm transition-colors"
+            >
+              Next →
+            </a>
+          ) : (
+            <span />
+          )}
+        </nav>
+      )
+    }
+  </div>
+</Layout>

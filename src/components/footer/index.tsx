@@ -11,7 +11,7 @@ export default function SiteFooter() {
         <a href="/tags/">tags</a>
       </nav>
 
-      <div>© 2025-{currentYear} Mahibul Haque</div>
+      <div>© 2024-{currentYear} Mahibul Haque</div>
     </footer>
   );
 }

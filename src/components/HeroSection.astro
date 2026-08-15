@@ -3,30 +3,22 @@ import { Image } from "astro:assets";
 import { IconArrowDown } from "./icons/arrow-down";
 import { IconArrowUpRight, IconBluesky, IconRSS } from "./icons";
 import { IconMail } from "./icons";
-import type { IconType } from "./icons";
 import { getCollection } from "astro:content";
+import { HERO_SECTION_INFO } from "@/config/site";
 
-interface SocialLink {
-  label: string;
-  href: string;
-  icon: IconType;
-}
-interface CTA {
-  label: string;
-  href: string;
-}
 const publishedBlogs = await getCollection("blogs", ({ data }) => !data.draft);
 
 const totalPublished = publishedBlogs.length;
-const DEFAULT_SOCIAL_LINKS: SocialLink[] = [
+
+const SOCIAL_LINKS = [
   {
     label: "Email",
-    href: "mailto:hello@example.com",
+    href: "mailto:haque.mahibul.md@gmail.com",
     icon: IconMail,
   },
   {
     label: "Bluesky",
-    href: "https://bsky.app",
+    href: "https://bsky.app/profile/mahibul.bsky.social",
     icon: IconBluesky,
   },
   {
@@ -34,33 +26,7 @@ const DEFAULT_SOCIAL_LINKS: SocialLink[] = [
     href: "/rss.xml",
     icon: IconRSS,
   },
-];
-
-const DEFAULT_PRIMARY_CTA: CTA = {
-  label: "Read the latest",
-  href: "#recent-writing",
-};
-
-const DEFAULT_SECONDARY_CTA: CTA = {
-  label: "About Mahib",
-  href: "/about",
-};
-
-const HERO_SECTION_DEFAULTS = {
-  eyebrow: "Independent field notes",
-  coordinates: "52.5200° N · 13.4050° E",
-  name: "Mahibul Haque",
-  role: "Software Engineer",
-  location: "Dhaka",
-  greeting: "Hi, I'm Mahib.",
-  tagline: "I work with computers.",
-  subtext: "…and sometimes I write about them too.",
-  postCount: totalPublished,
-  sinceYear: 2024,
-  heroImageSrc:
-    "https://images.unsplash.com/photo-1569412148958-600837f89a65?fm=jpg&q=80&w=1200&auto=format&fit=crop",
-  heroImageAlt: "A weathered, wind-carved tree trunk in black and white",
-} as const;
+] as const;
 ---
 
 <section
@@ -75,10 +41,10 @@ const HERO_SECTION_DEFAULTS = {
         aria-hidden="true"
         class="bg-foreground/70 inline-block h-1.5 w-1.5 rounded-full"></span>
 
-      {HERO_SECTION_DEFAULTS.eyebrow}
+      {HERO_SECTION_INFO.eyebrow}
     </p>
 
-    <p class="hidden sm:inline">{HERO_SECTION_DEFAULTS.coordinates}</p>
+    <p class="hidden sm:inline">{HERO_SECTION_INFO.coordinates}</p>
   </div>
 
   <!-- Main hero grid -->
@@ -87,45 +53,45 @@ const HERO_SECTION_DEFAULTS = {
       <p
         class="text-muted-foreground font-mono text-[11px] tracking-widest uppercase"
       >
-        {HERO_SECTION_DEFAULTS.name}
+        {HERO_SECTION_INFO.name}
         <span aria-hidden="true">/</span>
-        {HERO_SECTION_DEFAULTS.role}
+        {HERO_SECTION_INFO.role}
         <span aria-hidden="true">/</span>
-        {HERO_SECTION_DEFAULTS.location}
+        {HERO_SECTION_INFO.location}
       </p>
 
       <h1
         class="text-foreground mt-4 text-5xl leading-[0.95] font-medium tracking-tight sm:text-6xl md:text-7xl"
       >
-        {HERO_SECTION_DEFAULTS.greeting}
+        {HERO_SECTION_INFO.greeting}
 
         <span class="text-muted-foreground block">
-          {HERO_SECTION_DEFAULTS.tagline}
+          {HERO_SECTION_INFO.tagline}
         </span>
       </h1>
 
       <p
         class="border-border text-muted-foreground mt-6 border-l-2 pl-4 text-sm sm:text-base"
       >
-        {HERO_SECTION_DEFAULTS.subtext}
+        {HERO_SECTION_INFO.subtext}
       </p>
 
       <div class="mt-8 flex flex-wrap items-center gap-3">
         <a
-          href={DEFAULT_PRIMARY_CTA.href}
+          href={"#recent-writings"}
           class="bg-foreground text-background focus-visible:outline-ring inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-opacity hover:opacity-90 focus-visible:outline focus-visible:outline-offset-2"
         >
-          {DEFAULT_PRIMARY_CTA.label}
+          Read the latest
 
           <!-- Arrow down -->
           <IconArrowDown />
         </a>
 
         <a
-          href={DEFAULT_SECONDARY_CTA.href}
+          href={"/about"}
           class="border-border text-foreground hover:bg-foreground/5 focus-visible:outline-ring inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline focus-visible:outline-offset-2"
         >
-          {DEFAULT_SECONDARY_CTA.label}
+          About Mahib
 
           <!-- Arrow up right -->
           <IconArrowUpRight />
@@ -137,8 +103,8 @@ const HERO_SECTION_DEFAULTS = {
       class="border-border relative aspect-4/5 w-full overflow-hidden rounded-sm border sm:max-h-[420px] lg:max-h-[460px]"
     >
       <Image
-        src={HERO_SECTION_DEFAULTS.heroImageSrc}
-        alt={HERO_SECTION_DEFAULTS.heroImageAlt}
+        src={HERO_SECTION_INFO.heroImageSrc}
+        alt={HERO_SECTION_INFO.heroImageAlt}
         width={800}
         height={1000}
         loading="eager"
@@ -155,13 +121,13 @@ const HERO_SECTION_DEFAULTS = {
     <p
       class="text-muted-foreground font-mono text-[11px] tracking-widest uppercase"
     >
-      {HERO_SECTION_DEFAULTS.postCount} posts since {" "}
-      {HERO_SECTION_DEFAULTS.sinceYear}.
+      {totalPublished} posts since {" "}
+      {HERO_SECTION_INFO.sinceYear}.
     </p>
 
     <ul class="flex items-center gap-4">
       {
-        DEFAULT_SOCIAL_LINKS.map((link) => {
+        SOCIAL_LINKS.map((link) => {
           const { icon: Icon } = link;
           return (
             <li>

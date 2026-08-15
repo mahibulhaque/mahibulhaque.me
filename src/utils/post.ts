@@ -94,3 +94,6 @@ export function groupPostsByYear(posts: Blog[]): YearGroup[] {
 export function formatArchiveDate(date: Date): string {
   return date.toLocaleDateString("en-US", { month: "short", day: "2-digit" });
 }
+export function slugify(tag: string) {
+  return tag.toLowerCase().trim().replace(/\s+/g, "-");
+}
