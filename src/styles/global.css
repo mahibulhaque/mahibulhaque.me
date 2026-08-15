@@ -63,6 +63,7 @@ html{
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
+  --color-link: var(--link);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -141,6 +142,7 @@ html{
   --chart-3: oklch(0.55 0.22 263);
   --chart-4: oklch(0.49 0.22 264);
   --chart-5: oklch(0.42 0.18 266);
+  --link: oklch(0.62 0.19 260);
   --radius: 1rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -207,6 +209,7 @@ html{
   --chart-3: oklch(0.55 0.22 263);
   --chart-4: oklch(0.49 0.22 264);
   --chart-5: oklch(0.42 0.18 266);
+  --link: oklch(0.62 0.19 260);
   --sidebar: oklch(0.269 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -276,7 +279,7 @@ html{
   }
 
   .prose a:hover {
-    @apply decoration-foreground;
+    @apply decoration-link hover:text-link;
   }
 
   .prose h2 {
