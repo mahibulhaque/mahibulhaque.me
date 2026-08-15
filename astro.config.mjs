@@ -4,8 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 import react from "@astrojs/react";
 
-import cloudflare from "@astrojs/cloudflare";
-
 import mdx from "@astrojs/mdx";
 
 import { siteConfig } from "./src/config/site.ts";
@@ -19,6 +17,7 @@ import expressiveCode from "astro-expressive-code";
 // https://astro.build/config
 export default defineConfig({
   site: siteConfig.url,
+  output: "static",
   vite: {
     plugins: [tailwindcss()],
   },
@@ -39,5 +38,4 @@ export default defineConfig({
       rehypePlugins: [rehypeSlug],
     }),
   },
-  adapter: cloudflare(),
 });
