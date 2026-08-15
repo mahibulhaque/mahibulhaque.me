@@ -81,6 +81,13 @@ export function CommandPalette() {
         shortcut: ["G", "M"],
         action: () => goTo("/maxims"),
       },
+      {
+        id: 'papershelf',
+        label: "Papershelf",
+        description: "Collection of papers I read",
+        shortcut: ["G", "S"],
+        action: ()=>goTo("/papershelf")
+      }
     ],
     [],
   );

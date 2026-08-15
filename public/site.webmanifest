@@ -1,7 +1,6 @@
 {
   "name": "Mahib's Margins",
-  "short_name": "Mahib's Margins",
-  "description": "Technical blog, notes, ideas and reflections by Mahib.",
+  "short_name": "Mahib",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
