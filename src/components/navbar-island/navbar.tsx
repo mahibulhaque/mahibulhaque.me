@@ -5,7 +5,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { DATA } from "@/data/resume";
+import { NAVBAR_DATA } from "@/constants/navbar-data.constant";
 import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
 import { useTheme } from "../providers/theme-provider";
 
@@ -15,7 +15,7 @@ export default function Navbar() {
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-4 z-30">
       <Dock className="bg-card/90 shadow-primary/5 pointer-events-auto relative z-50 mx-auto flex h-14 w-fit gap-2 border p-2 shadow-[0_0_10px_3px] backdrop-blur-3xl">
-        {DATA.navbar.map((item) => {
+        {NAVBAR_DATA.navbar.map((item) => {
           const isExternal = item.href.startsWith("http");
 
           return (
@@ -54,7 +54,7 @@ export default function Navbar() {
           className="bg-border m-auto h-2/3 w-px"
         />
 
-        {Object.entries(DATA.contact.social)
+        {Object.entries(NAVBAR_DATA.contact.social)
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           .filter(([_, social]) => social.navbar)
           .map(([name, social], index) => {

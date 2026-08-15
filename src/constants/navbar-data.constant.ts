@@ -6,7 +6,7 @@ import {
   IconX,
 } from "@/components/icons";
 
-export const DATA = {
+export const NAVBAR_DATA = {
   navbar: [
     { href: "/", icon: IconHouse, label: "Home" },
     { href: "/blog", icon: IconLibrary, label: "Blog" },
