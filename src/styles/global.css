@@ -38,7 +38,6 @@
   font-display: swap;
 }
 
-
 html{
     scroll-behavior: smooth;
 }
@@ -116,6 +115,20 @@ html{
   --color-shadow-color: var(--shadow-color);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-sidebar-ring: var(--sidebar-ring);
+  --animate-meteor: meteor 5s linear infinite;
+  @keyframes meteor {
+  0% {
+    transform: rotate(var(--angle)) translateX(0);
+    opacity: 1;
+    }
+  70% {
+    opacity: 1;
+    }
+  100% {
+    transform: rotate(var(--angle)) translateX(-500px);
+    opacity: 0;
+    }
+  }
 }
 
 :root {

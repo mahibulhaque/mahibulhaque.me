@@ -105,7 +105,7 @@ export default function Navbar() {
               }
             >
               <AnimatedThemeToggler
-                className="cursor-pointer"
+                className="cursor-pointer flex items-center justify-center w-full self-center h-full"
                 theme={theme}
                 onThemeChange={setTheme}
               />

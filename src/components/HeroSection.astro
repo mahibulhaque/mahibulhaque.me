@@ -54,9 +54,9 @@ const SOCIAL_LINKS = [
         class="text-muted-foreground font-mono text-[11px] tracking-widest uppercase"
       >
         {HERO_SECTION_INFO.name}
-        <span aria-hidden="true">/</span>
+        <span aria-hidden="true"> / </span>
         {HERO_SECTION_INFO.role}
-        <span aria-hidden="true">/</span>
+        <span aria-hidden="true"> / </span>
         {HERO_SECTION_INFO.location}
       </p>
 
@@ -109,6 +109,7 @@ const SOCIAL_LINKS = [
         height={861}
         loading="eager"
         decoding="async"
+        fetchpriority={"high"}
         class="h-full w-full object-cover contrast-125 grayscale"
       />
     </div>

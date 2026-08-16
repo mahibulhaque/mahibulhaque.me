@@ -20,7 +20,11 @@ const hasMorePosts = allPosts.length > postsPerPage;
     <FeaturedPostCard post={featured} index={1} />
 
     <ul class="border-border divide-border divide-y border-t">
-      {listPosts.map((post) => <PostListItem post={post} />)}
+      {
+        listPosts.map((post) => (
+          <PostListItem post={post} hideCategoryName={true} />
+        ))
+      }
     </ul>
   </div>
 
