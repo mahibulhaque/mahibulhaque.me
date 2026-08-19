@@ -8,6 +8,7 @@ export { IconArrowDown } from "./arrow-down";
 export { IconArrowUpRight } from "./arrow-up-right";
 export { IconBluesky } from "./bluesky";
 export { IconRSS } from "./rss";
+export { IconFacebook } from "./facebook";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 export type IconType = React.ComponentType<IconProps>;

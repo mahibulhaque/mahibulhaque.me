@@ -2,12 +2,12 @@ import { useEffect, useMemo, useState } from "react";
 import { searchDocuments } from "@/lib/search";
 import type { SearchDocument } from "@/types/search";
 
-interface IUseDocumentSearchProps{
+interface IUseDocumentSearchProps {
   query: string;
   enabled: boolean;
 }
 
-export function useDocumentSearch({query, enabled }:IUseDocumentSearchProps) {
+export function useDocumentSearch({ query, enabled }: IUseDocumentSearchProps) {
   const [documents, setDocuments] = useState<SearchDocument[]>([]);
   const [loading, setLoading] = useState(false);
 

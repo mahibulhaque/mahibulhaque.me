@@ -6,4 +6,4 @@ export type SearchDocument = {
   category: string;
   date: string;
   url: string;
-}
+};

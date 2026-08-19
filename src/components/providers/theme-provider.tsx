@@ -21,10 +21,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>("light");
 
   useEffect(() => {
-    const currentTheme: Theme =
-      document.documentElement.classList.contains("dark")
-        ? "dark"
-        : "light";
+    const currentTheme: Theme = document.documentElement.classList.contains(
+      "dark",
+    )
+      ? "dark"
+      : "light";
 
     setThemeState(currentTheme);
   }, []);
@@ -32,10 +33,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const setTheme = useCallback((nextTheme: Theme) => {
     setThemeState(nextTheme);
 
-    document.documentElement.classList.toggle(
-      "dark",
-      nextTheme === "dark"
-    );
+    document.documentElement.classList.toggle("dark", nextTheme === "dark");
 
     localStorage.setItem("theme", nextTheme);
   }, []);

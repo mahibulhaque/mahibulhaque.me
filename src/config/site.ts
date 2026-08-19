@@ -1,9 +1,10 @@
 export const siteConfig = {
   title: "Mahib's Margins",
   url: "https://mahibulhaque.me",
-  description:"Recent content on Mahib's Margins. This includes published blog articles, paper notes and technical insights.",
+  description:
+    "Recent content on Mahib's Margins. This includes published blog articles, paper notes and technical insights.",
   locale: "en_US",
-  language:"en",
+  language: "en",
   author: {
     name: "Mahibul Haque",
   },
@@ -17,8 +18,6 @@ export const siteConfig = {
     postsPerPage: 10,
   },
 } as const;
-
-
 
 export const HERO_SECTION_INFO = {
   eyebrow: "Independent field notes",

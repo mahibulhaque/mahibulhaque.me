@@ -20,7 +20,7 @@ export async function GET() {
   <link>${url}</link>
   <guid>${url}</guid>
   <pubDate>${post.data.date.toUTCString()}</pubDate>
-  <description>${escapeXml(post.data.description ?? '')}</description>
+  <description>${escapeXml(post.data.description ?? "")}</description>
 </item>`;
     })
     .join("\n");

@@ -37,7 +37,10 @@ export function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState<string>("");
 
-  const { results, loading } = useDocumentSearch({ query:query , enabled:open});
+  const { results, loading } = useDocumentSearch({
+    query: query,
+    enabled: open,
+  });
 
   const runAction = useCallback((fn: () => void) => {
     fn();
@@ -82,12 +85,12 @@ export function CommandPalette() {
         action: () => goTo("/maxims"),
       },
       {
-        id: 'papershelf',
+        id: "papershelf",
         label: "Papershelf",
         description: "Collection of papers I read",
         shortcut: ["G", "S"],
-        action: ()=>goTo("/papershelf")
-      }
+        action: () => goTo("/papershelf"),
+      },
     ],
     [],
   );
@@ -129,10 +132,9 @@ export function CommandPalette() {
     })),
   );
 
-
   useEffect(() => {
-    setQuery("")
-  }, [open])
+    setQuery("");
+  }, [open]);
 
   return (
     <div className="flex flex-col gap-4">
@@ -147,9 +149,14 @@ export function CommandPalette() {
           /
         </Kbd>
       </Button>
-      <CommandDialog className="min-w-[90vw] sm:min-w-xl " open={open} onOpenChange={setOpen}>
+      <CommandDialog
+        className="min-w-[90vw] sm:min-w-xl"
+        open={open}
+        onOpenChange={setOpen}
+      >
         <Command>
-          <CommandInput placeholder="Search everything..."
+          <CommandInput
+            placeholder="Search everything..."
             value={query}
             onValueChange={setQuery}
           />
@@ -170,7 +177,7 @@ export function CommandPalette() {
                     ))}
                 </CommandGroup>
 
-                <CommandSeparator  alwaysRender className="my-2"/>
+                <CommandSeparator alwaysRender className="my-2" />
               </>
             )}
             <CommandGroup heading="NAVIGATION">

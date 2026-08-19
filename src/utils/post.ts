@@ -4,7 +4,7 @@ export type Blog = CollectionEntry<"blogs">;
 
 const blogSlug = (blog: Blog) => blog.id.replace(/\/index$/, "");
 
-export const blogHref = (post: Blog) => `/blog/${blogSlug(post)}/`;
+export const blogHref = (post: Blog) => `/${blogSlug(post)}/`;
 
 const byNewest = (a: Blog, b: Blog) =>
   b.data.date.getTime() - a.data.date.getTime();
@@ -27,7 +27,6 @@ export const getFeatured = (blog: Blog[], limit = 5) =>
   visibleBlog(blog)
     .filter((blog) => blog.data.featured)
     .slice(0, limit);
-
 
 /** Category is derived from the top-level folder, e.g. "go/circuit-breaker" -> "go" */
 export function getCategory(post: Blog): string {

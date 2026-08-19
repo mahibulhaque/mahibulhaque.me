@@ -12,9 +12,9 @@ export function SearchResultItem({ post, onSelect }: Props) {
     <CommandItem
       value={`${post.title} ${post.tags.join(" ")}`}
       onSelect={onSelect}
-      className="py-3 flex items-center"
+      className="flex items-center py-3"
     >
-      <div className="flex w-full items-center gap-3 min-w-fit">
+      <div className="flex w-full min-w-fit items-center gap-3">
         {/* Takes all available space */}
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-medium">{post.title}</p>

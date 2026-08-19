@@ -48,6 +48,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteConfig.url).toString();
 >
   <article class="my-8 mr-auto ml-auto max-w-3xl px-6">
     <ArticleHeader
+      articleId={entry.id}
       category={category}
       categoryLabel={categoryLabel}
       title={title}

@@ -1,24 +1,61 @@
 ---
 import ArticleBreadcrumb from "@/components/articles/ArticleBreadcrumb";
 import { siteConfig } from "@/config/site";
+import { IconLinkedIn, IconX, IconFacebook } from "../icons";
+import { CopyLinkButton } from "@/components/ui/copy-link-button";
+import type { IconProps } from "../icons";
+import type { ReactNode } from "react";
 
 interface Props {
   category: string;
   categoryLabel: string;
   title: string;
   date: Date;
+  articleId: string;
   updatedDate?: Date;
   readingTime?: string;
 }
 
-const { category, categoryLabel, title, date, updatedDate, readingTime } =
-  Astro.props;
+const {
+  title,
+  date,
+  category,
+  categoryLabel,
+  updatedDate,
+  readingTime,
+  articleId,
+} = Astro.props;
+const articleUrl = new URL(articleId, siteConfig.url).toString();
+const encodedArticleURL = encodeURIComponent(articleUrl);
+const encodedArticleTitle = encodeURIComponent(title);
 
 const formattedDate = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   month: "long",
   day: "numeric",
 }).format(date);
+
+const shareLinks: {
+  label: string;
+  icon: (props: IconProps) => ReactNode;
+  href: string;
+}[] = [
+  {
+    label: "X",
+    icon: IconX,
+    href: `https://x.com/intent/post?url=${encodedArticleURL}&text=${encodedArticleTitle}`,
+  },
+  {
+    label: "Facebook",
+    icon: IconFacebook,
+    href: `https://www.facebook.com/sharer/sharer.php?u=${encodedArticleURL}`,
+  },
+  {
+    label: "LinkedIn",
+    icon: IconLinkedIn,
+    href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedArticleURL}`,
+  },
+] as const;
 ---
 
 <header class="mb-8">
@@ -58,4 +95,32 @@ const formattedDate = new Intl.DateTimeFormat("en-US", {
       </p>
     )
   }
+
+  <div
+    class="border-border mt-8 flex flex-wrap items-center gap-2 border-t pt-6"
+    role="group"
+    aria-labelledby="share-heading"
+  >
+    <h2 id="share-heading" class="text-muted-foreground mr-1 text-xs uppercase">
+      Share
+    </h2>
+    {
+      shareLinks.map((link) => {
+        const { icon: SocialLinkIcon } = link;
+        return (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noreferrer"
+            class="border-border text-muted-foreground hover:text-link hover:border-link flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border transition-all hover:-translate-y-0.5"
+            aria-label={`Share ${title} on ${link.label}`}
+          >
+            <SocialLinkIcon className="h-4 w-4" />
+          </a>
+        );
+      })
+    }
+
+    <CopyLinkButton client:visible url={articleUrl} title={title} />
+  </div>
 </header>
