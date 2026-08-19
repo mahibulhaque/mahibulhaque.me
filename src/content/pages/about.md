@@ -3,9 +3,9 @@ title: "About"
 description: "About Mahibul Haque"
 ---
 
-Hi, I'm Mahibul Haque — also go by "mahibulhaque" on the web. I work with computers. I oscillate between product and platform engineering to keep a foot in both user-facing and infra work.
+Hi, I'm Mahibul Haque — also go by "mahibulhaque" on the web. I work with computers. I oscillate between product and backend engineering to keep a foot in both user-facing and underlying systems work.
 
-I’m keen on building fault-tolerant distributed systems and understanding their fringe behaviors at scale. At the same time, I take pride in crafting products people love to use.
+I’m keen on building fault-tolerant distributed systems with great user experience and understanding their fringe behaviors at scale. At the same time, I take pride in crafting products people love to use.
 
 Outside of work, I love watching sci-fi and gaming.
 
