@@ -1,18 +1,17 @@
 {
   "$schema": "https://tangled.org/stevedylan.dev/sequoia/raw/main/sequoia.schema.json",
   "siteUrl": "https://mahibulhaque.me",
-  "contentDir": "./src/content",
-  "imagesDir": "./src/assets",
+  "contentDir": "./src/content/blogs",
+  "imagesDir": "./src/assets/images",
   "outputDir": "./dist",
   "publicationUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.publication/3mtgsuae5t22b",
   "pdsUrl": "https://brittlegill.us-west.host.bsky.network",
   "frontmatter": {
-    "publishDate": "date",
-    "coverImage": "coverImage"
+    "publishDate": "date"
   },
   "publishContent": true,
   "bluesky": {
     "enabled": true,
-    "maxAgeDays": 14
+    "maxAgeDays": 21
   }
 }
