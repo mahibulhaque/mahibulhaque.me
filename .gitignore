@@ -53,3 +53,5 @@ coverage/
 
 # local development
 *.local
+
+.sequoia-state.json
