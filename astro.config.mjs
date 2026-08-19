@@ -13,6 +13,7 @@ import { unified } from "@astrojs/markdown-remark";
 import rehypeSlug from "rehype-slug";
 
 import expressiveCode from "astro-expressive-code";
+import { expressiveCodeOptions } from "@/config/expressive-code.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,7 +25,7 @@ export default defineConfig({
 
   integrations: [
     react(),
-    expressiveCode({}),
+    expressiveCode(expressiveCodeOptions),
     mdx(),
     sitemap({
       filter: (page) =>
