@@ -1,6 +1,6 @@
 import { readdir, readFile, writeFile, mkdir, rm, cp } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { join, extname, basename, relative } from "node:path";
+import { join, extname, basename, relative, dirname } from "node:path";
 import { execSync } from "node:child_process";
 import matter from "gray-matter";
 
@@ -36,21 +36,28 @@ async function downloadSiteCover() {
 
 async function stageContent() {
   const files = await walkBlogs(CONTENT_DIR);
+  const coverAbsPath = join(STAGE_DIR, STAGE_COVER_REL);
+
   for (const file of files) {
     const raw = await readFile(file, "utf8");
     const parsed = matter(raw);
 
     if (parsed.data.draft === true) continue; // skip drafts
 
+    const rel = relative(CONTENT_DIR, file);
+    const dest = join(STAGE_DIR, CONTENT_DIR, rel);
+    await mkdir(join(dest, ".."), { recursive: true });
+
+    // Compute the cover path relative to *this specific* staged file,
+    // so nested posts (e.g. blogs/2024/post.md) still resolve correctly.
+    const coverRelPath = relative(dirname(dest), coverAbsPath).split("\\").join("/");
+
     parsed.data.cover = {
-      src: "../../assets/images/site-cover.png", // relative to staged content file
+      src: coverRelPath,
       alt: "Mahib's Margins",
     };
     if (!parsed.data.atUri) delete parsed.data.atUri;
 
-    const rel = relative(CONTENT_DIR, file);
-    const dest = join(STAGE_DIR, CONTENT_DIR, rel);
-    await mkdir(join(dest, ".."), { recursive: true });
     await writeFile(dest, matter.stringify(parsed.content, parsed.data));
   }
 }
