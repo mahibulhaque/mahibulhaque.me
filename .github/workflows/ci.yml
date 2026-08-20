@@ -72,6 +72,7 @@ jobs:
       - name: Commit generated changes
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          HUSKY: "0"
         run: |
           if [ -n "$(git status --porcelain -- src/content .sequoia-state.json)" ]; then
             USER_ID=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)
@@ -79,7 +80,7 @@ jobs:
             git config user.email "${USER_ID}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com"
             gh auth setup-git
             git add src/content .sequoia-state.json
-            git commit -m "chore: sync generated changes [skip ci]"
+            git commit --no-verify -m "chore: sync generated changes [skip ci]"
             git push
           else
             echo "Generated files are already up to date."
