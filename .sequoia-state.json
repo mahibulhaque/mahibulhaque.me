@@ -1,0 +1,104 @@
+{
+  "posts": {
+    "src/content/blogs/go/structured-logging-with-slog.md": {
+      "contentHash": "cf5c0ec2c2d14794b21682226098f165fa78266267dea02d2fa1a4781bfbba36",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yrxi5s2c",
+      "lastPublished": "2023-08-10T00:00:00.000Z",
+      "slug": "go/structured-logging-with-slog"
+    },
+    "src/content/blogs/go/interface-guards.md": {
+      "contentHash": "80c5f8b3523a90863a60bb2807b7733a0cb7ff0b38f83783a5a3f7f89e0b7463",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqxisq2p",
+      "lastPublished": "2023-08-18T00:00:00.000Z",
+      "slug": "go/interface-guards"
+    },
+    "src/content/blogs/go/limit-goroutines-with-buffered-channels.md": {
+      "contentHash": "f617603083379d84cb3d47ee8493273e144cd97b18393bbeaae5ff4a85ff9dff",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqvca525",
+      "lastPublished": "2023-08-23T00:00:00.000Z",
+      "slug": "go/limit-goroutines-with-buffered-channels"
+    },
+    "src/content/blogs/go/configure-options.md": {
+      "contentHash": "a5739e4e926472448a2bf1c8c19ab4e9a383f6e6f5d8eb5db93487412743cd53",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqszkm23",
+      "lastPublished": "2023-09-05T00:00:00.000Z",
+      "slug": "go/configure-options"
+    },
+    "src/content/blogs/go/dysfunctional-options-pattern.md": {
+      "contentHash": "0f1774156efc421972c64e10c6f41907648718071caeb0ed31e00af087521b06",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqqqyi2p",
+      "lastPublished": "2024-03-06T00:00:00.000Z",
+      "slug": "go/dysfunctional-options-pattern"
+    },
+    "src/content/blogs/go/circuit-breaker.md": {
+      "contentHash": "220925ebf86e12e0cf72d5a6b0d607adbea2db3f3b8fbcfbfdd283a58267ae21",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqofvs2j",
+      "lastPublished": "2024-10-06T00:00:00.000Z",
+      "slug": "go/circuit-breaker"
+    },
+    "src/content/blogs/misc/behind-the-blog.md": {
+      "contentHash": "a32a7e57290255a115f951669f3e8710804ce531862e0a84b0a403034be80f36",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqm4nt2e",
+      "lastPublished": "2024-10-15T00:00:00.000Z",
+      "slug": "misc/behind-the-blog"
+    },
+    "src/content/blogs/go/io-reader-signature.md": {
+      "contentHash": "93fc3a0aa410c17a50602f23868597928c816c62fdcbdb20fede9cb6097e9aad",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqjuoz2p",
+      "lastPublished": "2025-02-08T00:00:00.000Z",
+      "slug": "go/io-reader-signature"
+    },
+    "src/content/blogs/go/gateway-pattern.md": {
+      "contentHash": "1cff7812d77778746595c13201489dd72a91a47495b9de382c97a50e8ccd2d78",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqhkwv2b",
+      "lastPublished": "2025-08-03T00:00:00.000Z",
+      "slug": "go/gateway-pattern"
+    },
+    "src/content/blogs/go/early-return-and-goroutine-leak.md": {
+      "contentHash": "59242c8d328c2659d8fb6c104b5a4d079e944175cdcecb3a97d606d7187a5828",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqfc452e",
+      "lastPublished": "2025-09-07T00:00:00.000Z",
+      "slug": "go/early-return-and-goroutine-leak"
+    },
+    "src/content/blogs/go/app-structure.md": {
+      "contentHash": "7ba22ca6aecb7b68132b5e697646a533bdc4f6ccd21f14c4952cd7444ee6ad9d",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqculc2m",
+      "lastPublished": "2025-09-20T00:00:00.000Z",
+      "slug": "go/app-structure"
+    },
+    "src/content/blogs/go/interface-segregation.md": {
+      "contentHash": "18f365220d1a22cef2ba7af95dc684bf4f58a14b00bad4ac430ed63596fdc267",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqails2j",
+      "lastPublished": "2025-11-01T00:00:00.000Z",
+      "slug": "go/interface-segregation"
+    },
+    "src/content/blogs/go/context-cancellation-cause.md": {
+      "contentHash": "e861160690ffd1c4db3c531c10d834441af26a85273c6b8d98c73c1f3ae294e0",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq63h22j",
+      "lastPublished": "2026-02-24T00:00:00.000Z",
+      "slug": "go/context-cancellation-cause"
+    },
+    "src/content/blogs/go/struct-tags.md": {
+      "contentHash": "b89fff22f4ea93a8fcb88491305d1c83c6121067f8310bf95ec54c4a88c1217e",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq3sfe23",
+      "lastPublished": "2026-04-18T00:00:00.000Z",
+      "slug": "go/struct-tags"
+    },
+    "src/content/blogs/go/gofix.md": {
+      "contentHash": "73018a33a61427397518813ca6e0ae2cd296e12996ab597dcdd49a177326bbf6",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypzgsk2c",
+      "lastPublished": "2026-07-04T00:00:00.000Z",
+      "slug": "go/gofix"
+    },
+    "src/content/blogs/go/supervised-fire-and-forget.md": {
+      "contentHash": "cae048af85004620c2ccf1cd1b87825ca0e28102cac454203c1d8774358a8a0b",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypuf2z2y",
+      "lastPublished": "2026-07-25T00:00:00.000Z",
+      "slug": "go/supervised-fire-and-forget"
+    }
+  },
+  "publication": {
+    "cid": "bafyreif4qdnev3vcbsgjozkvwcs2piconfmt242kw7bzduhbq72wirvj3e",
+    "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.publication/3mtgsuae5t22b"
+  }
+}

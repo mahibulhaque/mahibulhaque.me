@@ -13,6 +13,7 @@ aliases:
 discussions: []
 mermaid: false
 type_label: ""
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqxisq2p"
 ---
 
 I love Go's implicit interfaces. While convenient, they can also introduce subtle bugs

@@ -12,6 +12,7 @@ aliases:
   - /behind-the-blog/
 discussions: []
 type_label: ""
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqm4nt2e"
 ---
 
 I started **Mahib's Margins** about two years ago as a place to write down the

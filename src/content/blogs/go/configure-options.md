@@ -12,6 +12,7 @@ aliases:
   - /go/configure-options/
 discussions: []
 type_label: ""
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqszkm23"
 ---
 
 Suppose, you have a function that takes an option struct and a message as input. Then it

@@ -13,6 +13,7 @@ aliases:
 discussions: []
 mermaid: false
 type_label: ""
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq3sfe23"
 ---
 
 Struct tags in Go are these little annotations that you stick beside struct fields.

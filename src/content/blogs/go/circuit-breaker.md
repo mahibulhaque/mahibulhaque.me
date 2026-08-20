@@ -13,6 +13,7 @@ aliases:
 discussions:
   - label: "Reddit"
     url: "https://www.reddit.com/r/golang/comments/1i5n5sc/"
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqofvs2j"
 ---
 
 Besides retries, [circuit breakers] are probably one of the most commonly employed

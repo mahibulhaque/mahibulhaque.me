@@ -16,7 +16,7 @@ discussions:
 mermaid: false
 type_label: ""
 atprotoPath: /go/dysfunctional-options-pattern/
-atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ikiev22p"
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqqqyi2p"
 ---
 
 Ever since Rob Pike published the text on the [functional options pattern], there's been no

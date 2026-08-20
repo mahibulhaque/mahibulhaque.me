@@ -12,6 +12,7 @@ aliases: []
 discussions: []
 mermaid: false
 type_label: ""
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypzgsk2c"
 ---
 
 Go 1.26 rebuilt `go fix` from scratch. If you haven't tried it yet, give it a spin: it

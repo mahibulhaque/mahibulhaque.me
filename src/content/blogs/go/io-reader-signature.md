@@ -13,6 +13,7 @@ aliases:
 discussions: []
 mermaid: false
 type_label: ""
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqjuoz2p"
 ---
 
 I've always found the signature of `io.Reader` a bit odd:

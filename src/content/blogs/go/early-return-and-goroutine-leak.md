@@ -13,6 +13,7 @@ aliases:
 discussions: []
 mermaid: false
 type_label: ""
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqfc452e"
 ---
 
 At work, a common mistake I notice when reviewing candidates' home assignments is how they

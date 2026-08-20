@@ -10,6 +10,7 @@ tags:
 aliases: []
 discussions: []
 type_label: ""
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypuf2z2y"
 ---
 
 These days, unmanaged `go func()` calls don't appear as often as they used to in the early

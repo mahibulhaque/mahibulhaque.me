@@ -13,6 +13,7 @@ aliases:
 discussions: []
 mermaid: false
 type_label: ""
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqvca525"
 ---
 
 I was cobbling together a long-running Go script to send webhook messages to a system when

@@ -14,7 +14,7 @@ discussions: []
 mermaid: false
 type_label: ""
 atprotoPath: /go/structured-logging-with-slog/
-atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6ir5xxq2o"
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yrxi5s2c"
 ---
 
 Before the release of version 1.21, you couldn't set levels for your log messages in Go

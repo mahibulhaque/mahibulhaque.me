@@ -17,7 +17,7 @@ discussions:
 mermaid: false
 type_label: ""
 atprotoPath: /go/interface-segregation/
-atUri: "at://did:plc:fgtm2c26vfcj74rfmeggbyqj/site.standard.document/3mnl6idf3h22p"
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqails2j"
 ---
 
 Object-oriented (OO) patterns get a lot of flak in the Go community, and often for good
