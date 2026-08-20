@@ -13,7 +13,7 @@ export const siteConfig = {
     twitterCard: "summary_large_image",
     robots: "index, follow",
   },
-  ogImagePath: "/og_image.png",
+  ogImagePath: "/ogImage.png",
   posts: {
     postsPerPage: 10,
   },

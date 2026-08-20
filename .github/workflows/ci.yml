@@ -4,54 +4,95 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
+env:
+  PNPM_VERSION: 10.16.1
+  NODE_VERSION: 24
+  SEQUOIA_CLI_VERSION: 0.5.7
+  SITE_COVER_URL: https://blob.mahibulhaque.me/images/site-cover.png
+
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Generate app token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v6
         with:
-          version: 10.16.1
+          version: ${{ env.PNPM_VERSION }}
           run_install: false
 
       - name: Setup Node
         uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm run build
+      - name: Check post frontmatter
+        run: pnpm exec tsx scripts/frontmatter.ts --check
+
+      - name: Publish Standard.site records
+        env:
+          ATP_IDENTIFIER: ${{ secrets.ATP_IDENTIFIER }}
+          ATP_APP_PASSWORD: ${{ secrets.ATP_APP_PASSWORD }}
+          SEQUOIA_CMD: npx -y sequoia-cli@${{ env.SEQUOIA_CLI_VERSION }} publish
+        run: pnpm exec tsx scripts/sequoia-publish.ts
+
+      - name: Re-check post frontmatter
+        run: pnpm exec tsx scripts/frontmatter.ts --check
+
+      - name: Commit generated changes
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          if [ -n "$(git status --porcelain -- src/content .sequoia-state.json)" ]; then
+            git config user.name "mahibulhaque-me-bot[bot]"
+            git config user.email "mahibulhaque-me-bot[bot]@users.noreply.github.com"
+            git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/mahibulhaque/mahibulhaque.me.git"
+            git add src/content .sequoia-state.json
+            git commit -m "chore: sync generated changes [skip ci]"
+            git push
+          else
+            echo "Generated files are already up to date."
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
+
+      - name: Build
+        run: pnpm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
