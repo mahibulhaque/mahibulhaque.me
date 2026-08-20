@@ -1,9 +1,9 @@
 ---
-title: "Behind the blog"
-date: 2024-10-15
+title: Behind the blog
+date: 2024-10-15T00:00:00.000Z
 description: >-
-  How Mahib's Margins is built with Astro, Markdown, React, Tailwind CSS,
-  GitHub Actions, GitHub Pages, Cloudflare, and R2.
+  How Mahib's Margins is built with Astro, Markdown, React, Tailwind CSS, GitHub
+  Actions, GitHub Pages, Cloudflare, and R2.
 tags:
   - Essay
   - Astro
@@ -13,6 +13,9 @@ aliases:
 discussions: []
 type_label: ""
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqm4nt2e"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 I started **Mahib's Margins** about two years ago as a place to write down the

@@ -1,9 +1,9 @@
 ---
-title: "Interface guards in Go"
-date: 2023-08-18
+title: Interface guards in Go
+date: 2023-08-18T00:00:00.000Z
 description: >-
-  Use compile-time interface guards to verify type conformity in Go without runtime
-  overhead. Learn the var _ Interface = (*Type)(nil) pattern.
+  Use compile-time interface guards to verify type conformity in Go without
+  runtime overhead. Learn the var _ Interface = (*Type)(nil) pattern.
 tags:
   - Go
   - TIL
@@ -14,6 +14,9 @@ discussions: []
 mermaid: false
 type_label: ""
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqxisq2p"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 I love Go's implicit interfaces. While convenient, they can also introduce subtle bugs

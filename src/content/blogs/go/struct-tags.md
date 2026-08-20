@@ -1,9 +1,10 @@
 ---
-title: "Peeking into Go struct tags"
-date: 2026-04-18
+title: Peeking into Go struct tags
+date: 2026-04-18T00:00:00.000Z
 description: >-
-  A quick tour of Go struct tags: how different libraries use them, how you read them at
-  runtime with reflection, and how other tools read them at build time instead.
+  A quick tour of Go struct tags: how different libraries use them, how you read
+  them at runtime with reflection, and how other tools read them at build time
+  instead.
 tags:
   - Go
   - Reflection
@@ -14,6 +15,9 @@ discussions: []
 mermaid: false
 type_label: ""
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq3sfe23"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 Struct tags in Go are these little annotations that you stick beside struct fields.

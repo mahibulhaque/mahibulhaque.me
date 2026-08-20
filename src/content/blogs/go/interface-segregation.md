@@ -1,23 +1,26 @@
 ---
-title: "Revisiting interface segregation in Go"
-date: 2025-11-01
+title: Revisiting interface segregation in Go
+date: 2025-11-01T00:00:00.000Z
 description: >-
-  Apply SOLID's Interface Segregation Principle in Go with consumer-defined contracts.
-  Learn why small interfaces and implicit implementation matter.
+  Apply SOLID's Interface Segregation Principle in Go with consumer-defined
+  contracts. Learn why small interfaces and implicit implementation matter.
 tags:
   - Go
   - API
   - Testing
 aliases: []
 discussions:
-  - label: "Hacker News"
+  - label: Hacker News
     url: "https://news.ycombinator.com/item?id=45789218"
-  - label: "Reddit"
+  - label: Reddit
     url: "https://www.reddit.com/r/golang/comments/1olzq5m/"
 mermaid: false
 type_label: ""
 atprotoPath: /go/interface-segregation/
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqails2j"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 Object-oriented (OO) patterns get a lot of flak in the Go community, and often for good

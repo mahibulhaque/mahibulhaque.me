@@ -1,9 +1,9 @@
 ---
-title: "Dysfunctional options pattern in Go"
-date: 2024-03-06
+title: Dysfunctional options pattern in Go
+date: 2024-03-06T00:00:00.000Z
 description: >-
-  Discover a simpler alternative to functional options: method chaining with builder-style
-  configuration that's 76x faster and easier to understand.
+  Discover a simpler alternative to functional options: method chaining with
+  builder-style configuration that's 76x faster and easier to understand.
 tags:
   - Go
   - API
@@ -11,12 +11,15 @@ tags:
 aliases:
   - /go/dysfunctional_options_pattern/
 discussions:
-  - label: "Hacker News"
+  - label: Hacker News
     url: "https://news.ycombinator.com/item?id=41015991"
 mermaid: false
 type_label: ""
 atprotoPath: /go/dysfunctional-options-pattern/
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqqqyi2p"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 Ever since Rob Pike published the text on the [functional options pattern], there's been no

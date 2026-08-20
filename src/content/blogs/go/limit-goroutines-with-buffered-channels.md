@@ -1,9 +1,9 @@
 ---
-title: "Limit goroutines with buffered channels"
-date: 2023-08-23
+title: Limit goroutines with buffered channels
+date: 2023-08-23T00:00:00.000Z
 description: >-
-  Control goroutine concurrency with buffered channels as semaphores. Prevent resource
-  exhaustion with backpressure patterns in Go workers.
+  Control goroutine concurrency with buffered channels as semaphores. Prevent
+  resource exhaustion with backpressure patterns in Go workers.
 tags:
   - Go
   - TIL
@@ -14,6 +14,9 @@ discussions: []
 mermaid: false
 type_label: ""
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqvca525"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 I was cobbling together a long-running Go script to send webhook messages to a system when

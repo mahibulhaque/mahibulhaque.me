@@ -1,9 +1,9 @@
 ---
-title: "Why does Go's io.Reader have such a weird signature?"
-date: 2025-02-08
+title: Why does Go's io.Reader have such a weird signature?
+date: 2025-02-08T00:00:00.000Z
 description: >-
-  Understand why io.Reader takes a byte slice parameter instead of returning one. Learn
-  about heap allocations and buffer reuse in Go streams.
+  Understand why io.Reader takes a byte slice parameter instead of returning
+  one. Learn about heap allocations and buffer reuse in Go streams.
 tags:
   - Go
   - TIL
@@ -14,6 +14,9 @@ discussions: []
 mermaid: false
 type_label: ""
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqjuoz2p"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 I've always found the signature of `io.Reader` a bit odd:

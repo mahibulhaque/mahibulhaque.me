@@ -1,9 +1,9 @@
 ---
-title: "Go structured logging with slog"
-date: 2023-08-10
+title: Go structured logging with slog
+date: 2023-08-10T00:00:00.000Z
 description: >-
-  Master Go 1.21's log/slog package for structured logging with levels, JSON output, and
-  attribute grouping. No third-party libraries needed.
+  Master Go 1.21's log/slog package for structured logging with levels, JSON
+  output, and attribute grouping. No third-party libraries needed.
 tags:
   - Go
   - TIL
@@ -15,6 +15,9 @@ mermaid: false
 type_label: ""
 atprotoPath: /go/structured-logging-with-slog/
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yrxi5s2c"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 Before the release of version 1.21, you couldn't set levels for your log messages in Go

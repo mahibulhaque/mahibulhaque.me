@@ -1,9 +1,9 @@
 ---
-title: "Let the domain guide your application structure"
-date: 2025-09-20
+title: Let the domain guide your application structure
+date: 2025-09-20T00:00:00.000Z
 description: >-
-  Organize Go apps by domain, not technology. Learn why models/controllers structure hurts
-  and how bounded contexts create better separation.
+  Organize Go apps by domain, not technology. Learn why models/controllers
+  structure hurts and how bounded contexts create better separation.
 tags:
   - Go
 aliases:
@@ -11,6 +11,9 @@ aliases:
 discussions: []
 type_label: ""
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqculc2m"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 I like to make the distinction between application structure and architecture. Structure is

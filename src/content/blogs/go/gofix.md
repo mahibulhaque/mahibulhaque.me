@@ -1,10 +1,10 @@
 ---
-title: "Modernizers & go fix"
-date: 2026-07-04
+title: Modernizers & go fix
+date: 2026-07-04T00:00:00.000Z
 description: >-
-  Go 1.26 rebuilt go fix on the analysis framework. It modernizes your code and respects
-  the Go version your module declares. The post covers the modernizers, the bigger x/tools
-  suite, and what //go:fix inline can and can't migrate.
+  Go 1.26 rebuilt go fix on the analysis framework. It modernizes your code and
+  respects the Go version your module declares. The post covers the modernizers,
+  the bigger x/tools suite, and what //go:fix inline can and can't migrate.
 tags:
   - Go
   - Tooling
@@ -13,6 +13,9 @@ discussions: []
 mermaid: false
 type_label: ""
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypzgsk2c"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 Go 1.26 rebuilt `go fix` from scratch. If you haven't tried it yet, give it a spin: it

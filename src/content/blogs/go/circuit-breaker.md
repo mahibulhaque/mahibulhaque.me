@@ -1,19 +1,22 @@
 ---
-title: "Writing a circuit breaker in Go"
-date: 2024-10-06
+title: Writing a circuit breaker in Go
+date: 2024-10-06T00:00:00.000Z
 description: >-
-  Build a production-ready circuit breaker in Go from scratch with closed, open, and
-  half-open states to prevent cascading failures.
+  Build a production-ready circuit breaker in Go from scratch with closed, open,
+  and half-open states to prevent cascading failures.
 tags:
   - Networking
   - Go
-  - "Design Patterns"
+  - Design Patterns
 aliases:
   - /go/circuit-breaker/
 discussions:
-  - label: "Reddit"
+  - label: Reddit
     url: "https://www.reddit.com/r/golang/comments/1i5n5sc/"
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqofvs2j"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 Besides retries, [circuit breakers] are probably one of the most commonly employed

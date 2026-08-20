@@ -1,9 +1,9 @@
 ---
-title: "Supervised fire-and-forget in Go"
-date: 2026-07-25
+title: Supervised fire-and-forget in Go
+date: 2026-07-25T00:00:00.000Z
 description: >-
-  A bounded worker pool for small background tasks, with task-owned contexts, panic
-  recovery, and graceful shutdown.
+  A bounded worker pool for small background tasks, with task-owned contexts,
+  panic recovery, and graceful shutdown.
 tags:
   - Go
   - Concurrency
@@ -11,6 +11,9 @@ aliases: []
 discussions: []
 type_label: ""
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypuf2z2y"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 These days, unmanaged `go func()` calls don't appear as often as they used to in the early

@@ -1,18 +1,21 @@
 ---
-title: "Configuring options in Go"
-date: 2023-09-05
+title: Configuring options in Go
+date: 2023-09-05T00:00:00.000Z
 description: >-
-  Compare three Go option patterns: exposed structs, option constructors, and functional
-  options. Learn when to use each for clean APIs.
+  Compare three Go option patterns: exposed structs, option constructors, and
+  functional options. Learn when to use each for clean APIs.
 tags:
   - Go
   - API
-  - "Design Patterns"
+  - Design Patterns
 aliases:
   - /go/configure-options/
 discussions: []
 type_label: ""
 atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqszkm23"
+cover:
+  src: ../../assets/images/site-cover.png
+  alt: Mahib's Margins
 ---
 
 Suppose, you have a function that takes an option struct and a message as input. Then it
