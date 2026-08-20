@@ -11,15 +11,15 @@ tags:
 aliases: []
 discussions:
   - label: Hacker News
-    url: "https://news.ycombinator.com/item?id=45789218"
+    url: 'https://news.ycombinator.com/item?id=45789218'
   - label: Reddit
-    url: "https://www.reddit.com/r/golang/comments/1olzq5m/"
+    url: 'https://www.reddit.com/r/golang/comments/1olzq5m/'
 mermaid: false
-type_label: ""
+type_label: ''
 atprotoPath: /go/interface-segregation/
-atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqails2j"
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqails2j'
 cover:
-  src: ../../assets/images/site-cover.png
+  src: ../../../assets/images/site-cover.png
   alt: Mahib's Margins
 ---
 

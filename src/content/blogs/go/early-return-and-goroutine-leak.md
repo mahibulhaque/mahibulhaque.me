@@ -12,10 +12,10 @@ aliases:
   - /go/early_return_and_goroutine_leak/
 discussions: []
 mermaid: false
-type_label: ""
-atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqfc452e"
+type_label: ''
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqfc452e'
 cover:
-  src: ../../assets/images/site-cover.png
+  src: ../../../assets/images/site-cover.png
   alt: Mahib's Margins
 ---
 

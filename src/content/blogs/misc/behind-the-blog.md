@@ -11,10 +11,10 @@ tags:
 aliases:
   - /behind-the-blog/
 discussions: []
-type_label: ""
-atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqm4nt2e"
+type_label: ''
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqm4nt2e'
 cover:
-  src: ../../assets/images/site-cover.png
+  src: ../../../assets/images/site-cover.png
   alt: Mahib's Margins
 ---
 
