@@ -1,9 +1,9 @@
 ---
-title: "Accepted proposal: Go examples with any signature"
-date: 2026-08-08
+title: 'Accepted proposal: Go examples with any signature'
+date: 2026-08-08T00:00:00.000Z
 description: >-
-  Go examples with parameters or results can appear in documentation without becoming
-  tests.
+  Go examples with parameters or results can appear in documentation without
+  becoming tests.
 tags:
   - Go
   - Testing
@@ -11,7 +11,12 @@ tags:
 aliases: []
 discussions: []
 mermaid: false
-type_label: ""
+type_label: ''
+cover:
+  src: ../../../assets/images/site-cover.png
+  alt: Mahib's Margins
+ogImage: site-cover.png
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtlmu2ntgj2e'
 ---
 
 Go's [proposal to allow examples with any signature] was [accepted] on July 8. Today, an

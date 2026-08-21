@@ -97,13 +97,23 @@
       "slug": "go/supervised-fire-and-forget"
     },
     "src/content/blogs/shards/go-generic-methods.md": {
-      "contentHash": "1ef90a6719d60c7e83357cc9bba4d739062a433507ed92fe94688cde41202fe1",
+      "contentHash": "119ae90267ae284010671e1ba56c926ea6c377474c14aa1cb23285ddd69d202f",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtlmjc7tw623",
-      "lastPublished": "2026-08-21T11:05:49.951Z",
+      "lastPublished": "2026-08-21T11:11:50.863Z",
       "slug": "shards/go-generic-methods",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mtll5mmhdo2u",
         "cid": "bafyreifvgikcajq3gxk4epj4gzawyohvocpjbgehwfy37ugwazgl6e45e4"
+      }
+    },
+    "src/content/blogs/shards/go-example-any-signature.md": {
+      "contentHash": "667f7dfc861eae27d116ee9126dcc1b4a9b537099d829908b2528ec281a425e3",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtlmu2ntgj2e",
+      "lastPublished": "2026-08-21T11:11:51.218Z",
+      "slug": "shards/go-example-any-signature",
+      "bskyPostRef": {
+        "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mtlmu2ou3t2c",
+        "cid": "bafyreiby2dkflv3dteogdrdz74v3dhgl4cn7jt7gktcifygcjwtfsl3fny"
       }
     }
   },
