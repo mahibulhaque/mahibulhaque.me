@@ -97,9 +97,9 @@
       "slug": "go/supervised-fire-and-forget"
     },
     "src/content/blogs/shards/go-generic-methods.md": {
-      "contentHash": "d2ae889744f827425f46858b2f8eb298d07ed9380526269c794fa55554411fea",
+      "contentHash": "a6e54a083c679f10ab67c6e823480dc08f53db7c2019c8cc060ade77ea311397",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtllx5q5h72e",
-      "lastPublished": "2026-08-21T10:55:41.717Z",
+      "lastPublished": "2026-08-21T11:01:55.178Z",
       "slug": "shards/go-generic-methods",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mtll5mmhdo2u",
