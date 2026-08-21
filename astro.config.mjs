@@ -15,6 +15,9 @@ import rehypeSlug from "rehype-slug";
 import expressiveCode from "astro-expressive-code";
 import { expressiveCodeOptions } from "@/config/expressive-code.ts";
 
+
+import mermaid from 'astro-mermaid';
+
 // https://astro.build/config
 export default defineConfig({
   site: siteConfig.url,
@@ -26,6 +29,11 @@ export default defineConfig({
   integrations: [
     react(),
     expressiveCode(expressiveCodeOptions),
+    mermaid({
+      theme: 'default',
+      autoTheme:true,
+
+    }),
     mdx(),
     sitemap({
       filter: (page) =>

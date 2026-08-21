@@ -34,6 +34,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setThemeState(nextTheme);
 
     document.documentElement.classList.toggle("dark", nextTheme === "dark");
+    document.documentElement.setAttribute("data-theme", nextTheme);
 
     localStorage.setItem("theme", nextTheme);
   }, []);

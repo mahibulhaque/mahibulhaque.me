@@ -34,9 +34,12 @@ const blogs = defineCollection({
           creditUrl: z.url().optional(),
         })
         .optional(),
+      type_label:z.string().optional(),
 
       featured: z.boolean().default(false),
       draft: z.boolean().default(false),
+      atUri:z.string().optional(),
+      mermaid:z.boolean().default(false),
     }),
 });
 

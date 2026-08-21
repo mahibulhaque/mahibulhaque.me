@@ -6,6 +6,7 @@ import ArticleHeader from "@/components/articles/ArticleHeader.astro";
 import TableOfContents from "@/components/articles/TableOfContents";
 
 import { readingMinutes } from "@/utils/post";
+import ArticleFooter from "@/components/articles/ArticleFooter.astro";
 export async function getStaticPaths() {
   const [posts, categoryPages] = await Promise.all([
     getCollection("blogs", ({ data }) =>
@@ -34,8 +35,9 @@ export async function getStaticPaths() {
 
 const { entry, categoryLabel } = Astro.props;
 const { Content, headings } = await render(entry);
-const { title, description, date, updatedDate, cover } = entry.data;
+const { title, description, date, updatedDate, cover, tags } = entry.data;
 const category = Astro.params.category;
+const lowercaseTransformedTags = tags.map((tag) => tag.toLowerCase());
 
 const canonicalURL = new URL(Astro.url.pathname, siteConfig.url).toString();
 ---
@@ -46,7 +48,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteConfig.url).toString();
   image={cover?.src.src}
   canonicalURL={canonicalURL}
 >
-  <article class="my-8 mr-auto ml-auto max-w-3xl px-6">
+  <article class="my-8 mr-auto ml-auto max-w-3xl space-y-6 px-6">
     <ArticleHeader
       articleId={entry.id}
       category={category}
@@ -62,5 +64,7 @@ const canonicalURL = new URL(Astro.url.pathname, siteConfig.url).toString();
     <div class="prose">
       <Content />
     </div>
+    <div class="bg-border h-0.25 w-full"></div>
+    <ArticleFooter tags={lowercaseTransformedTags} />
   </article>
 </Layout>

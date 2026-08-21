@@ -11,7 +11,7 @@ export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
     },
     uiLineHeight: "inherit",
   },
-  themes: ["tokyo-night", "one-light"],
+  themes: ["one-dark-pro", "one-light"],
   useThemedScrollbars: false,
   useDarkModeMediaQuery: false,
   themeCssSelector: (theme) =>

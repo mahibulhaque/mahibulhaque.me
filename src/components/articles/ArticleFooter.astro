@@ -1,0 +1,24 @@
+---
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<footer>
+  <ul class="wrap flex items-center justify-start gap-2">
+    {
+      tags.map((tag) => (
+        <li>
+          <a
+            href={`/tags/${tag}`}
+            class="border-border text-muted-foreground hover:border-foreground hover:text-foreground rounded-full border px-2 py-1 font-mono text-sm font-medium uppercase transition-all"
+          >
+            {tag}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</footer>
