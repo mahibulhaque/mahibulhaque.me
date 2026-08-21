@@ -6,8 +6,10 @@ import matter from "gray-matter";
 
 const STAGE_DIR = ".cache/sequoia-publish";
 const CONTENT_DIR = "src/content/blogs";
+const IMAGES_DIR = "src/assets/images";
 const SITE_COVER_URL = process.env.SITE_COVER_URL!;
 const STAGE_COVER_REL = "src/assets/images/site-cover.png";
+const SEQUOIA_COVER_FILENAME = STAGE_COVER_REL.replace(`${IMAGES_DIR}/`, "");
 
 async function walkBlogs(dir: string): Promise<string[]> {
   const entries = await readdir(dir, { withFileTypes: true });
@@ -48,14 +50,19 @@ async function stageContent() {
     const dest = join(STAGE_DIR, CONTENT_DIR, rel);
     await mkdir(join(dest, ".."), { recursive: true });
 
-    // Compute the cover path relative to *this specific* staged file,
-    // so nested posts (e.g. blogs/2024/post.md) still resolve correctly.
+    // Cover path relative to *this specific* staged file, for Astro's
+    // image() resolution (so nested posts still resolve correctly).
     const coverRelPath = relative(dirname(dest), coverAbsPath).split("\\").join("/");
 
     parsed.data.cover = {
       src: coverRelPath,
       alt: "Mahib's Margins",
     };
+    // Sequoia reads a flat `ogImage` field (its default `coverImage` mapping),
+    // resolved against `imagesDir` in sequoia.json — a plain filename, not
+    // the Astro-relative path above.
+    parsed.data.ogImage = SEQUOIA_COVER_FILENAME;
+
     if (!parsed.data.atUri) delete parsed.data.atUri;
 
     await writeFile(dest, matter.stringify(parsed.content, parsed.data));
@@ -65,7 +72,7 @@ async function stageContent() {
 async function writeStageConfig() {
   const raw = JSON.parse(await readFile("sequoia.json", "utf8"));
   raw.contentDir = CONTENT_DIR;
-  raw.imagesDir = "src/assets/images";
+  raw.imagesDir = IMAGES_DIR;
   await writeFile(
     join(STAGE_DIR, "sequoia.json"),
     JSON.stringify(raw, null, 2),
@@ -87,6 +94,9 @@ async function syncBack() {
 
     const root = matter(await readFile(rootPath, "utf8"));
     root.data.atUri = staged.data.atUri;
+    // Deliberately not syncing `cover`/`ogImage` back — those are
+    // staging-only fields for Sequoia/Astro's staged build, not meant
+    // to be committed to the real post source.
     await writeFile(rootPath, matter.stringify(root.content, root.data));
   }
 }
