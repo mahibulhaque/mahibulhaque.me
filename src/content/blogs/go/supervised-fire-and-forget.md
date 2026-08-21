@@ -14,6 +14,7 @@ atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypuf2z
 cover:
   src: ../../../assets/images/site-cover.png
   alt: Mahib's Margins
+ogImage: site-cover.png
 ---
 
 These days, unmanaged `go func()` calls don't appear as often as they used to in the early

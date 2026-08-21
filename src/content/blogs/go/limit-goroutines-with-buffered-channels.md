@@ -17,6 +17,7 @@ atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqvca5
 cover:
   src: ../../../assets/images/site-cover.png
   alt: Mahib's Margins
+ogImage: site-cover.png
 ---
 
 I was cobbling together a long-running Go script to send webhook messages to a system when

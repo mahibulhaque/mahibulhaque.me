@@ -20,6 +20,7 @@ atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqqqyi
 cover:
   src: ../../../assets/images/site-cover.png
   alt: Mahib's Margins
+ogImage: site-cover.png
 ---
 
 Ever since Rob Pike published the text on the [functional options pattern], there's been no

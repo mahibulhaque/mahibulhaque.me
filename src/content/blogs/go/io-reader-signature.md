@@ -17,6 +17,7 @@ atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqjuoz
 cover:
   src: ../../../assets/images/site-cover.png
   alt: Mahib's Margins
+ogImage: site-cover.png
 ---
 
 I've always found the signature of `io.Reader` a bit odd:

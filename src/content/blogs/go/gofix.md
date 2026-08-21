@@ -16,6 +16,7 @@ atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypzgsk
 cover:
   src: ../../../assets/images/site-cover.png
   alt: Mahib's Margins
+ogImage: site-cover.png
 ---
 
 Go 1.26 rebuilt `go fix` from scratch. If you haven't tried it yet, give it a spin: it

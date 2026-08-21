@@ -1,105 +1,105 @@
 {
   "posts": {
     "src/content/blogs/go/structured-logging-with-slog.md": {
-      "contentHash": "c9781d333b92a082280e524e9d8fb355c4ebcb714ca9b17e71220b6c488663a3",
+      "contentHash": "e1520363000367635e4a335a5b7a82e32f469799905f820aaa8e761efc919b9e",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yrxi5s2c",
-      "lastPublished": "2026-08-20T11:09:00.841Z",
+      "lastPublished": "2026-08-21T10:55:50.137Z",
       "slug": "go/structured-logging-with-slog"
     },
     "src/content/blogs/go/interface-guards.md": {
-      "contentHash": "9f7555f223605a50d38b02d755becfea9b230e3c1adfcb71ab0934a98b4485bd",
+      "contentHash": "8659e6fb67a586653bd72252214606f9951d266949d036707b983d466809f9a3",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqxisq2p",
-      "lastPublished": "2026-08-20T11:09:00.680Z",
+      "lastPublished": "2026-08-21T10:55:49.613Z",
       "slug": "go/interface-guards"
     },
     "src/content/blogs/go/limit-goroutines-with-buffered-channels.md": {
-      "contentHash": "a12a228428566d8d727045f003b1ee436d9ecee86e5f890c01cf4f0004b1fda5",
+      "contentHash": "f434dad60e688eea421dc498268c5f6e472222d1b2af368b5a058c8783a80cf2",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqvca525",
-      "lastPublished": "2026-08-20T11:09:00.520Z",
+      "lastPublished": "2026-08-21T10:55:49.154Z",
       "slug": "go/limit-goroutines-with-buffered-channels"
     },
     "src/content/blogs/go/configure-options.md": {
-      "contentHash": "41de45ee58f25d764bc3ba2bdf1a56fb09f42971472abeacd8f4b6f7157f0775",
+      "contentHash": "ed33af71312fe9072616d728cd864ff4f2392ab7d9849eb91a1f66c929aec792",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqszkm23",
-      "lastPublished": "2026-08-20T11:09:00.358Z",
+      "lastPublished": "2026-08-21T10:55:48.632Z",
       "slug": "go/configure-options"
     },
     "src/content/blogs/go/dysfunctional-options-pattern.md": {
-      "contentHash": "0c4584ae7307756ccb806abb15b1a95705b8e7f81d57f819448f295c5bb14e12",
+      "contentHash": "1e430539daa8ec5d85b3d7f024a874e4ff51ba4c0ecc391daa6f3f011e5c9e15",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqqqyi2p",
-      "lastPublished": "2026-08-20T11:09:00.193Z",
+      "lastPublished": "2026-08-21T10:55:48.138Z",
       "slug": "go/dysfunctional-options-pattern"
     },
     "src/content/blogs/go/circuit-breaker.md": {
-      "contentHash": "e803ee0ca2ff3f0b82e919f2af51603c49ddb540a87d61063653eb2ed0c1bbe2",
+      "contentHash": "afb91fdcc3c607d4b1bf433e419d40a7f9eb02eef896229e3da7ca79f6873277",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqofvs2j",
-      "lastPublished": "2026-08-20T11:09:00.029Z",
+      "lastPublished": "2026-08-21T10:55:47.511Z",
       "slug": "go/circuit-breaker"
     },
     "src/content/blogs/misc/behind-the-blog.md": {
-      "contentHash": "76f1fb48f4f5d09574f4f6c13af933f36579681874432f929f5538e956e63d0d",
+      "contentHash": "9410111326239737787ae008024aca423e684e8e503d2ca73ff05a7c6332e32b",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqm4nt2e",
-      "lastPublished": "2026-08-20T11:08:59.864Z",
+      "lastPublished": "2026-08-21T10:55:47.017Z",
       "slug": "misc/behind-the-blog"
     },
     "src/content/blogs/go/io-reader-signature.md": {
-      "contentHash": "eff2f4d395b100a16969a2daab1e6b62bd717a990571215eb9481f6913df2a31",
+      "contentHash": "a7af89b11bee8de967642468544b568fdfb40369231a3b12d029ff23cc9dc249",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqjuoz2p",
-      "lastPublished": "2026-08-20T11:08:59.698Z",
+      "lastPublished": "2026-08-21T10:55:46.469Z",
       "slug": "go/io-reader-signature"
     },
     "src/content/blogs/go/gateway-pattern.md": {
-      "contentHash": "aaa64cd82dc22921da1ea7e58323009d25a3869e7cd15d78afeb752aa80c759f",
+      "contentHash": "0feeec38f7d676b7ebd2f59ace58b0098d0651a138593ca6cb87beab168c5359",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqhkwv2b",
-      "lastPublished": "2026-08-20T11:08:59.534Z",
+      "lastPublished": "2026-08-21T10:55:45.965Z",
       "slug": "go/gateway-pattern"
     },
     "src/content/blogs/go/early-return-and-goroutine-leak.md": {
-      "contentHash": "bb52e9f9c502bbde4f11e27cc0f0e0058c6914d03cde73605bbff79459031fd7",
+      "contentHash": "6d4e5c0f6ed3c7522f0e38e6dcaf6ea2cd55fca423f81f8587ef5858ceefbf17",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqfc452e",
-      "lastPublished": "2026-08-20T11:08:59.367Z",
+      "lastPublished": "2026-08-21T10:55:45.494Z",
       "slug": "go/early-return-and-goroutine-leak"
     },
     "src/content/blogs/go/app-structure.md": {
-      "contentHash": "72416a469e17058998f7d1376089216bd054b1cad93478484597e1043a4ffdd7",
+      "contentHash": "f777b3661139fd6ecaa3bdb464af21197cd5b8b70dc67becd617d5ed7f6617e1",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqculc2m",
-      "lastPublished": "2026-08-20T11:08:59.203Z",
+      "lastPublished": "2026-08-21T10:55:45.005Z",
       "slug": "go/app-structure"
     },
     "src/content/blogs/go/interface-segregation.md": {
-      "contentHash": "7572dbbc5e57eabc7b83bbf289b5ec72c7d1c25141a175f77ccddc9d6b456602",
+      "contentHash": "79a072cc18f73eba2e3ef1c7a5569fe66669513561331f26e6799473789cba0c",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqails2j",
-      "lastPublished": "2026-08-20T11:08:59.037Z",
+      "lastPublished": "2026-08-21T10:55:44.440Z",
       "slug": "go/interface-segregation"
     },
     "src/content/blogs/go/context-cancellation-cause.md": {
-      "contentHash": "f6534509f10a62b4c29214d836073c96278f110c6292e965141dd4560d7f8002",
+      "contentHash": "81c272d548a83b7298040052437f053eb33164616a98410c7b08d913ee861587",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq63h22j",
-      "lastPublished": "2026-08-20T11:08:58.871Z",
+      "lastPublished": "2026-08-21T10:55:43.925Z",
       "slug": "go/context-cancellation-cause"
     },
     "src/content/blogs/go/struct-tags.md": {
-      "contentHash": "51728c5d7b5354fa17d4a2b1d64175e80f44e4a02a677ca3ca26fcda017d2e61",
+      "contentHash": "cb8d84e0546d0ad2536df1ffcfec25f3fc776b74cd31e51bbacdceb38889c32c",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq3sfe23",
-      "lastPublished": "2026-08-20T11:08:58.703Z",
+      "lastPublished": "2026-08-21T10:55:43.409Z",
       "slug": "go/struct-tags"
     },
     "src/content/blogs/go/gofix.md": {
-      "contentHash": "9c5f978c33325293b47540f727c81d6d0ce27218c987dd3c1911efaf1b3c0dab",
+      "contentHash": "38da460302c0500012335e5ceeb7051fab1d02db582024ad963557ca793cf6db",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypzgsk2c",
-      "lastPublished": "2026-08-20T11:08:58.539Z",
+      "lastPublished": "2026-08-21T10:55:42.914Z",
       "slug": "go/gofix"
     },
     "src/content/blogs/go/supervised-fire-and-forget.md": {
-      "contentHash": "aeb29a43b473d439b5d9dd95042c4990c568fa0ebccf31b4a4ee3927d1de893e",
+      "contentHash": "40d70e687b08b1683dfc0970e10e4ec6745d981a4f46c680ab2496ed40e121f0",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypuf2z2y",
-      "lastPublished": "2026-08-20T11:08:58.370Z",
+      "lastPublished": "2026-08-21T10:55:42.418Z",
       "slug": "go/supervised-fire-and-forget"
     },
     "src/content/blogs/shards/go-generic-methods.md": {
-      "contentHash": "eee0c4c7d8ae9dd46f93a55f02c0bb1a398485440b8094812f8c84289780b785",
-      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtll5mjulr2p",
-      "lastPublished": "2026-08-21T10:41:24.805Z",
+      "contentHash": "d2ae889744f827425f46858b2f8eb298d07ed9380526269c794fa55554411fea",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtllx5q5h72e",
+      "lastPublished": "2026-08-21T10:55:41.717Z",
       "slug": "shards/go-generic-methods",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mtll5mmhdo2u",
