@@ -1,16 +1,22 @@
 ---
 title: Arrival of Generic Methods in Go 1.27
-date: 2026-08-21
+date: 2026-08-21T00:00:00.000Z
 description: >-
-  A method declaration may now declare its own type parameters, independent of the receiver’s. Before Go 1.27, only top-level functions could be generic, so a generic operation on a type had to live as a package-level function instead of a method.
-tags: ["go", "news"]
+  A method declaration may now declare its own type parameters, independent of
+  the receiver’s. Before Go 1.27, only top-level functions could be generic, so
+  a generic operation on a type had to live as a package-level function instead
+  of a method.
+tags:
+  - go
+  - news
 aliases: []
 discussions: []
 mermaid: false
-type_label: ""
+type_label: ''
 cover:
   src: ../../../assets/images/site-cover.png
   alt: Mahib's Margins
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtll5mjulr2p'
 ---
 
 ## Overview
