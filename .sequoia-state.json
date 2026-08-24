@@ -107,14 +107,20 @@
       }
     },
     "src/content/blogs/shards/go-example-any-signature.md": {
-      "contentHash": "667f7dfc861eae27d116ee9126dcc1b4a9b537099d829908b2528ec281a425e3",
+      "contentHash": "3e163b107beda9d172fb44a27d5f02c42ac4da5dc66b6ec498271cb31d7a0d5e",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtlmu2ntgj2e",
-      "lastPublished": "2026-08-21T11:11:51.218Z",
+      "lastPublished": "2026-08-24T09:21:44.533Z",
       "slug": "shards/go-example-any-signature",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mtlmu2ou3t2c",
         "cid": "bafyreiby2dkflv3dteogdrdz74v3dhgl4cn7jt7gktcifygcjwtfsl3fny"
       }
+    },
+    "src/content/blogs/misc/how-llm-inference-work.md": {
+      "contentHash": "2544ff071d603dbca4c197ede17541a4046da0a46bda8449fed27be35f82e83d",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtsy3wvmuw2b",
+      "lastPublished": "2026-08-24T09:21:44.972Z",
+      "slug": "misc/how-llm-inference-work"
     }
   },
   "publication": {

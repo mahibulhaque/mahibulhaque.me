@@ -1,15 +1,22 @@
 ---
 title: How LLM Inference Works
-date: 2025-12-15
+date: 2025-12-15T00:00:00.000Z
 description: >-
-  When you enter a prompt into an LLM, the model converts your text into numbers, processes them, and returns a response one token at a time. In this article, we go through the journey of LLM inference and see how it works.
+  When you enter a prompt into an LLM, the model converts your text into
+  numbers, processes them, and returns a response one token at a time. In this
+  article, we go through the journey of LLM inference and see how it works.
 tags:
   - LLM
   - AI
 aliases:
   - /how-llm-inference-works/
 discussions: []
-type_label: ""
+type_label: ''
+cover:
+  src: ../../../assets/images/site-cover.png
+  alt: Mahib's Margins
+ogImage: site-cover.png
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtsy3wvmuw2b'
 ---
 
 When you enter a prompt into an LLM, the model converts your text into numbers, processes them, and returns a response one token at a time. In this article, we go through the journey of LLM inference and see how it works.
