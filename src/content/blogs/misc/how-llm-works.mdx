@@ -1,0 +1,109 @@
+---
+title: How LLM Works
+date: 2026-08-05
+description: >-
+  This article tears open that machinery and explains what a language model is doing at a mechanical level - why it produces the outputs it does, why identical inputs produce different outputs on different runs, and what “temperature” actually means beyond “a creativity dial.”
+tags:
+  - LLM
+  - AI
+aliases:
+  - /how-llm-works/
+discussions: []
+type_label: ""
+---
+
+import "katex/dist/katex.min.css";
+
+If you have used [ChatGPT](https://chatgpt.com/), [Gemini](https://gemini.google.com/), or [Claude](https://claude.ai/), you have already formed an intuition about what these systems do. You type something in, and text comes back that feels coherent, knowledgeable, and sometimes eerily human. But the machinery underneath is simultaneously simpler and stranger than most people expect.
+
+This article tears open that machinery and explains what a [language model](https://en.wikipedia.org/wiki/Large_language_model) is doing at a mechanical level - why it produces the outputs it does, why identical inputs produce different outputs on different runs, and what “temperature” actually means beyond “a creativity dial.”
+
+## Next Token Prediction
+
+In it's most fundamental form a llm is a function that takes in a sequence of tokens as input and outputs a probability distribution over its entire vocabulary as to what the next token in the sequence should be. Everything else - the apparent reasoning, the conversational ability, the code generation - emerges from doing this one thing at enormous scale, across an enormous amount of training data.
+
+Imagine you feed the model the tokens for “The quick brown fox”. The model does not produce the word “jumps”. It produces a table of probabilities: “jumps” might have a 32% chance, “sat” a 8% chance, “leaped” an 6% chance, and every other token in a 100,000-word vocabulary gets some non-zero slice of the remaining probability mass. The model then samples from that distribution to pick the next token. That token gets appended to the sequence, and the whole process repeats until a stop condition is reached.
+
+This is called [autoregressive generation](https://en.wikipedia.org/wiki/Autoregressive_model), each token generated becomes part of the input for the next prediction. The model is always asking the same question: “given everything I have processed so far, what token is most likely to come next?”
+
+## What Training Actually Does
+
+The model learns to produce these probability distributions by training on a massive corpus of text - essentially a large fraction of the written internet, books, code, and academic papers. During training, the model sees a sequence of tokens and tries to predict the next one.
+
+When it is wrong, the error signal flows backward through the network (via [backpropagation](https://en.wikipedia.org/wiki/Backpropagation)), nudging billions of internal parameters - the model’s “[weights](https://en.wikipedia.org/wiki/Synaptic_weight)” - very slightly in the direction that would have made the correct prediction more probable.
+
+After trillions of these updates, the model’s weights encode something remarkable: a compressed statistical model of how language works. It learns that “The Eiffel Tower is located in” is very frequently followed by “Paris,”.
+
+Crucially, the model does not have a memory of individual training examples. It has internalized statistical patterns. This is why it can generalise to novel inputs - it is not retrieving stored sentences, it is sampling from learned distributions.
+
+## Logits, Softmax, and Why Probabilities Matter
+
+Before the model produces those clean probabilities, it produces raw scores called [logits](https://en.wikipedia.org/wiki/Logit) - one real number per token in the vocabulary. These logits are the raw output of the final linear layer in the neural network.
+
+To convert logits to a probability distribution, the model applies the [softmax function](https://en.wikipedia.org/wiki/Softmax_function):
+
+$$
+P(token_i) = \frac{ e^{logit_i} }{ \sum_{j=1}^{n} e^{logit_j} }
+$$
+
+Softmax does two things. First, it exponentiates each logit, which amplifies differences: a logit that is twice as large becomes exponentially more probable. Second, it normalizes everything so that all probabilities sum to 1. The result is a valid probability distribution over the entire vocabulary.
+
+To see this in action, imagine the model is predicting the next word after “The quick brown fox”. It generates raw logits for a tiny vocabulary of four words:
+
+| Token        | Logit ($x_i$) | Exponent ($e^{x_i}$) | Probability ($P_i$) |
+| ------------ | ------------: | -------------------: | ------------------: |
+| **“jumps”**  |           8.3 |               4023.8 |               90.7% |
+| **“leaped”** |           6.0 |                403.4 |                9.1% |
+| **“sat”**    |           2.1 |                  8.1 |               0.18% |
+| **“sleeps”** |          -1.5 |                  0.2 |              0.004% |
+| **Sum**      |               |           **4435.5** |            **100%** |
+
+## Temperature
+
+Temperature is the most misunderstood parameter in prompting. It is commonly described as “creativity” or “randomness,” which is technically correct but obscures exactly how it works. Understanding it precisely lets you use it deliberately.
+
+Temperature is a scalar that divides the logits before the softmax is applied:
+
+$$
+P(token_i) = \frac{ e^{logit_i/T} }{ \sum_{j=1}^{n} e^{logit_j/T} }
+$$
+
+$T=1.0$, nothing changes. The probabilities are exactly what the raw softmax produced in our previous example.
+
+By adjusting $T$, we can either “sharpen” or “flatten” the distribution.
+
+| Token        | Logit | Prob ($T = 1.0$) | Prob ($T = 0.5$) | Prob ($T = 2.0$) |
+| ------------ | ----: | ---------------: | ---------------: | ---------------: |
+| **“jumps”**  |   8.3 |            90.7% |           ~99.0% |           ~67.5% |
+| **“leaped”** |   6.0 |             9.1% |            ~1.0% |           ~21.3% |
+| **“sat”**    |   2.1 |            0.18% |            ~0.0% |            ~3.0% |
+| **“sleeps”** |  -1.5 |           0.004% |            ~0.0% |            ~0.5% |
+
+When
+$T<1.0$ (e.g. $T=0.5$), dividing by a fraction magnifies the logits. By cooling the temperature, the already-large difference between the top tokens becomes enormous. The model becomes nearly deterministic, overwhelmingly picking the single most likely token.
+
+When $T>1.0$ (e.g. $T=2.0$), dividing by a large number flattens the logits. By turning up the heat, the probability mass is spread more evenly. Previously unlikely tokens become plausible candidates, meaning the model will sample more surprising continuations.
+
+A sensible mental model:
+
+- $T= 0.0$ to $0.3$: near-deterministic output, good for code generation, factual Q&A, structured data extraction
+- $T=0.7$ to $1.0$: balanced, good for chat, summarisation, general-purpose use
+- $T=1.2$ to $2.0$: high diversity, good for brainstorming, creative writing, exploring unusual phrasings - but outputs become increasingly unreliable at the high end
+
+## Outputs are Inherently Probabilistic
+
+If you ask a language model "What is $2+2$ you will get $4$" back every time regardless of temperature, because the probability mass is so concentrated on that token that even high-temperature sampling almost never picks anything else. But for any prompt where multiple continuations are plausible, the model’s outputs are drawn from a probability distribution. Run the same prompt a hundred times and you will get a hundred slightly different outputs, sometimes substantively different.
+
+This is not a bug. It is a direct consequence of how the model was trained. The training data contains enormous variation: different people express the same idea in thousands of different ways. The model has learned this variation. When you ask it to write an email or summarise a document, many different phrasings are reasonable, and the model reflects that.
+
+## What "model knows" Actually Means
+
+When engineers say a language model “knows” something, they mean the training corpus contained many examples where that piece of information appeared in context, causing the model’s weights to encode a strong prior toward continuations that express it. The model does not have a database of facts. It has a compressed, lossy encoding of co-occurrence statistics across hundreds of billions of tokens.
+
+This matters in practice. The model is confident and coherent about things it has seen many times in training. It is unreliable about things that appeared rarely or were expressed inconsistently. It will confidently make up details in domains that are underrepresented in its training data, because the token-prediction machinery does not distinguish between “I learned this” and “I am pattern-matching to something plausible.”
+
+## Remarks
+
+A language model is a [next-token prediction machine](https://en.wikipedia.org/wiki/Large_language_model) trained by minimizing the error on predicting held-out tokens from a large corpus. It outputs a probability distribution over its vocabulary at each step, and [temperature](https://huggingface.co/blog/how-to-generate#parameters) controls how sharply peaked that distribution is before sampling.
+
+Outputs are probabilistic because the model has learned the natural variation in human language. Understanding this - rather than treating the model as a search engine or a knowledge base - is the foundation for using LLMs effectively in production systems.

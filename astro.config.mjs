@@ -18,6 +18,8 @@ import { expressiveCodeOptions } from "@/config/expressive-code.ts";
 
 import mermaid from 'astro-mermaid';
 
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 // https://astro.build/config
 export default defineConfig({
   site: siteConfig.url,
@@ -44,7 +46,8 @@ export default defineConfig({
 
   markdown: {
     processor: unified({
-      rehypePlugins: [rehypeSlug],
+      remarkPlugins:[remarkMath],
+      rehypePlugins: [rehypeSlug, rehypeKatex],
     }),
   },
 });
