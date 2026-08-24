@@ -121,6 +121,16 @@
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtsy3wvmuw2b",
       "lastPublished": "2026-08-24T11:42:22.167Z",
       "slug": "misc/how-llm-inference-work"
+    },
+    "src/content/blogs/misc/how-llm-works.mdx": {
+      "contentHash": "881dbb50b2f751dfcbcccca663f6cd984eb4b7d14d951892f30ef31e0d1674b0",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mttojwh6lb2m",
+      "lastPublished": "2026-08-24T16:03:16.854Z",
+      "slug": "misc/how-llm-works",
+      "bskyPostRef": {
+        "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mttojwjvsi2p",
+        "cid": "bafyreicpkwukfiwistl6fmc6rwu7bn73ubfazziupaip6algcwr442h2wy"
+      }
     }
   },
   "publication": {
