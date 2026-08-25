@@ -1,6 +1,6 @@
 ---
 title: Gateway pattern for external service calls
-date: 2025-08-03T00:00:00.000Z
+date: 2026-04-13
 description: >-
   Separate business logic from external service calls using the Gateway pattern.
   Apply dependency inversion and interface segregation in Go.
@@ -12,17 +12,12 @@ aliases:
   - /go/gateway_pattern/
 discussions: []
 mermaid: false
-type_label: ''
-atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqhkwv2b'
-cover:
-  src: ../../../assets/images/site-cover.png
-  alt: Mahib's Margins
-ogImage: site-cover.png
+type_label: ""
 ---
 
 No matter which language you're writing your service in, it's generally a good idea to
 separate your external dependencies from your business-domain logic. Let's say your _order
-service_ needs to make an RPC call to an external _payment service_ like Stripe when a
+service_ needs to make an RPC call to an external _payment service_ like Paypal when a
 customer places an order.
 
 Usually in Go, people make a package called `external` or `http` and stash the logic of
@@ -64,7 +59,7 @@ yourapp/
 │   ├── service.go
 │   └── service_test.go
 ├── external/                   # code to communicate with external deps
-│   └── stripe/
+│   └── paypal/
 │       ├── gateway.go
 │       ├── mock_gateway.go
 │       └── gateway_test.go
@@ -75,42 +70,42 @@ Let's walk through the flow from the bottom up. Think about walking back from th
 the core, as in [Alistair Cockburn's Hexagonal Architecture] lingo where _edge_ represents
 the transport logic and _core_ implies the business concerns.
 
-The Stripe implementation lives in `external/stripe/gateway.go`. For simplicity's sake,
-we're pretending to call the Stripe API over HTTP, but this could be a gRPC call to another
+The Paypal implementation lives in `external/paypal/gateway.go`. For simplicity's sake,
+we're pretending to call the Paypal API over HTTP, but this could be a gRPC call to another
 service.
 
 ```go
-// external/stripe/gateway.go
-package stripe
+// external/paypal/gateway.go
+package paypal
 
 import "fmt"
 
-type StripeGateway struct {
+type PaypalGateway struct {
     APIKey string
 }
 
-func NewStripeGateway(apiKey string) *StripeGateway {
-    return &StripeGateway{APIKey: apiKey}
+func NewPaypalGateway(apiKey string) *PaypalGateway {
+    return &PaypalGateway{APIKey: apiKey}
 }
 
-// Handle all the details of making HTTP calls to the Stripe service here.
-func (s *StripeGateway) Charge(
+// Handle all the details of making HTTP calls to the paypal service here.
+func (s *PaypalGateway) Charge(
     amount int64, currency string, source string) (string, error) {
     fmt.Printf(
-        "[Stripe] Charging %d %s to card %s\n",
+        "[Paypal] Charging %d %s to card %s\n",
         amount, currency, source,
     )
     return "txn_live_123", nil
 }
 
-// Make another HTTP call to the Stripe service to perform a refund.
-func (s *StripeGateway) Refund(transactionID string) error {
-    fmt.Printf("[Stripe] Refunding transaction %s\n", transactionID)
+// Make another HTTP call to the paypal service to perform a refund.
+func (s *PaypalGateway) Refund(transactionID string) error {
+    fmt.Printf("[Paypal] Refunding transaction %s\n", transactionID)
     return nil
 }
 ```
 
-Notice that the `stripe` package handles the details of communicating with the Stripe
+Notice that the `Paypal` package handles the details of communicating with the paypal
 endpoint, but it doesn't export any interface for the higher-level module to use. This is
 intentional.
 
@@ -147,12 +142,12 @@ type Service struct {
     gateway paymentGateway
 }
 
-// Pass the Stripe implementation of paymentGateway at runtime here.
+// Pass the paypal implementation of paymentGateway at runtime here.
 func NewService(gateway paymentGateway) *Service {
     return &Service{gateway: gateway}
 }
 
-// In production, this calls .Charge on the Stripe implementation.
+// In production, this calls .Charge on the paypal implementation.
 // During tests, it calls .Charge on a mock gateway.
 func (s *Service) Checkout(amount int64, source string) error {
     _, err := s.gateway.Charge(amount, "USD", source)
@@ -162,13 +157,13 @@ func (s *Service) Checkout(amount int64, source string) error {
 
 The order service doesn't know or care which implementation of the gateway it's using to
 perform some action. It just knows it can call `Charge` on the provided gateway type. It
-doesn't need to care about the `Refund` method on the Stripe gateway implementation. Also,
+doesn't need to care about the `Refund` method on the paypal gateway implementation. Also,
 the `paymentGateway` interface is bound to the `order` package, so we're not polluting the
 API surface with a bunch of tiny interfaces.
 
 Now, when testing the service logic, you just need to write a tiny mock implementation of
 `paymentGateway` and pass it to `order.Service`. You don't need to reach into the
-`external/stripe` package or wire up anything complicated. You can place the fake right next
+`external/paypal` package or wire up anything complicated. You can place the fake right next
 to your service test. Since interface implementations in Go are implicitly satisfied,
 everything just works without much fuss.
 
@@ -214,22 +209,22 @@ func TestCheckoutCallsCharge(t *testing.T) {
 ```
 
 The test is focused only on what matters: Does the service call `Charge` with the correct
-arguments? We're not testing Stripe here. That's its own concern.
+arguments? We're not testing paypal here. That's its own concern.
 
-You can still write tests for the Stripe client if you want. You'd do that in
-`external/stripe/gateway_test.go`.
+You can still write tests for the paypal client if you want. You'd do that in
+`external/paypal/gateway_test.go`.
 
 ```go
-// external/stripe/gateway_test.go
-package stripe_test
+// external/paypal/gateway_test.go
+package paypal_test
 
 import (
     "testing"
-    "yourapp/external/stripe"
+    "yourapp/external/paypal"
 )
 
-func TestStripeGateway_Charge(t *testing.T) {
-    gw := stripe.NewStripeGateway("dummy-key")
+func TestPaypalGateway_Charge(t *testing.T) {
+    gw := paypal.NewPaypalGateway("dummy-key")
     txn, err := gw.Charge(1000, "USD", "tok_abc")
 
     if err != nil {
@@ -249,15 +244,15 @@ Finally, everything is wired together in `cmd/main.go`.
 package main
 
 import (
-    "yourapp/external/stripe"
+    "yourapp/external/paypal"
     "yourapp/order"
 )
 
 func main() {
-    stripeGw := stripe.NewStripeGateway("live-api-key")
+    paypalGw := paypal.NewPaypalGateway("live-api-key")
 
-    // Passing the real Stripe gateway to the order service.
-    orderSvc := order.NewService(stripeGw)
+    // Passing the real paypal gateway to the order service.
+    orderSvc := order.NewService(paypalGw)
 
     _ = orderSvc.Checkout(5000, "tok_live_card_xyz")
 }

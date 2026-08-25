@@ -30,6 +30,6 @@ export const HERO_SECTION_INFO = {
   subtext: "…and sometimes I write about them too.",
   sinceYear: 2024,
   heroImageSrc:
-    "https://images.unsplash.com/photo-1569412148958-600837f89a65?fm=jpg&q=80&w=574&h=861&auto=format&fit=crop",
+    "https://blob.mahibulhaque.me/images/hero-section-image.webp",
   heroImageAlt: "A weathered, wind-carved tree trunk in black and white",
 } as const;

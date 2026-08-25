@@ -1,6 +1,6 @@
 import { readdir, readFile, writeFile, mkdir, rm, cp } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { join, extname, basename, relative, dirname } from "node:path";
+import { join, extname, basename, relative } from "node:path";
 import { execSync } from "node:child_process";
 import matter from "gray-matter";
 
@@ -38,7 +38,6 @@ async function downloadSiteCover() {
 
 async function stageContent() {
   const files = await walkBlogs(CONTENT_DIR);
-  const coverAbsPath = join(STAGE_DIR, STAGE_COVER_REL);
 
   for (const file of files) {
     const raw = await readFile(file, "utf8");
@@ -50,17 +49,6 @@ async function stageContent() {
     const dest = join(STAGE_DIR, CONTENT_DIR, rel);
     await mkdir(join(dest, ".."), { recursive: true });
 
-    // Cover path relative to *this specific* staged file, for Astro's
-    // image() resolution (so nested posts still resolve correctly).
-    const coverRelPath = relative(dirname(dest), coverAbsPath).split("\\").join("/");
-
-    parsed.data.cover = {
-      src: coverRelPath,
-      alt: "Mahib's Margins",
-    };
-    // Sequoia reads a flat `ogImage` field (its default `coverImage` mapping),
-    // resolved against `imagesDir` in sequoia.json — a plain filename, not
-    // the Astro-relative path above.
     parsed.data.ogImage = SEQUOIA_COVER_FILENAME;
 
     if (!parsed.data.atUri) delete parsed.data.atUri;
