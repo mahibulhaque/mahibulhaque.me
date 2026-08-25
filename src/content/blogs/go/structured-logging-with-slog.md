@@ -12,12 +12,9 @@ aliases:
   - /go/structured_logging_with_slog/
 discussions: []
 mermaid: false
-type_label: ''
+type_label: ""
 atprotoPath: /go/structured-logging-with-slog/
-atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yrxi5s2c'
-cover:
-  src: ../../../assets/images/site-cover.png
-  alt: Mahib's Margins
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yrxi5s2c"
 ogImage: site-cover.png
 ---
 

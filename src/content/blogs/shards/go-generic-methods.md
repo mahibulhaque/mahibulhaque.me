@@ -12,12 +12,9 @@ tags:
 aliases: []
 discussions: []
 mermaid: false
-type_label: ''
-cover:
-  src: ../../../assets/images/site-cover.png
-  alt: Mahib's Margins
+type_label: ""
 ogImage: site-cover.png
-atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtlmjc7tw623'
+atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtlmjc7tw623"
 ---
 
 ## Overview

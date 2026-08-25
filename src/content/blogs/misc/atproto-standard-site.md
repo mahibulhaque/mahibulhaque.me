@@ -14,7 +14,7 @@ discussions:
   [{ label: "What is Sequoia?", url: "https://sequoia.pub/what-is-sequoia" }]
 mermaid: true
 type_label: ""
-draft: true
+draft: false
 ---
 
 I put this blog on [standard.site]. Every post from now on also lives as a record on [ATProto] (the
