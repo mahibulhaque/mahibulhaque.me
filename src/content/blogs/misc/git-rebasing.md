@@ -1,9 +1,10 @@
 ---
-title: "I kind of like rebasing"
-date: 2025-06-18
+title: I kind of like rebasing
+date: 2025-06-18T00:00:00.000Z
 description: >-
-  Master git rebase for cleaner commit history. Learn interactive rebasing, squashing
-  commits, and rebasing feature branches onto main with practical examples.
+  Master git rebase for cleaner commit history. Learn interactive rebasing,
+  squashing commits, and rebasing feature branches onto main with practical
+  examples.
 tags:
   - git
   - Shell
@@ -12,10 +13,12 @@ tags:
 aliases:
   - /misc/on_rebasing/
 discussions:
-  - label: "Hacker News"
-    url: "https://news.ycombinator.com/item?id=40742628"
+  - label: Hacker News
+    url: 'https://news.ycombinator.com/item?id=40742628'
 mermaid: false
-type_label: ""
+type_label: ''
+ogImage: site-cover.png
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvs66dsmm24'
 ---
 
 People tend to get pretty passionate about Git workflows on different online forums. Some

@@ -49,9 +49,9 @@
       "slug": "go/io-reader-signature"
     },
     "src/content/blogs/go/gateway-pattern.md": {
-      "contentHash": "0feeec38f7d676b7ebd2f59ace58b0098d0651a138593ca6cb87beab168c5359",
-      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqhkwv2b",
-      "lastPublished": "2026-08-21T10:55:45.965Z",
+      "contentHash": "6ba2cffe9387107051bcf92968f86bd661774b5d38d43c53e3d920f1952af866",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvs662hyt2p",
+      "lastPublished": "2026-08-25T12:13:36.321Z",
       "slug": "go/gateway-pattern"
     },
     "src/content/blogs/go/early-return-and-goroutine-leak.md": {
@@ -123,14 +123,20 @@
       "slug": "misc/how-llm-inference-work"
     },
     "src/content/blogs/misc/how-llm-works.mdx": {
-      "contentHash": "881dbb50b2f751dfcbcccca663f6cd984eb4b7d14d951892f30ef31e0d1674b0",
+      "contentHash": "227d3d5f44a44d347814e2c71fa0f009f0a6d1c0536810018441c2a0d3361594",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mttojwh6lb2m",
-      "lastPublished": "2026-08-24T16:03:16.854Z",
+      "lastPublished": "2026-08-25T12:13:35.927Z",
       "slug": "misc/how-llm-works",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mttojwjvsi2p",
         "cid": "bafyreicpkwukfiwistl6fmc6rwu7bn73ubfazziupaip6algcwr442h2wy"
       }
+    },
+    "src/content/blogs/misc/git-rebasing.md": {
+      "contentHash": "8909486927538caeafced5a19f97975a931509b326312bbb18da05d799ec094e",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvs66dsmm24",
+      "lastPublished": "2026-08-25T12:13:36.627Z",
+      "slug": "misc/git-rebasing"
     }
   },
   "publication": {

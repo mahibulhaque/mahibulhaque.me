@@ -1,6 +1,6 @@
 ---
 title: Gateway pattern for external service calls
-date: 2026-04-13
+date: 2026-04-13T00:00:00.000Z
 description: >-
   Separate business logic from external service calls using the Gateway pattern.
   Apply dependency inversion and interface segregation in Go.
@@ -12,7 +12,9 @@ aliases:
   - /go/gateway_pattern/
 discussions: []
 mermaid: false
-type_label: ""
+type_label: ''
+ogImage: site-cover.png
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvs662hyt2p'
 ---
 
 No matter which language you're writing your service in, it's generally a good idea to
