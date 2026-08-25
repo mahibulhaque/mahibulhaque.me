@@ -1,20 +1,23 @@
 ---
-title: "Configuring this blog on ATProto with standard.site"
-date: 2026-08-21
+title: Configuring this blog on ATProto with standard.site
+date: 2026-08-21T00:00:00.000Z
 description: >-
-  Mirroring a static Astro blog onto ATProto with standard.site using Sequoia, plus the
-  GitHub Actions wiring that republishes the records on every push without any manual
-  steps.
+  Mirroring a static Astro blog onto ATProto with standard.site using Sequoia,
+  plus the GitHub Actions wiring that republishes the records on every push
+  without any manual steps.
 tags:
   - ATProto
   - DevOps
   - Web
 aliases: []
 discussions:
-  [{ label: "What is Sequoia?", url: "https://sequoia.pub/what-is-sequoia" }]
+  - label: What is Sequoia?
+    url: 'https://sequoia.pub/what-is-sequoia'
 mermaid: true
-type_label: ""
+type_label: ''
 draft: false
+ogImage: site-cover.png
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvyyf6l572e'
 ---
 
 I put this blog on [standard.site]. Every post from now on also lives as a record on [ATProto] (the

@@ -12,11 +12,11 @@ tags:
 aliases: []
 discussions:
   - label: Hacker News
-    url: "https://news.ycombinator.com/item?id=47244882"
+    url: 'https://news.ycombinator.com/item?id=47244882'
   - label: Reddit
-    url: "https://www.reddit.com/r/golang/comments/1rhzdxd/"
-type_label: ""
-atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq63h22j"
+    url: 'https://www.reddit.com/r/golang/comments/1rhzdxd/'
+type_label: ''
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq63h22j'
 ogImage: site-cover.png
 ---
 

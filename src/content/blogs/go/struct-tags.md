@@ -13,8 +13,8 @@ aliases:
   - /go/fun-with-struct-tags/
 discussions: []
 mermaid: false
-type_label: ""
-atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq3sfe23"
+type_label: ''
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq3sfe23'
 ogImage: site-cover.png
 ---
 

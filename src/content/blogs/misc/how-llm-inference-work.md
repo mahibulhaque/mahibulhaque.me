@@ -11,9 +11,9 @@ tags:
 aliases:
   - /how-llm-inference-works/
 discussions: []
-type_label: ""
+type_label: ''
 ogImage: site-cover.png
-atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtsy3wvmuw2b"
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtsy3wvmuw2b'
 ---
 
 When you enter a prompt into an LLM, the model converts your text into numbers, processes them, and returns a response one token at a time. In this article, we go through the journey of LLM inference and see how it works.

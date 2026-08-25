@@ -9,8 +9,8 @@ tags:
 aliases:
   - /go/app_structure/
 discussions: []
-type_label: ""
-atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqculc2m"
+type_label: ''
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqculc2m'
 ogImage: site-cover.png
 ---
 

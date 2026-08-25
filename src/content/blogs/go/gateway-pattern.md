@@ -12,9 +12,9 @@ aliases:
   - /go/gateway_pattern/
 discussions: []
 mermaid: false
-type_label: ""
+type_label: ''
 ogImage: site-cover.png
-atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvs662hyt2p"
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvs662hyt2p'
 ---
 
 No matter which language you're writing your service in, it's generally a good idea to

@@ -12,11 +12,11 @@ aliases:
   - /go/dysfunctional_options_pattern/
 discussions:
   - label: Hacker News
-    url: "https://news.ycombinator.com/item?id=41015991"
+    url: 'https://news.ycombinator.com/item?id=41015991'
 mermaid: false
-type_label: ""
+type_label: ''
 atprotoPath: /go/dysfunctional-options-pattern/
-atUri: "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqqqyi2p"
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqqqyi2p'
 ogImage: site-cover.png
 ---
 

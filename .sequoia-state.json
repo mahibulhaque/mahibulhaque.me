@@ -1,105 +1,105 @@
 {
   "posts": {
     "src/content/blogs/go/structured-logging-with-slog.md": {
-      "contentHash": "e1520363000367635e4a335a5b7a82e32f469799905f820aaa8e761efc919b9e",
+      "contentHash": "51e59d9ae8cd3fc53ba44b821e51fbefa2bc463760608e27792f67cd783936b6",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yrxi5s2c",
-      "lastPublished": "2026-08-21T10:55:50.137Z",
+      "lastPublished": "2026-08-25T14:15:44.793Z",
       "slug": "go/structured-logging-with-slog"
     },
     "src/content/blogs/go/interface-guards.md": {
-      "contentHash": "8659e6fb67a586653bd72252214606f9951d266949d036707b983d466809f9a3",
+      "contentHash": "c1c86227b7e1f930c974229b4aa7f7abc9c5b2ec5ff9de7546c68ad676f4c62c",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqxisq2p",
-      "lastPublished": "2026-08-21T10:55:49.613Z",
+      "lastPublished": "2026-08-25T14:15:44.473Z",
       "slug": "go/interface-guards"
     },
     "src/content/blogs/go/limit-goroutines-with-buffered-channels.md": {
-      "contentHash": "f434dad60e688eea421dc498268c5f6e472222d1b2af368b5a058c8783a80cf2",
+      "contentHash": "f6a253ffed7dd48dc0008e82ed4d9a2979677413f3584f8393349903d5ad84f4",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqvca525",
-      "lastPublished": "2026-08-21T10:55:49.154Z",
+      "lastPublished": "2026-08-25T14:15:44.182Z",
       "slug": "go/limit-goroutines-with-buffered-channels"
     },
     "src/content/blogs/go/configure-options.md": {
-      "contentHash": "ed33af71312fe9072616d728cd864ff4f2392ab7d9849eb91a1f66c929aec792",
+      "contentHash": "c9de892918c4abba5773b3eaa30baa7edcf3b1af451b1784f22ca149a39893c3",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqszkm23",
-      "lastPublished": "2026-08-21T10:55:48.632Z",
+      "lastPublished": "2026-08-25T14:15:43.885Z",
       "slug": "go/configure-options"
     },
     "src/content/blogs/go/dysfunctional-options-pattern.md": {
-      "contentHash": "1e430539daa8ec5d85b3d7f024a874e4ff51ba4c0ecc391daa6f3f011e5c9e15",
+      "contentHash": "85a27075152803be15c478d5513417274a1a314afc59dedee3debdff6415f43b",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqqqyi2p",
-      "lastPublished": "2026-08-21T10:55:48.138Z",
+      "lastPublished": "2026-08-25T14:15:43.600Z",
       "slug": "go/dysfunctional-options-pattern"
     },
     "src/content/blogs/go/circuit-breaker.md": {
-      "contentHash": "afb91fdcc3c607d4b1bf433e419d40a7f9eb02eef896229e3da7ca79f6873277",
+      "contentHash": "afa357f3ac9ca4f1399b1ef3ab48b58567b2b117705535302b70c0d897c32dbb",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqofvs2j",
-      "lastPublished": "2026-08-21T10:55:47.511Z",
+      "lastPublished": "2026-08-25T14:15:43.293Z",
       "slug": "go/circuit-breaker"
     },
     "src/content/blogs/misc/behind-the-blog.md": {
-      "contentHash": "9410111326239737787ae008024aca423e684e8e503d2ca73ff05a7c6332e32b",
+      "contentHash": "a2e3682fe8c351e3ee6c7579b949f138977f3305750991e0c08b8d0e820ae12c",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqm4nt2e",
-      "lastPublished": "2026-08-21T10:55:47.017Z",
+      "lastPublished": "2026-08-25T14:15:43.009Z",
       "slug": "misc/behind-the-blog"
     },
     "src/content/blogs/go/io-reader-signature.md": {
-      "contentHash": "a7af89b11bee8de967642468544b568fdfb40369231a3b12d029ff23cc9dc249",
+      "contentHash": "bc6fbf102ffc085e87cf73033ab7d73c9a9f3116cb76bfbed898d7f48d648771",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqjuoz2p",
-      "lastPublished": "2026-08-21T10:55:46.469Z",
+      "lastPublished": "2026-08-25T14:15:42.700Z",
       "slug": "go/io-reader-signature"
     },
     "src/content/blogs/go/gateway-pattern.md": {
-      "contentHash": "6ba2cffe9387107051bcf92968f86bd661774b5d38d43c53e3d920f1952af866",
+      "contentHash": "9728e9e6e36621041b7ff926f5cda895cb05fb7c75291e05b8d32c134acc2ac8",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvs662hyt2p",
-      "lastPublished": "2026-08-25T12:13:36.321Z",
+      "lastPublished": "2026-08-25T14:15:40.414Z",
       "slug": "go/gateway-pattern"
     },
     "src/content/blogs/go/early-return-and-goroutine-leak.md": {
-      "contentHash": "6d4e5c0f6ed3c7522f0e38e6dcaf6ea2cd55fca423f81f8587ef5858ceefbf17",
+      "contentHash": "9afc9166159883e70fa54c22fe41d3f362ca1e27db2e3f4f45dc664163f887b5",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqfc452e",
-      "lastPublished": "2026-08-21T10:55:45.494Z",
+      "lastPublished": "2026-08-25T14:15:42.118Z",
       "slug": "go/early-return-and-goroutine-leak"
     },
     "src/content/blogs/go/app-structure.md": {
-      "contentHash": "f777b3661139fd6ecaa3bdb464af21197cd5b8b70dc67becd617d5ed7f6617e1",
+      "contentHash": "eb83a4fe358cd08f8def0a97ea1df72ed004d229d0f0a5d624614e4079660005",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqculc2m",
-      "lastPublished": "2026-08-21T10:55:45.005Z",
+      "lastPublished": "2026-08-25T14:15:41.803Z",
       "slug": "go/app-structure"
     },
     "src/content/blogs/go/interface-segregation.md": {
-      "contentHash": "79a072cc18f73eba2e3ef1c7a5569fe66669513561331f26e6799473789cba0c",
+      "contentHash": "754b53409676f8efa7f4d220524f197e6f9486888ea719a8868aacaed3a25d2b",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yqails2j",
-      "lastPublished": "2026-08-21T10:55:44.440Z",
+      "lastPublished": "2026-08-25T14:15:41.516Z",
       "slug": "go/interface-segregation"
     },
     "src/content/blogs/go/context-cancellation-cause.md": {
-      "contentHash": "81c272d548a83b7298040052437f053eb33164616a98410c7b08d913ee861587",
+      "contentHash": "5c4db9ebf83c8b3d757f3b91a333f5b4f49ab55e4de54790540e5bc7e9d241d0",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq63h22j",
-      "lastPublished": "2026-08-21T10:55:43.925Z",
+      "lastPublished": "2026-08-25T14:15:40.914Z",
       "slug": "go/context-cancellation-cause"
     },
     "src/content/blogs/go/struct-tags.md": {
-      "contentHash": "cb8d84e0546d0ad2536df1ffcfec25f3fc776b74cd31e51bbacdceb38889c32c",
+      "contentHash": "171bf99401cc4266b89ec6fe44106f8d606d128cd182edcafd5fa1074c122224",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2yq3sfe23",
-      "lastPublished": "2026-08-21T10:55:43.409Z",
+      "lastPublished": "2026-08-25T14:15:40.177Z",
       "slug": "go/struct-tags"
     },
     "src/content/blogs/go/gofix.md": {
-      "contentHash": "38da460302c0500012335e5ceeb7051fab1d02db582024ad963557ca793cf6db",
+      "contentHash": "0822e7f0404c3b2a1e0ceb0b22340bd8357ff03c54b2a7712e8e2a4f72f7ebf4",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypzgsk2c",
-      "lastPublished": "2026-08-21T10:55:42.914Z",
+      "lastPublished": "2026-08-25T14:15:39.919Z",
       "slug": "go/gofix"
     },
     "src/content/blogs/go/supervised-fire-and-forget.md": {
-      "contentHash": "40d70e687b08b1683dfc0970e10e4ec6745d981a4f46c680ab2496ed40e121f0",
+      "contentHash": "2190d5c6ba960042e3c722971dcbac892831d00131044a56f7b9d7e285b1926f",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtj2ypuf2z2y",
-      "lastPublished": "2026-08-21T10:55:42.418Z",
+      "lastPublished": "2026-08-25T14:15:39.646Z",
       "slug": "go/supervised-fire-and-forget"
     },
     "src/content/blogs/shards/go-generic-methods.md": {
-      "contentHash": "119ae90267ae284010671e1ba56c926ea6c377474c14aa1cb23285ddd69d202f",
+      "contentHash": "5de505921230fdb3c77092e3b6916edc26677dacdc4ccd661d9f0d55f909a531",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtlmjc7tw623",
-      "lastPublished": "2026-08-21T11:11:50.863Z",
+      "lastPublished": "2026-08-25T14:15:38.352Z",
       "slug": "shards/go-generic-methods",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mtll5mmhdo2u",
@@ -107,9 +107,9 @@
       }
     },
     "src/content/blogs/shards/go-example-any-signature.md": {
-      "contentHash": "3e163b107beda9d172fb44a27d5f02c42ac4da5dc66b6ec498271cb31d7a0d5e",
+      "contentHash": "a99c3c3640ffe80f63965607df90db08cd6a2ece47746d2b8ecca8eb9429d31c",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtlmu2ntgj2e",
-      "lastPublished": "2026-08-24T09:21:44.533Z",
+      "lastPublished": "2026-08-25T14:15:39.014Z",
       "slug": "shards/go-example-any-signature",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mtlmu2ou3t2c",
@@ -117,15 +117,15 @@
       }
     },
     "src/content/blogs/misc/how-llm-inference-work.md": {
-      "contentHash": "4c3d57678921de597a80a3b9139d96dd61ea177c6ae98e90f6bf4a7c71a6adcb",
+      "contentHash": "b608609f51d88b9874695131cb4debb0323f92d3c1bda40cc492df0122cd5165",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtsy3wvmuw2b",
-      "lastPublished": "2026-08-24T11:42:22.167Z",
+      "lastPublished": "2026-08-25T14:15:41.210Z",
       "slug": "misc/how-llm-inference-work"
     },
     "src/content/blogs/misc/how-llm-works.mdx": {
-      "contentHash": "227d3d5f44a44d347814e2c71fa0f009f0a6d1c0536810018441c2a0d3361594",
+      "contentHash": "128f355caaddf2a0275096b5ea14aa77e159a8b43b992b397d7e126469106aec",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mttojwh6lb2m",
-      "lastPublished": "2026-08-25T12:13:35.927Z",
+      "lastPublished": "2026-08-25T14:15:39.357Z",
       "slug": "misc/how-llm-works",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mttojwjvsi2p",
@@ -133,10 +133,20 @@
       }
     },
     "src/content/blogs/misc/git-rebasing.md": {
-      "contentHash": "8909486927538caeafced5a19f97975a931509b326312bbb18da05d799ec094e",
+      "contentHash": "1f97afe0fe4a050494d4febb65f45a2a997c9c6dc52d8d878c0a88fa9628e8de",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvs66dsmm24",
-      "lastPublished": "2026-08-25T12:13:36.627Z",
+      "lastPublished": "2026-08-25T14:15:42.412Z",
       "slug": "misc/git-rebasing"
+    },
+    "src/content/blogs/misc/atproto-standard-site.md": {
+      "contentHash": "563914c5a13c29fcc703261bea71dd5aa9050f37dd3347de0837b7824a439a8e",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvyyf6l572e",
+      "lastPublished": "2026-08-25T14:15:38.727Z",
+      "slug": "misc/atproto-standard-site",
+      "bskyPostRef": {
+        "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mtvyyf7iej25",
+        "cid": "bafyreibltdwhs7knulctwjs5cs2ertick4qruwerag4x5oeyealqhfa5ai"
+      }
     }
   },
   "publication": {
