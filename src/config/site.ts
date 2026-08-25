@@ -29,7 +29,6 @@ export const HERO_SECTION_INFO = {
   tagline: "I work with computers.",
   subtext: "…and sometimes I write about them too.",
   sinceYear: 2024,
-  heroImageSrc:
-    "https://blob.mahibulhaque.me/images/hero-section-image.webp",
+  heroImageSrc: "https://blob.mahibulhaque.me/images/hero-section-image.webp",
   heroImageAlt: "A weathered, wind-carved tree trunk in black and white",
 } as const;

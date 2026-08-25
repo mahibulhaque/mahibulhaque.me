@@ -8,7 +8,7 @@ const blogs = defineCollection({
     base: "./src/content/blogs",
   }),
 
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       description: z.string().optional(),
@@ -25,21 +25,11 @@ const blogs = defineCollection({
           }),
         )
         .default([]),
-
-      cover: z
-        .object({
-          src: image(),
-          alt: z.string(),
-          creditName: z.string().optional(),
-          creditUrl: z.url().optional(),
-        })
-        .optional(),
-      type_label:z.string().optional(),
-
+      type_label: z.string().optional(),
       featured: z.boolean().default(false),
       draft: z.boolean().default(false),
-      atUri:z.string().optional(),
-      mermaid:z.boolean().default(false),
+      atUri: z.string().optional(),
+      mermaid: z.boolean().default(false),
     }),
 });
 

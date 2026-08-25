@@ -44,7 +44,7 @@ sequenceDiagram
     P-->>R: site = publication URI, path = /go/circuit-breaker/
     R->>S: GET /.well-known/site.standard.publication
     S-->>R: the same publication URI
-    Note over R: URIs match, so it's provably mahibulhaque.me's
+    Note over R: URIs match, so it's probably from mahibulhaque.me
 ```
 <!-- prettier-ignore-end -->
 
@@ -189,7 +189,7 @@ workflow].
     https://github.com/mahibulhaque/mahibulhaque.me/blob/main/scripts/frontmatter.ts
 
 [ci workflow]:
-    https://github.com/rednafi/com.rednafi/blob/main/.github/workflows/ci.yml
+    https://github.com/mahibulhaque/mahibulhaque.me/blob/main/.github/workflows/ci.yml
 
 [small Go script]:
     https://github.com/mahibulhaque/mahibulhaque.me/blob/main/scripts/frontmatter.ts
