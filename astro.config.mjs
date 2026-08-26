@@ -19,6 +19,7 @@ import mermaid from "astro-mermaid";
 
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import { remarkAlert } from "remark-github-blockquote-alert";
 // https://astro.build/config
 export default defineConfig({
   site: siteConfig.url,
@@ -44,7 +45,7 @@ export default defineConfig({
 
   markdown: {
     processor: unified({
-      remarkPlugins: [remarkMath],
+      remarkPlugins: [remarkMath, remarkAlert],
       rehypePlugins: [rehypeSlug, rehypeKatex],
     }),
   },
