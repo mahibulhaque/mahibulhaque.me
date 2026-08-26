@@ -139,14 +139,20 @@
       "slug": "misc/git-rebasing"
     },
     "src/content/blogs/misc/atproto-standard-site.md": {
-      "contentHash": "563914c5a13c29fcc703261bea71dd5aa9050f37dd3347de0837b7824a439a8e",
+      "contentHash": "035d8d1cb24557ce543c09ee051fd0273412835723d4b668e7812aa482322c09",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mtvyyf6l572e",
-      "lastPublished": "2026-08-25T14:15:38.727Z",
+      "lastPublished": "2026-08-26T11:12:32.799Z",
       "slug": "misc/atproto-standard-site",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mtvyyf7iej25",
         "cid": "bafyreibltdwhs7knulctwjs5cs2ertick4qruwerag4x5oeyealqhfa5ai"
       }
+    },
+    "src/content/blogs/go/error-translation.md": {
+      "contentHash": "90598ebc3a6cd86f656cb9849cd27418543dd2b2744a6e48145471749c85bb37",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mty77vyfpy2t",
+      "lastPublished": "2026-08-26T11:12:33.090Z",
+      "slug": "go/error-translation"
     }
   },
   "publication": {

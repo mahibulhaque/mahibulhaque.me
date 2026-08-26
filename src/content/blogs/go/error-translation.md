@@ -1,16 +1,18 @@
 ---
-title: "Error translation in Go services"
-date: 2026-05-12
+title: Error translation in Go services
+date: 2026-05-12T00:00:00.000Z
 description: >-
-  Translating errors at layer boundaries so storage details don't leak into the handler
-  or, worse, into client responses.
+  Translating errors at layer boundaries so storage details don't leak into the
+  handler or, worse, into client responses.
 tags:
   - Go
-  - "Error Handling"
+  - Error Handling
 aliases: []
 discussions: []
 mermaid: false
-type_label: ""
+type_label: ''
+ogImage: site-cover.png
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mty77vyfpy2t'
 ---
 
 In a layered Go service, it's easy to accidentally leak storage errors like `sql.ErrNoRows`
