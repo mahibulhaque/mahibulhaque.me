@@ -149,10 +149,20 @@
       }
     },
     "src/content/blogs/go/error-translation.md": {
-      "contentHash": "90598ebc3a6cd86f656cb9849cd27418543dd2b2744a6e48145471749c85bb37",
+      "contentHash": "c418545ff8e6a303e3b2bb59c92f5b602df3a7171948e077e30b30814178382d",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mty77vyfpy2t",
-      "lastPublished": "2026-08-26T11:12:33.090Z",
+      "lastPublished": "2026-08-28T12:52:32.859Z",
       "slug": "go/error-translation"
+    },
+    "src/content/blogs/papernotes/distillation-with-no-labels.mdx": {
+      "contentHash": "47dd265e889b2ccd5739efd246df02f545b9d838da998c85c338cf9c2fc6420e",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mu5fqjwc7223",
+      "lastPublished": "2026-08-28T12:52:32.298Z",
+      "slug": "papernotes/distillation-with-no-labels",
+      "bskyPostRef": {
+        "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mu5fqjyua223",
+        "cid": "bafyreifq6lqe3yjrlabyeuaxcvkyaqootmwq4bkauyjpmflyo72x5qjmfi"
+      }
     }
   },
   "publication": {
