@@ -371,11 +371,30 @@ html {
   }
 
   .prose code {
-    @apply bg-muted rounded-xs px-1 py-0.5 text-sm;
+    @apply bg-muted rounded-xs px-1 py-0.5 text-sm leading-normal;
   }
 
   .prose li > p {
     @apply my-0;
+  }
+
+  .prose .katex {
+    line-height: normal;
+    font-size: 1rem;
+    white-space: normal;
+  }
+
+  .prose .katex-display {
+    margin: 1.5em 0;
+    padding: 0.25em 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .prose .katex-display > .katex {
+    display: inline-block;
+    line-height: normal;
+    text-align: initial;
   }
 
   /* GitHub-style alert blockquotes (remark-github-blockquote-alert) */

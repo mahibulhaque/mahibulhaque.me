@@ -1,0 +1,378 @@
+---
+title: DINO (Distillation with No Labels)
+date: 2026-08-28
+description: >-
+  Breakdown of DINOv3 model that scales self-supervised learning (SSL) for images to produce our strongest universal vision backbones, enabling breakthrough performance across diverse domains.
+tags:
+  - ai
+  - computer vision
+  - self supervised learning
+  - vision transformer
+  - llm
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+---
+
+import "katex/dist/katex.min.css";
+
+[Emerging Properties in Self-Supervised Vision Transformers](https://arxiv.org/abs/2104.14294)
+
+## What DINO?
+
+**DINO** is a method to train Vision Transformer with self supervised learning.
+
+## Why DINO
+
+In 2020, when the Vision Transformer Model was used in order to classify images the study showed that ViT is less data efficient then convolution neural networks, but with a lot of training data, they can outperform CNNs.
+
+![vit image classification accuracy][img_1]
+
+In 2021, researchers in Facebook / Meta asked themselves whether they can train ViT using large scale unlabelled image data. Around this time in NLP, LLM were pre-trained on large-scale unlabelled text data with self-supervised learning objectives.
+
+Additional motivation for the researchers behind DINO paper also was that image classification was a lossy objective.
+![rich information loss in vit][img_2]
+
+## How DINO Works Explained
+
+![dino model architecture][img_3]
+
+1. Input images are passed through the Multi-crop function which will produce the 8 Local crop which are smaller in area and produce 2 Global Crops of the input image, which will larger in area.
+2. The 8 local crops + 2 global crops will be passed to the `Student ViT (Vision Transformer)` and 2 global crops will be passed to the `Teacher ViT`.
+3. Let's assume the hidden dimension of the `Student ViT` is `c` then the ViT will produce `10 * n_tokens * c` which will be passed to a `MLP (Multilayer Percepton` which will be passed to `Softmax function (T=0.1)` to better propagate gradients so we will get `10 * n_classes`
+4. The `Teacher ViT` will produce a output of `10 * n_tokens * c` which will be forwarded to a `MLP` followed by `centering` to stabilize the outputs. Finally, a `Softmax function` with a lower temperature (T=0.04) will be applied. This will produce `2 * n_classes`.
+5. In the `Teacher ViT` there will be a `Stop Gradient` after the `Softmax Function`. This will prevent back propagation in `Teacher ViT`.
+6. `Student ViT` will have back propagation and adjust it's weights.
+7. Using `Exponential Moving Average` from `Student ViT` to `Teacher ViT` a fraction of the updates will be propagated to the `Teacher ViT`.
+8. The equation for this will be the following: $\theta_t = m\theta_t + (1 - m)\theta_s$
+9. Here, $\theta_t$ represents the parameters of the the `Teacher ViT` and $\theta_s$ represents the parameters of the updated `Student ViT`, $m$ will have very high value (e.g. $m=0.996$), so basically teacher ViT will update very slowly and be stable as possible.
+
+## Inference Using DINO
+
+![vit model architecture][img_4]
+
+## Interesting Findings
+
+1. The network internally learns how to segment objects.![dino model segmentation map][img_5]
+2. The network creates a rich embeddings of the image, which can be used by visual search systems using KNN (K-Nearest Neighbor).![embedding space][img_6]
+3. The CLS vector becomes a great embedding because it is forced to learn what the object is, and it produces a segmentation map because it is forced to learn where the object is and to ignore the rest.
+
+To predict the `whole dog` while only seeing a `ear`, the `CLS` token must figure out which pixels actually belong to the dog.
+
+Since, the background (grass, sky) changes with every random crop but the object stays the same, the learns to ignore the `noise` and lock onto the object's shape to remain consistent. This focus naturally creates a segmentation mask.
+
+# DINO v3
+
+[Paper Link](https://arxiv.org/pdf/2508.10104)
+
+**DINOv3 turns DINO-style self-supervised learning into a scalable vision foundation-model pipeline by solving a major scaling problem: as models train longer and become larger, global image understanding improves, but patch-level/dense representations degrade; DINOv3 introduces Gram anchoring to preserve those dense relationships while continuing to improve global representations.**
+
+<video
+  src="https://video.xx.fbcdn.net/o1/v/t2/f2/m69/AQNSeRC9WFZk11lhl4BUzaQZh4Lj5jQ5OEVMB2iJLKoj9wSYZWhbWhuqEeEbYx6XgOSacjknkoLJNNR8YgZGaKRI.mp4?strext=1&_nc_cat=100&_nc_oc=AdpkqCzKmK88d4MML7QPfGyKoNs9fo4hm6skWxgf9EavTLDyE3vWZ01H0H94kZNkXyE&_nc_sid=5e9851&_nc_ht=video.fdac191-1.fna.fbcdn.net&_nc_ohc=63v3MfcAyYIQ7kNvwERk8wc&efg=eyJ2ZW5jb2RlX3RhZyI6Inhwdl9wcm9ncmVzc2l2ZS5GQUNFQk9PSy4uQzMuMTkyMC5kYXNoX2gyNjQtYmFzaWMtZ2VuMl8xMDgwcCIsInhwdl9hc3NldF9pZCI6NjgxMDc3NjY4MjgzMDk1LCJhc3NldF9hZ2VfZGF5cyI6Mzc4LCJ2aV91c2VjYXNlX2lkIjoxMDYyNiwiZHVyYXRpb25fcyI6MTYsInVybGdlbl9zb3VyY2UiOiJ3d3cifQ%3D%3D&ccb=17-1&vs=e32b3f95340b8b02&_nc_vs=HBkcFQIYOnBhc3N0aHJvdWdoX2V2ZXJzdG9yZS9HSTc5ZEI4SnZ4MzZSU2NDQUFocWF1Z0IyYzVaYnY0R0FBQUYVAALIARIAKAAYABsCiAd1c2Vfb2lsATEScHJvZ3Jlc3NpdmVfcmVjaXBlATEVAAAmrovch_jbtQIVAigCQzMsF0Aw1T987ZFoGBpkYXNoX2gyNjQtYmFzaWMtZ2VuMl8xMDgwcBEAdQJlhKYBAA&_nc_gid=KUQKJfs6VBlX1AAF99JPGg&_nc_ss=7b289&_nc_zt=28&oh=00_AQH-HxttfukXcD7Apuj9698zUeB9YQ_tRtfq_uaymDuwxw&oe=6A972C36&bitrate=0&tag=dash_h264-basic-gen2_1080p"
+  autoplay
+  loop
+  muted
+  playsinline
+  style="max-width: 100%; height: auto;"
+>
+  Your browser does not support the video tag.
+</video>
+Video From: https://ai.meta.com/research/dinov3/
+
+## The key difference from original DINO
+
+> How can we scale self-supervised visual learning to huge datasets, 7B-parameter models, long training schedules, and high resolutions while preserving both global and local visual understanding?
+
+So the contribution is less about inventing a completely new SSL paradigm and more about **making DINO-style SSL scale successfully into a frontier vision foundation model**.
+
+## Problem Discovered
+
+**Global features and dense features behave differently during training**
+
+Suppose a model processes an image.
+
+It produces:
+
+- a **global representation** — what the whole image is about
+- **patch representations** — what each local region represents
+
+For example:
+
+> Image: a dog sitting on grass
+
+A good global feature should understand:
+
+> "This is an image containing a dog."
+
+A good dense feature map should understand:
+
+- these patches → dog's head
+- these patches → dog's body
+- these patches → grass
+- nearby patches belonging to the same object should have meaningful similarity
+
+## Findings in DINO v3
+
+- Global performance keeps improving
+- Dense/local performance starts getting worse
+
+1. For their large models, segmentation performance begins declining after extended training even while ImageNet classification continues improving. The paper connects this degradation to increasingly noisy and less localized patch similarity maps.
+2. The paper observes that the cosine similarity between the CLS token and patch features increases during training, meaning patch features gradually lose some locality. The result is noisy feature maps where unrelated patches may become too similar.
+
+## Gram Anchoring
+
+Imagine an image divided into patches:
+
+```txt
+P1  P2  P3  P4
+P5  P6  P7  P8
+```
+
+Instead of asking:
+
+> "Should patch P1 have exactly the same feature vector as an earlier model?"
+
+DINOv3 asks:
+
+> "Should the relationships between patches remain similar?"
+
+This distinction is extremely important.
+
+### Direct feature matching would be too restrictive
+
+Suppose an early model represents patches like:
+
+```
+Dog head   ↔ Dog body   = similar
+Dog head   ↔ Grass      = dissimilar
+Grass      ↔ Grass      = similar
+```
+
+During later training, we want the model to improve its semantic features.
+
+Therefore, we do **not** necessarily want:
+
+```
+new_feature(P1) = old_feature(P1)
+```
+
+That would prevent representation learning from evolving.
+
+Instead, we want:
+
+```
+similarity(new P1, new P2)
+≈
+similarity(old P1, old P2)
+```
+
+In other words:
+
+> **Preserve the geometry of the patch feature space, not the exact coordinates of individual features.**
+
+## Breakdown of Gram Anchor Loss
+
+The equation is: $L_{Gram} = \sum_{i=1}^{P} \sum_{j=1}^{P} (G_{S,ij} - G_{G,ij})^2$
+
+Here $G_S$ is equal to: $X_S \cdot {X_S}^T$
+
+Similarly, $G_G$ is equal to: $X_G \cdot {X_G}^T$
+
+where:
+
+- $X_S$: patch features from the **current student model**
+- $X_G$: patch features from the **Gram teacher** (an earlier model with better dense features)
+
+Start with the actual model output:
+
+Imagine an image containing:
+
+```
+Patch 1 → dog's face
+Patch 2 → dog's body
+Patch 3 → grass
+```
+
+A Vision Transformer processes these patches and produces one feature vector per patch.
+
+Suppose, for simplicity, each feature has only 2 dimensions.
+
+The Gram teacher produces:
+
+$$
+X_G =
+\begin{bmatrix}
+1.0 & 0 \\
+0.8 & 0.6 \\
+0 & 1
+\end{bmatrix}
+$$
+
+Each **row** is one patch feature:
+
+$$
+X_G=
+\begin{bmatrix}
+Patch1 \\
+Patch2 \\
+Patch3
+\end{bmatrix}
+$$
+
+So:
+
+```
+Patch 1 = [1, 0]
+Patch 2 = [0.8, 0.6]
+Patch 3 = [0, 1]
+```
+
+So, the Gram Matrix for the teacher would be the following:
+
+$$
+G_G=
+\begin{bmatrix}
+1 & 0.8 & 0 \\
+0.8 & 1 & 0.6 \\
+0 & 0.6 & 1
+\end{bmatrix}
+$$
+
+The paper defines these as L2-normalized patch features.
+
+Because the features are normalized, the dot products correspond to cosine similarities.
+
+So the teacher is saying approximately:
+
+```
+Dog face ↔ Dog body = highly similar
+Dog face ↔ Grass    = very different
+Dog body ↔ Grass    = moderately different
+```
+
+The crucial point:
+
+> The Gram matrix no longer cares about the individual feature coordinates. It only captures how every patch relates to every other patch.
+
+Suppose the student has continued training for a long time:
+
+It's feature vectors have changed:
+
+$$
+X_G =
+\begin{bmatrix}
+0.9 & 0.1 \\
+0.7 & 0.7 \\
+0.4 & 0.9
+\end{bmatrix}
+$$
+
+So, the student Gram Matrix would look like this:
+
+$$
+G_S=
+\begin{bmatrix}
+0.82 & 0.70 & 0.45 \\
+0.70 & 0.98 & 0.91 \\
+0.45 & 0.91 & 0.97
+\end{bmatrix}
+$$
+
+The problem is visible here:
+
+```
+Teacher:
+Dog face ↔ Grass = 0.0
+
+Student:
+Dog face ↔ Grass = 0.45
+```
+
+And:
+
+```
+Teacher:
+Dog body ↔ Grass = 0.6
+
+Student:
+Dog body ↔ Grass = 0.91
+```
+
+The student is making unrelated regions **too similar**.
+
+This is exactly the kind of degradation DINOv3 wants to prevent: patch features become less spatially discriminative during long-scale training.
+
+Now, if we compute the difference:
+
+$$
+G_S - G_G=
+\begin{bmatrix}
+0.82 & 0.70 & 0.45 \\
+0.70 & 0.98 & 0.91 \\
+0.45 & 0.91 & 0.97
+\end{bmatrix}
+-
+\begin{bmatrix}
+1 & 0.8 & 0 \\
+0.8 & 1 & 0.6 \\
+0 & 0.6 & 1
+\end{bmatrix}
+$$
+
+> The resultant matrix will tell us how much pairwise patch relationship has changed
+
+### What gradient signal does this give?
+
+Suppose:
+
+```
+Teacher:
+Dog face ↔ Grass = 0.05
+
+Student:
+Dog face ↔ Grass = 0.80
+```
+
+Then the loss contains: $(0.80−0.05)^2 =0.5625$ , this is a large penalty. During backpropagation, the student is pushed to change its patch representations so that ${X_{dogface}}^T \cdot X_{grass}$ becomes smaller.
+
+DINOv3 does **not** say:
+
+```
+Make the dog-face feature exactly equal to the old dog-face feature.
+```
+
+It says:
+
+```
+Adjust the features so the relationship between
+dog face and grass resembles the earlier model.
+```
+
+## Conclusion
+
+DINOv3 represents an important evolution of the original DINO framework. While DINO introduced self-distillation as an effective way to learn strong visual representations without labels, DINOv3 focuses on the challenge of scaling this approach to much larger models, datasets, longer training schedules, and higher resolutions.
+
+The central contribution of DINOv3 is the observation that scaling self-supervised vision models creates a trade-off between global semantic understanding and dense, patch-level representation quality. As training continues, the model can improve on high-level recognition tasks while its local features gradually become less spatially discriminative. This degradation is especially problematic for dense vision tasks such as segmentation, depth estimation, correspondence, and tracking.
+
+To address this problem, DINOv3 introduces **Gram anchoring**. Instead of forcing the current model to reproduce the exact patch features of an earlier teacher, Gram anchoring preserves the relationships between patches. Given patch features $X$, the Gram matrix $X \cdot X^T$
+contains the pairwise similarity between every pair of patches. The loss
+
+$$
+L_{Gram}={∥ X_S \cdot {X_S}^T − X_G \cdot {X_G}^T ∥}_F^2
+$$
+
+encourages the student model to maintain a similar patch-to-patch relational structure to a teacher whose dense features are more coherent. This allows the student representation itself to continue evolving and improving while preventing it from forgetting important local spatial relationships.
+
+In this sense, Gram anchoring does not say, **"copy the teacher's features exactly."** Instead, it says, **"you are free to learn new representations, but preserve the geometry of how different image regions relate to one another."** This makes it possible to combine stronger global semantic representations with high-quality dense feature maps.
+
+Together with large-scale data curation, a 7B-parameter vision model, long-horizon training, high-resolution adaptation, and distillation into smaller models, DINOv3 demonstrates how DINO-style self-supervised learning can become a scalable vision foundation model.
+
+The most important takeaway is that **DINOv3 is not simply a larger version of DINO**. Its key contribution is solving a fundamental scaling problem: as vision models become larger and train longer, global understanding and local feature quality do not necessarily improve together. Gram anchoring provides a mechanism for preserving local relational structure while allowing the model to continue improving globally, enabling a single self-supervised vision model to perform strongly across both image-level and dense prediction tasks.
+
+[img_1]: https://blob.mahibulhaque.me/images/vit-model-accuracy-image-classification.webp
+[img_2]: https://blob.mahibulhaque.me/images/rich-information-loss.webp
+[img_3]: https://blob.mahibulhaque.me/images/dino-model-architecture.webp
+[img_4]: https://blob.mahibulhaque.me/images/vit-model-architecture.webp
+[img_5]: https://blob.mahibulhaque.me/images/dino-model-segmentation-map.webp
+[img_6]: https://blob.mahibulhaque.me/images/embedding-space.webp
