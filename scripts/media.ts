@@ -11,7 +11,7 @@ const DEFAULT_PUBLIC_BASE = "https://blob.mahibulhaque.me";
 const DEFAULT_BUCKET = "mahibulhaque-me-k74qgd";
 const DEFAULT_WRANGLER = "npx -y wrangler@latest";
 const DEFAULT_CONTENT_ROOT = "src/content/blogs";
-const DEFAULT_LOCAL_IMAGE_ROOTS = ["public", "src/assets/images"];
+const DEFAULT_LOCAL_IMAGE_ROOTS = ["src/assets/images"];
 const IMMUTABLE_CACHE = "public, max-age=31536000, immutable";
 const IMAGE_EXTS = new Set([".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"]);
 
