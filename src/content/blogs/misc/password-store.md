@@ -1,8 +1,16 @@
 ---
-title: "How I am Maintaining Passwords Without a Manager"
-description: "A practical, no-nonsense guide to pass, the standard Unix password manager — what it is, why it works, and how to actually use it day to day."
-date: 2026-08-31
-tags: ["cli", "security", "linux", "workflow"]
+title: How I am Maintaining Passwords Without a Manager
+description: >-
+  A practical, no-nonsense guide to pass, the standard Unix password manager —
+  what it is, why it works, and how to actually use it day to day.
+date: 2026-08-31T00:00:00.000Z
+tags:
+  - cli
+  - security
+  - linux
+  - workflow
+ogImage: site-cover.png
+atUri: 'at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3muf7a32cyb2c'
 ---
 
 I spent years bouncing between password managers. A browser extension here, a "zero-knowledge" cloud vault there, one memorable stretch where I just... didn't use one, which I don't recommend to anyone. Every time, something bugged me. Either the tool wanted a subscription for basic sync, or it locked my data in a proprietary blob I couldn't inspect, or the CLI support was an afterthought bolted onto a GUI-first product.

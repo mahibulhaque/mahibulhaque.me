@@ -163,6 +163,16 @@
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mu5fqjyua223",
         "cid": "bafyreifq6lqe3yjrlabyeuaxcvkyaqootmwq4bkauyjpmflyo72x5qjmfi"
       }
+    },
+    "src/content/blogs/misc/password-store.md": {
+      "contentHash": "85a0c13a7b0217734bb8fd0699ec361ff1f4de7f9c8fe59f38caad149b5ae86b",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3muf7a32cyb2c",
+      "lastPublished": "2026-08-31T15:17:15.283Z",
+      "slug": "misc/password-store",
+      "bskyPostRef": {
+        "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3muf7a353e22e",
+        "cid": "bafyreihhlmtxs7ptmfsb2dw7ypqg2odqkhsmy3rs4bu6lyklwc6xn6xns4"
+      }
     }
   },
   "publication": {
