@@ -1,5 +1,5 @@
 ---
-title: "How I am maintaining Passwords without a Manager"
+title: "How I am Maintaining Passwords Without a Manager"
 description: "A practical, no-nonsense guide to pass, the standard Unix password manager — what it is, why it works, and how to actually use it day to day."
 date: 2026-08-31
 tags: ["cli", "security", "linux", "workflow"]
