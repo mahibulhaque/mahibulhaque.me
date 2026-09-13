@@ -165,9 +165,9 @@
       }
     },
     "src/content/blogs/misc/password-store.md": {
-      "contentHash": "85a0c13a7b0217734bb8fd0699ec361ff1f4de7f9c8fe59f38caad149b5ae86b",
+      "contentHash": "d541ceae800cc3917ed3b0f142807fd0e99c7e07d3314081c1a21dd0cb6f1d7d",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3muf7a32cyb2c",
-      "lastPublished": "2026-08-31T15:17:15.283Z",
+      "lastPublished": "2026-09-13T15:17:44.169Z",
       "slug": "misc/password-store",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3muf7a353e22e",
