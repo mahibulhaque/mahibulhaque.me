@@ -21,7 +21,7 @@ Currently, I'm based in Dhaka, Bangladesh. If you're around, feel free to reach 
 
 ## Curriculum vitae
 
-For the paper trail inclined, here's [my CV]([link-to-cv]).
+For the paper trail inclined, here's [my CV](https://drive.google.com/file/d/14xyyZJhKJpYzFBYJ8cN0irf-sOxU117f/view?usp=sharing).
 
 ## Colophon
 
