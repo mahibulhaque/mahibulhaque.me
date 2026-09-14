@@ -173,6 +173,16 @@
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3muf7a353e22e",
         "cid": "bafyreihhlmtxs7ptmfsb2dw7ypqg2odqkhsmy3rs4bu6lyklwc6xn6xns4"
       }
+    },
+    "src/content/blogs/papernotes/sqlite-is-enough.mdx": {
+      "contentHash": "b929e69cbc4f06d464c531072e6df9abfdca507a743c01f7a74ee0069d032c7e",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mvi37azz722w",
+      "lastPublished": "2026-09-14T12:08:23.796Z",
+      "slug": "papernotes/sqlite-is-enough",
+      "bskyPostRef": {
+        "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mvi37b6hvy2t",
+        "cid": "bafyreiei5efrsek43x3eycxtlt5wo23j4usmz3ngynetf6vfjmaxdij6vu"
+      }
     }
   },
   "publication": {
