@@ -1,0 +1,237 @@
+---
+title: SQLite is Enough. Lexical, Semantic and Hybrid Search with scrydb
+date: 2026-09-14
+description: >-
+  Scrydb, a Python library that enables lexical, semantic, and hybrid search within SQLite.
+tags:
+  - sqlite
+  - python
+  - vector search
+  - research
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+---
+
+import "katex/dist/katex.min.css";
+
+[Paper Link](https://arxiv.org/abs/2608.24060)
+
+## Why this paper matters
+
+Modern search systems often combine several separate components: a keyword index, an embedding model, a vector database, and application code that merges their results. This architecture is effective, particularly for large collections, but it can be difficult to install, maintain, reproduce, and distribute.
+The paper presents `scrydb`, an open-source Python library that asks whether `SQLite` can provide a complete retrieval system for small- and medium-sized collections. `Scrydb` stores documents, lexical indexes, embeddings, queries, and retrieval outputs in one database file. It supports keyword search, semantic search, reranking, and hybrid search without requiring a separate vector database or search server.
+The central claim is deliberately scoped: exhaustive search over compact binary vectors can be practical when a collection is not large enough to justify approximate-nearest-neighbor infrastructure. The approach is therefore aimed at research experiments, local document search, reproducible datasets, prototypes, and lightweight agentic applications rather than internet-scale or high-concurrency services.
+![nDCG@10 for BM25, semantic retrieval, reranking, reciprocal rank fusion, and the Qwen3-Embedding-8B reference results across eight BEIR datasets.][img_1]
+
+The heatmap summarizes the paper’s main effectiveness result. Semantic methods substantially improve over BM25 on several datasets, while binary Hamming retrieval often approaches the effectiveness of higher-precision alternatives. The results also show that combining lexical and semantic rankings is not automatically better than selecting the strongest individual method.
+
+## The retrieval problem in plain terms
+
+Search systems can identify relevant documents in two broad ways.
+Lexical retrieval looks for matching words. It is especially effective when a query uses the same terminology as the relevant document. Scrydb implements this approach with [SQLite’s FTS5](https://www.sqlite.org/fts5.html) extension and the `BM25` ranking function. FTS5 maintains an inverted index, which records where terms occur, and can also generate snippets and highlighted passages around matched terms.
+
+Semantic retrieval represents queries and documents as numerical embeddings produced by a language model. Documents with similar meanings should have similar vectors even when they do not share many exact words. The standard comparison uses cosine similarity:
+
+$$
+\operatorname{sim}(e_{Q}, e_{D}) = \frac{e_Q \cdot e_D}{\lVert e_Q\rVert \lVert e_D\rVert}
+$$
+
+A full-precision embedding can preserve considerable information, but it consumes more storage and requires more computation during comparison. Scrydb therefore evaluates lower-precision representations. An int8 vector stores each component using one byte, while a binary vector stores only whether each component is positive or non-positive.
+
+For a 4096-dimensional embedding, a binary representation requires $ 4096/8=512 $ bytes because eight bits are packed into each byte. The corresponding float32 representation requires $ 4096 \times 4 = 16,384 $ bytes. This is a 32-fold reduction in raw vector storage.
+
+Binary vectors are compared with Hamming distance. The comparison counts the number of positions at which two binary codes differ:
+
+$$
+d_H(b_Q, b_D) = \operatorname{popcount}(b_Q \oplus b_D)
+$$
+
+The bitwise exclusive-or identifies differing positions, and the population count counts them. This operation is inexpensive and well suited to scanning a complete collection.
+
+## Breakdown of the process
+
+A binary embedding keeps only the sign of each number, reducing a 4096-dimensional vector from 16,384 bytes to 512 bytes—a 32× reduction.
+
+1. Turning numbers into bits
+
+Suppose a tiny embedding has only eight components:
+
+```txt
+Original embedding:
+[ 0.8, -0.2,  1.1,  0.0, -0.7,  0.3, -0.1,  0.5 ]
+```
+
+Scrydb keeps only whether each value is positive:
+
+```txt
+Positive?:
+[  1,    0,   1,   0,    0,   1,    0,   1  ]
+
+Binary code:
+[1 0 1 0 0 1 0 1]
+```
+
+Positive values become `1`; zero or negative values become `0`. The actual magnitudes—such as `0.8` versus `10.0` —are discarded.
+
+2. Why eight bits fit in one byte
+
+The eight bits
+
+```txt
+1 0 1 0 0 1 0 1
+```
+
+can be packed into a single byte. Therefore:
+
+```txt
+4096 bits ÷ 8 = 512 bytes
+```
+
+By contrast, a float32 value uses four bytes:
+
+```txt
+4096 values × 4 bytes = 16,384 bytes
+```
+
+So the binary version uses:
+
+```txt
+16,384 ÷ 512 = 32 times less storage
+```
+
+A useful mental picture is: float32 stores the full height of every signal; binary storage records only whether each signal points up or down.
+
+3. Comparing two binary vectorsSuppose two items produce these codes:
+
+```txt
+Query:    1 0 1 0 0 1 0 1
+Document: 1 1 1 0 1 1 0 0
+```
+
+Compare each position:
+
+```txt
+Same?     ✓ ✗ ✓ ✓ ✗ ✓ ✓ ✗
+```
+
+They differ in three positions, so their Hamming distance is `3`.
+The computer obtains this using XOR:
+
+```txt
+Query XOR Document:
+1 0 1 0 0 1 0 1
+1 1 1 0 1 1 0 0
+-----------------
+0 1 0 0 1 0 0 1
+```
+
+The `1`s mark disagreements. Counting them gives:
+
+```txt
+0 + 1 + 0 + 0 + 1 + 0 + 0 + 1 = 3
+```
+
+That is what
+
+$$
+d_H(b_Q,b_D)=\operatorname{popcount}(b_Q\oplus b_D)
+$$
+
+means: **XOR finds the different bits, and `popcount` counts them**.
+
+4. How this represents similarity
+   A **small Hamming distance** means the query and document agree on many sign patterns:
+
+```txt
+Distance 1 → very similar binary pattern
+Distance 6 → less similar binary pattern
+```
+
+Scrydb can therefore scan many documents using compact bit operations instead of comparing thousands of full decimal numbers. This makes exhaustive binary search fast; in the paper’s experiments, Hamming search was the fastest semantic method on seven of eight datasets.
+
+The trade-off is that binary codes lose magnitude information. Scrydb can first use the fast binary comparison to find promising candidates, then rerank those candidates with int8 or float32 embeddings for greater precision. This is the paper’s “binary first, more precise later” strategy.
+
+## What scrydb contributes
+
+The paper’s contributions are primarily architectural and empirical.
+
+1. **A unified retrieval artifact**. Scrydb places the original documents, FTS5 indexes, binary vectors, int8 vectors, float32 vectors, queries, and retrieval results in a SQLite database. Instead of distributing several synchronized files and services, an experiment can be represented by one portable artifact.
+2. **One interface for multiple retrieval stages**. The library supports lexical first-stage retrieval, exhaustive semantic search, high-precision reranking, and rank fusion. It can load data from JSONL files, iterables, datasets, and data frames, and it can generate embeddings or accept precomputed vectors.
+3. **An evaluation of binary retrieval as a practical first stage**. The paper measures whether binary embeddings retain enough semantic information to identify strong candidates. The results show that they often do, particularly when the initial candidates are reranked using int8 or float32 similarity.
+4. **An empirical comparison of effectiveness and latency**. Rather than treating compression as purely a storage optimization, the study evaluates how binary, int8, and float32 representations affect both retrieval quality and runtime across eight datasets.
+5. **A reproducibility-oriented design**. Results can be exported in standard six-column TREC format or as pandas data frames. The database can be archived, shared, and rerun without reconstructing a separate vector-store deployment.
+
+A simplified workflow looks like this:
+
+```python
+
+from scrydb import Index
+
+index = Index("corpus.sqlite")
+
+# Documents and embeddings can be loaded or generated beforehand.
+index.add_documents(documents)
+
+results = index.search(
+    "What causes a financial risk?",
+    method="hamming",
+    rerank="int8",
+    top_k=10,
+)
+```
+
+The example illustrates the intended interaction model: create or open a database, add documents, and request a retrieval configuration. The actual value of the design is that the underlying lexical and vector resources remain in the same database rather than being managed independently.
+
+## How the retrieval pipelines work
+
+The study evaluates thirteen configurations.
+
+For lexical retrieval, BM25 first selects up to 1,000 candidate documents. These candidates can then be reranked with Hamming distance, int8 cosine similarity, or float32 cosine similarity. This separates inexpensive candidate generation from more precise comparison.
+For semantic retrieval, the system scans the full collection using one of the three vector representations. Binary search is the cheapest option, while float32 search retains the most numerical detail.
+The paper also tests two-stage semantic pipelines. A binary Hamming scan selects candidates, after which int8 or float32 similarity reranks only those candidates. This is important because it can preserve the quality of exhaustive high-precision search without applying the expensive comparison to every document.
+
+Finally, hybrid retrieval combines BM25 and semantic rankings through Reciprocal Rank Fusion. RRF assigns each document a contribution based on its rank in each input list:
+
+$$
+\operatorname{RRF}(d)=\sum_{r\in R}\frac{1}{k+\operatorname{rank}_r(d)}
+$$
+
+Documents appearing near the top of several rankings receive higher combined scores. This method does not require the scores from different retrievers to be calibrated to the same numerical scale.
+
+## Evaluation design
+
+The authors evaluate eight BEIR datasets: ArguAna, FiQA, NFCorpus, Quora, SciDocs, SciFact, Touché, and TREC-COVID. These datasets cover argument retrieval, financial question answering, biomedical search, duplicate-question detection, scientific document retrieval, fact checking, and biomedical ad-hoc retrieval.
+The collection sizes vary considerably. NFCorpus contains roughly 3,600 documents, whereas Quora contains approximately 523,000. This range allows the paper to examine both the effectiveness of the retrieval methods and the practical consequences of exhaustive scanning.
+Effectiveness is measured with Average Precision, Reciprocal Rank, Precision at 10, and nDCG@10. The discussion emphasizes nDCG@10, which measures the quality of the highest-ranked results while giving greater credit to more relevant documents near the top.
+The reference comparison uses officially reported MTEB results for Qwen3-Embedding-8B with full-precision embeddings. The authors independently generate embeddings for the eight datasets and run retrieval on an Apple M2 MacBook Air with 24 GB of unified memory, without using a GPU for retrieval. Embeddings are generated beforehand through a remote embedding API.
+
+## Main effectiveness findings
+
+Reranking improves BM25 on all eight datasets. The gains are particularly visible on ArguAna, FiQA, SciDocs, and TREC-COVID, where semantic information helps identify relevant documents that keyword matching alone misses. Touché shows a smaller benefit, and some reranking configurations slightly reduce Reciprocal Rank.
+Full-collection binary semantic search exceeds BM25 in nDCG@10 on every evaluated dataset. This shows that one-bit representations can preserve useful meaning-level relationships despite discarding most of the original numerical precision.
+The strongest general pattern is a binary first stage followed by higher-precision reranking. Hamming plus int8 cosine reaches the same or nearly the same top-ten effectiveness as exhaustive int8 search. Hamming plus float32 reranking similarly approaches exhaustive float32 retrieval. In most cases, the documents needed for the final top ten are already present among the 1,000 candidates selected by the binary scan.
+The best scrydb configuration matches or exceeds the reported MTEB result on four datasets. On average, the best scrydb result is about 0.006 nDCG@10 below the full-precision reference. TREC-COVID requires careful interpretation: the authors’ own exhaustive float32 run also falls below the published reference, obtaining 0.885 compared with 0.950. This suggests that factors such as prompt formatting or embedding-generation details may explain part of the discrepancy.
+RRF is not consistently beneficial. It performs best on Touché, where lexical and semantic rankings appear to correct different errors. On most other datasets, RRF is weaker than the best standalone ranking. Hybrid search should therefore be tested empirically rather than assumed to improve retrieval.
+
+## Latency, storage, and scaling
+
+Binary search is the fastest semantic method on seven of the eight datasets. Its mean latency across all datasets is 22.9 milliseconds, compared with 822.5 milliseconds for exhaustive int8 cosine search and 1,998.1 milliseconds for exhaustive float32 search.
+The cost of Hamming search grows with the number of documents because every query code is compared with every stored code. On Quora’s approximately 523,000 documents, the mean Hamming latency is 81.5 milliseconds. BM25 behaves differently: its latency depends strongly on query length and the number of matching postings. ArguAna has relatively few documents but long queries, resulting in BM25 latency of 566.8 milliseconds.
+Reranking only 1,000 candidates is much cheaper than performing a high-precision scan over the entire collection. Hamming followed by int8 reranking averages 164.5 milliseconds, roughly one-fifth of exhaustive int8 retrieval while maintaining similar top-ten quality.
+This scaling behavior defines the appropriate use case. Scrydb can be attractive for collections up to several million documents, especially on consumer hardware. At tens of millions of documents, exhaustive scanning becomes increasingly difficult. Systems requiring distributed execution, sharding, replication, continuous high-volume ingestion, or high-concurrency serving remain better suited to approximate-nearest-neighbor indexes and dedicated vector databases.
+
+## How this differs from current approaches
+
+Scrydb does not compete with Faiss, HNSW indexes, Milvus, Pinecone, Weaviate, Qdrant, or PostgreSQL with pgvector on their primary strengths. Those systems are designed for larger-scale search, specialized indexing, production deployment, or distributed operation.
+Instead, scrydb occupies a middle ground between an in-memory retrieval script and a full search platform. Its distinctive feature is the combination of several retrieval capabilities inside a standard embedded database. SQLite provides transactional storage and portability, FTS5 provides lexical indexing, and sqlite-vec provides vector comparison. Quantized vectors make exhaustive scans more manageable without requiring a separate approximate index.
+The resulting design prioritizes simplicity, portability, and reproducibility over maximum scale and throughput.
+
+## Limitations and overall assessment
+
+The study evaluates one machine, a limited set of datasets, and a particular embedding model. Its latency measurements should therefore be interpreted as practical reference points rather than universal benchmarks. Embedding quality remains central: compression cannot recover information that the embedding model fails to encode, and differences in prompts or preprocessing can affect comparisons with published baselines.
+The system also depends on exhaustive scans for semantic retrieval. This makes binary representations efficient but does not remove the linear relationship between search cost and collection size. Hybrid fusion may introduce additional complexity without improving quality, and the best retrieval configuration remains dataset-dependent.
+Within those limits, the paper demonstrates that SQLite can support a useful end-to-end retrieval pipeline for moderate collections. Its main contribution is showing how lexical search, semantic search, quantized embeddings, reranking, and reproducible storage can be combined in one lightweight artifact. For local search and research workflows, this can provide a simpler alternative to assembling and operating several specialized retrieval services.
+
+[img_1]: https://blob.mahibulhaque.me/papernotes/sqlite-is-enough/heatmap-ndcg-c2c834e2f07e.webp
