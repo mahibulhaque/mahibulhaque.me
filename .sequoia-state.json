@@ -175,13 +175,23 @@
       }
     },
     "src/content/blogs/papernotes/sqlite-is-enough.mdx": {
-      "contentHash": "b929e69cbc4f06d464c531072e6df9abfdca507a743c01f7a74ee0069d032c7e",
+      "contentHash": "944c87b60528bcdd20be63e9ca7810fb36bbe0be7ad83dab6b73dc52da969553",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mvi37azz722w",
-      "lastPublished": "2026-09-14T12:08:23.796Z",
+      "lastPublished": "2026-09-15T15:55:22.736Z",
       "slug": "papernotes/sqlite-is-enough",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mvi37b6hvy2t",
         "cid": "bafyreiei5efrsek43x3eycxtlt5wo23j4usmz3ngynetf6vfjmaxdij6vu"
+      }
+    },
+    "src/content/blogs/papernotes/mamba-vision.mdx": {
+      "contentHash": "ff97f540bbce51f54827bcfb3612dfd831557ee4d1c366cc43c4dc579a0be72d",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mvkydzriya24",
+      "lastPublished": "2026-09-15T15:55:22.032Z",
+      "slug": "papernotes/mamba-vision",
+      "bskyPostRef": {
+        "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mvkydzu5xt2w",
+        "cid": "bafyreihr44yp4iyb2nncte4yrmr26bq7ulhhmnaucvll6juqj4idpbz5ia"
       }
     }
   },
