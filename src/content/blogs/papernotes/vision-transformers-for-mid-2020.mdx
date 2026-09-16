@@ -1,0 +1,49 @@
+---
+title: "ViT-5: Vision Transformers for The Mid-2020s"
+date: 2026-09-16
+description: "ViT-5 modernizes the Vision Transformer by systematically integrating recent advances in normalization, activation, positional encoding, gating, and learnable tokens while retaining the standard Attention-FFN architecture. Experiments show that it consistently improves over vanilla and state-of-the-art plain ViT backbones across classification and generative tasks, offering stronger representation learning, spatial reasoning, and reliable transfer as a simple drop-in upgrade."
+tags:
+  - computer vision
+  - vision transformer
+  - research
+aliases: []
+discussions: []
+mermaid: false
+type_label: ""
+---
+
+import "katex/dist/katex.min.css";
+
+[Paper Link](https://arxiv.org/abs/2602.08071)
+
+## Overview
+
+Vision Transformers (ViTs) revolutionized computer vision when introduced in 2020, challenging the dominance of Convolutional Neural Networks. However, while Large Language Models have undergone continuous architectural refinement over the past five years—incorporating advances like `RMSNorm`, `SwiGLU`, `RoPE`, and `QK-Normalization—Vision` Transformers have remained relatively stagnant. The core design of ViT backbones in state-of-the-art models like DeiT-III and even large-scale vision-language models continues to rely on essentially vanilla architectures.
+This work addresses the "architectural gap" between vision and language models by systematically modernizing the plain ViT architecture. Rather than proposing entirely new macro-architectures, the authors focus on component-wise refinements that preserve the fundamental Attention-FFN structure while integrating proven architectural advances from the language domain, adapted specifically for vision tasks.
+
+## The ViT-5 Architecture
+
+The ViT-5 architecture introduces seven key modifications to the original Vision Transformer design, each carefully selected through systematic experimentation:
+**Activation Scaling and Normalization**: ViT-5 adopts LayerScale for learnable scaling of block outputs, which provides functional equivalence to post-normalization used in LLMs but with greater flexibility. The traditional Layer Normalization is replaced with Root Mean Square Normalization (RMSNorm), eliminating the re-centering operation for modest performance gains and computational efficiency.
+**Gating and Activation Functions**: While SwiGLU is prevalent in modern LLMs, the authors discovered an "over-gating" issue when combining SwiGLU MLPs with LayerScale in ViTs. This combination led to excessively sparse activations and performance degradation. Consequently, ViT-5 retains the original MLP design with GeLU activation, demonstrating a critical vision-specific architectural decision.
+**Hybrid Positional Encoding**: Instead of discarding Absolute Positional Embeddings (APE), ViT-5 incorporates 2D Rotary Positional Embeddings (RoPE) alongside APE. This hybrid approach addresses APE's limitations with dynamic resolutions while preventing undesirable invariances that a RoPE-only formulation would introduce:
+
+$$
+\text{Position Encoding} = \text{APE} + \text{2D-RoPE}
+$$
+
+**Register Tokens with Specialized Positioning**: Following recent findings on Vision Transformer registers, learnable register tokens are appended to input patch tokens. These register tokens receive separate 2D RoPE with significantly higher frequency base than patch tokens, decoupling their positional correlations and stabilizing register-patch interactions.
+**Attention Mechanism Refinements**: ViT-5 incorporates QK-Normalization, applying RMSNorm to queries and keys within self-attention, significantly enhancing training stability and reducing loss spikes. Additionally, bias terms in QKV projection layers are removed to maintain structural consistency with the bias-free RMSNorm.
+
+## Architectural Insights and Ablation Studies
+
+The systematic ablation studies reveal several critical insights about Vision Transformer design:
+**Component Complementarity**: Each of the seven architectural modifications contributes positively to overall performance, with their removal consistently leading to accuracy drops. The components exhibit complementary rather than redundant effects, and their impact varies across model scales.
+Vision-Specific Considerations: The discovery of the "over-gating" issue with SwiGLU demonstrates that architectural advances from language models cannot be naively transferred to vision. This finding is more pronounced in smaller models, highlighting the importance of careful, context-aware integration of cross-modal architectural elements.
+**Improved Spatial Understanding**: Qualitative attention visualizations show that ViT-5 exhibits cleaner and more focused attention patterns with effective suppression of background artifacts. This improvement stems from the combined effects of 2D RoPE and register tokens, leading to enhanced spatial reasoning capabilities.
+
+## Significance and Impact
+
+ViT-5 represents a systematic approach to modernizing Vision Transformer architectures through principled component-wise refinement. By demonstrating that significant performance gains can be achieved through careful architectural choices rather than complex macro-architectural changes, this work establishes a valuable precedent for the evolution of foundation models.
+The architecture serves as a practical drop-in upgrade for existing ViT-based systems while narrowing the gap between vision and language Transformers. This convergence suggests promising directions for unified multimodal architectures and simplified foundation model development. The public availability of code ensures reproducibility and facilitates adoption across the research community.
+The work emphasizes that backbone modernization should be treated as a "first-class, reproducible design process," encouraging deeper understanding of architectural elements and their interactions. This methodology could accelerate progress in developing more robust, efficient, and capable vision models for the mid-2020s and beyond.
