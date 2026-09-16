@@ -185,13 +185,23 @@
       }
     },
     "src/content/blogs/papernotes/mamba-vision.mdx": {
-      "contentHash": "ff97f540bbce51f54827bcfb3612dfd831557ee4d1c366cc43c4dc579a0be72d",
+      "contentHash": "e3ba585f03f99abb6916e9f242b8d58f0388e0695545733cc93cf57a87f9d4e9",
       "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mvkydzriya24",
-      "lastPublished": "2026-09-15T15:55:22.032Z",
+      "lastPublished": "2026-09-16T10:06:35.884Z",
       "slug": "papernotes/mamba-vision",
       "bskyPostRef": {
         "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mvkydzu5xt2w",
         "cid": "bafyreihr44yp4iyb2nncte4yrmr26bq7ulhhmnaucvll6juqj4idpbz5ia"
+      }
+    },
+    "src/content/blogs/papernotes/vision-transformers-for-mid-2020.mdx": {
+      "contentHash": "cd43ea5686e0ea91740a5cf8d83ba7304e55d45457b74ebd6cbf49d8f4c4013e",
+      "atUri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/site.standard.document/3mvmvdbtx6a2y",
+      "lastPublished": "2026-09-16T10:06:35.195Z",
+      "slug": "papernotes/vision-transformers-for-mid-2020",
+      "bskyPostRef": {
+        "uri": "at://did:plc:miwiepbo3e3sh5fknyt7jxqm/app.bsky.feed.post/3mvmvdbwr3s2f",
+        "cid": "bafyreifxlcbhqvf347uc2vcexdg6bkto3dd2z7njqcd5crdospib7lrgqi"
       }
     }
   },
