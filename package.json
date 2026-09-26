@@ -43,7 +43,7 @@
     "katex": "^0.18.5",
     "lucide-react": "^1.46.0",
     "mermaid": "^11.17.2",
-    "motion": "^13.3.0",
+    "motion": "^13.4.1",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "rehype-katex": "^7.0.1",
